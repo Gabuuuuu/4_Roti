@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('CNP', 13);
             $table->string('actDeIdentitate', 10);
             $table->string('nr', 6);
-            $table->date('dataEliberarii')->format('d/m/Y');;
+            $table->date('dataEliberarii')->format('d/m/Y');
             $table->string('domiciliul', 25);
             $table->string('strada', 50);
             $table->string('nrStrada', 10);
@@ -31,7 +31,6 @@ return new class extends Migration
             $table->date('data_semnare_contract')->format('d/m/Y')->useCurrent();
 
             $table->foreign('id_departament')->references('id_departament')->on('departments');
-
         });
     }
 

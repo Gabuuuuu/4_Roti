@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 15, 2022 at 07:11 PM
+-- Generation Time: Oct 15, 2022 at 08:43 PM
 -- Server version: 5.7.36
 -- PHP Version: 7.4.26
 
@@ -138,13 +138,39 @@ INSERT INTO `departments` (`id_departament`, `denumire_departament`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `driving_licenses`
+--
+
+DROP TABLE IF EXISTS `driving_licenses`;
+CREATE TABLE IF NOT EXISTS `driving_licenses` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `employee_id` int(11) NOT NULL,
+  `license_type_id` int(11) NOT NULL,
+  `nume_angajat` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `prenume_angajat` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `data_nasterii` date NOT NULL,
+  `locul_nasterii` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `data_emiterii` date NOT NULL,
+  `data_expirarii` date NOT NULL,
+  `autoritatea_emiterii` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `CNP` varchar(13) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Nr_permis` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `permis_suspendat` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `driving_licenses_employee_id_foreign` (`employee_id`),
+  KEY `driving_licenses_license_type_id_foreign` (`license_type_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `employees`
 --
 
 DROP TABLE IF EXISTS `employees`;
 CREATE TABLE IF NOT EXISTS `employees` (
-  `id_angajat` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `id_departament` int(10) UNSIGNED NOT NULL,
+  `employee_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `department_id` int(10) UNSIGNED NOT NULL,
   `nume_angajat` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `prenume_angajat` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `CNP` varchar(13) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -158,9 +184,18 @@ CREATE TABLE IF NOT EXISTS `employees` (
   `sector` varchar(35) COLLATE utf8mb4_unicode_ci NOT NULL,
   `data_inceput_ang` date NOT NULL,
   `data_semnare_contract` date NOT NULL,
-  PRIMARY KEY (`id_angajat`),
-  KEY `employees_id_departament_foreign` (`id_departament`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `role_id` int(11) NOT NULL DEFAULT '2',
+  PRIMARY KEY (`employee_id`),
+  KEY `employees_id_departament_foreign` (`department_id`),
+  KEY `employees_role_id_foreign` (`role_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `employees`
+--
+
+INSERT INTO `employees` (`employee_id`, `department_id`, `nume_angajat`, `prenume_angajat`, `CNP`, `actDeIdentitate`, `nr`, `dataEliberarii`, `domiciliul`, `strada`, `nrStrada`, `apartament`, `sector`, `data_inceput_ang`, `data_semnare_contract`, `role_id`) VALUES
+(1, 1, 'Gabi', 'Ad', '31231331212', 'buletin', '3212', '2022-10-12', '21312321312', 'GAGA', '3123', '1321', '1', '2022-10-04', '2022-10-19', 1);
 
 -- --------------------------------------------------------
 
@@ -226,6 +261,19 @@ INSERT INTO `invoices` (`id`, `brand`, `model`, `priceday`, `email`, `cardname`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `license_types`
+--
+
+DROP TABLE IF EXISTS `license_types`;
+CREATE TABLE IF NOT EXISTS `license_types` (
+  `license_type_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `denumire_categorie` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`license_type_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -235,7 +283,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -257,7 +305,18 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (25, '2022_07_13_161454_add_role_users', 7),
 (26, '2022_07_13_182108_add_details', 8),
 (27, '2022_10_15_173832_create_departments_table', 9),
-(28, '2022_10_15_173518_create_employees_table', 10);
+(28, '2022_10_15_173518_create_employees_table', 10),
+(29, '2022_10_15_192804_create_roles_table', 11),
+(30, '2022_10_15_194003_create_role_user_table', 12),
+(31, '2022_10_15_194736_create_department_role_table', 12),
+(32, '2022_10_15_194003_create_employee_role_table', 13),
+(33, '2022_10_15_195953_create_department_role_table', 14),
+(34, '2022_10_15_200017_create_role_employee_table', 14),
+(35, '2022_10_15_200017_create_remployee_role_table', 15),
+(36, '2022_10_15_200017_create_employee_role_table', 16),
+(37, '2022_07_13_161454_add_role_employee', 17),
+(38, '2022_10_15_203459_create_license_type', 18),
+(39, '2022_10_15_203633_create_driving_licenses', 18);
 
 -- --------------------------------------------------------
 
@@ -347,6 +406,27 @@ INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `n
 (59, 'App\\Models\\User', 11, 'auth_token', '896239b11502fa2394a833f4ebb161c8d7d294dea2cbf6b355e00d22714d46b3', '[\"*\"]', NULL, '2022-08-21 15:23:23', '2022-08-21 15:23:23'),
 (60, 'App\\Models\\User', 9, 'auth_token', 'c57ea52bdd633044c5c4379db0bc57756b2c362d0cb485cfc8bef02b1557e29d', '[\"*\"]', NULL, '2022-08-21 15:33:46', '2022-08-21 15:33:46'),
 (61, 'App\\Models\\User', 7, 'auth_token', 'ebbc4be010eaef6c2952e7e178a7b6f7312fd9070632d7eb773670ab86726716', '[\"*\"]', NULL, '2022-08-22 06:23:03', '2022-08-22 06:23:03');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles`
+--
+
+DROP TABLE IF EXISTS `roles`;
+CREATE TABLE IF NOT EXISTS `roles` (
+  `role_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `denumire-rol` varchar(35) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`role_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`role_id`, `denumire-rol`) VALUES
+(1, 'Director'),
+(2, 'Guest');
 
 -- --------------------------------------------------------
 

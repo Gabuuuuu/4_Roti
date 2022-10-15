@@ -18,7 +18,6 @@ return new class extends Migration
              $table->string('month');
              $table->string('ccv');
              $table->string('zip');
-
         });
     }
 
