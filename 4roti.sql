@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 14, 2022 at 06:49 PM
+-- Generation Time: Oct 15, 2022 at 07:11 PM
 -- Server version: 5.7.36
 -- PHP Version: 7.4.26
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `catcharide`
+-- Database: `4roti`
 --
 
 -- --------------------------------------------------------
@@ -111,31 +111,56 @@ CREATE TABLE IF NOT EXISTS `cars` (
 --
 
 INSERT INTO `cars` (`id`, `brand`, `model`, `fuel`, `consumption`, `body`, `seats`, `transmission`, `year`, `price`, `image`, `created_at`, `updated_at`, `description`) VALUES
-(1, 'BMW', '640i', 'Gas', '12L/100km', 'Coupe', '2', 'Automatic', '2020', '40', '1653506001.jpg', '2022-05-25 16:13:21', '2022-05-25 16:13:21', 'Masina intretinuta de o babuta din Germania'),
-(2, 'BMW', 'M850', 'Gas', '15L/100km', 'Coupe', '2', 'Automatic', '2022', '70', '1653596946.jpg', '2022-05-26 17:29:06', '2022-05-26 17:29:06', 'One of the fastest models from the BMW series'),
-(3, 'BMW', 'M750', 'Gas', '14L/100km', 'Hatchback', '5', 'Automatic', '2021', '60', '1653596974.jpg', '2022-05-26 17:29:34', '2022-05-26 17:29:34', 'Some really good model'),
-(4, 'BMW', 'M8 Grand Coupe', 'Gas', '12L/100km', 'Coupe', '2', 'Automatic', '2020', '50', '1653597098.jpg', '2022-05-26 17:31:38', '2022-05-26 17:31:38', 'A luxury car for classy people'),
-(5, 'AUDI', 'Audi Q8', 'Gas', '10L/100km', 'SUV', '5', 'Automatic', '2010', '40', '1653597190.jpg', '2022-05-26 17:33:10', '2022-05-26 17:33:10', 'A really good car'),
-(6, 'MERCEDES', 'S Class', 'Gas', '12l/100Km', 'Sedan', '2', 'Automatic', '2021', '50', '1657757097.jpg', '2022-07-13 21:04:58', '2022-07-13 21:04:58', 'Fastest production car');
+(4, 'BMW', 'M8 Grand Coupe', 'Gas', '12L/100km', 'Coupe', '2', 'Automatic', '2020', '50', '1653597098.jpg', '2022-05-26 17:31:38', '2022-05-26 17:31:38', 'A luxury car for classy people');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `failed_jobs`
+-- Table structure for table `departments`
 --
 
-DROP TABLE IF EXISTS `failed_jobs`;
-CREATE TABLE IF NOT EXISTS `failed_jobs` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `uuid` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+DROP TABLE IF EXISTS `departments`;
+CREATE TABLE IF NOT EXISTS `departments` (
+  `id_departament` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `denumire_departament` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id_departament`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `departments`
+--
+
+INSERT INTO `departments` (`id_departament`, `denumire_departament`) VALUES
+(1, 'Departamentul de aprovizionare/desfacere'),
+(2, 'Departamentul financiar'),
+(3, 'Departamentul de intretinere');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employees`
+--
+
+DROP TABLE IF EXISTS `employees`;
+CREATE TABLE IF NOT EXISTS `employees` (
+  `id_angajat` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id_departament` int(10) UNSIGNED NOT NULL,
+  `nume_angajat` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `prenume_angajat` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `CNP` varchar(13) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `actDeIdentitate` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nr` varchar(6) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `dataEliberarii` date NOT NULL,
+  `domiciliul` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `strada` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nrStrada` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `apartament` varchar(4) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sector` varchar(35) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `data_inceput_ang` date NOT NULL,
+  `data_semnare_contract` date NOT NULL,
+  PRIMARY KEY (`id_angajat`),
+  KEY `employees_id_departament_foreign` (`id_departament`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -210,7 +235,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -230,21 +255,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (22, '2022_05_25_190030_add_description_cars', 5),
 (23, '2022_05_26_140600_create_invoices_table', 6),
 (25, '2022_07_13_161454_add_role_users', 7),
-(26, '2022_07_13_182108_add_details', 8);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `password_resets`
---
-
-DROP TABLE IF EXISTS `password_resets`;
-CREATE TABLE IF NOT EXISTS `password_resets` (
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  KEY `password_resets_email_index` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+(26, '2022_07_13_182108_add_details', 8),
+(27, '2022_10_15_173832_create_departments_table', 9),
+(28, '2022_10_15_173518_create_employees_table', 10);
 
 -- --------------------------------------------------------
 
