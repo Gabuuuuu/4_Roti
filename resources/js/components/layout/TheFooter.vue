@@ -4,11 +4,17 @@
             <div class="container py-4">
                 <div class="copyright">
                     &copy; Copyright
-                    <strong><span>Moraru Gabriel Danut</span></strong> && I do
-                    not own any of the images, the credits go to their
-                    respective owners
+                    <strong
+                        ><span
+                            >Moraru Gabriel Danut, Vasilescu Andrei, Potoroaca
+                            Marian</span
+                        ></strong
+                    >
                 </div>
-                <div class="credits">Designed by Moraru Gabriel Danut</div>
+                <div class="credits">
+                    Designed/Coded by Moraru Gabriel Danut, Potoroaca Marian and
+                    Vasilescu Andrei
+                </div>
             </div>
         </footer>
     </div>

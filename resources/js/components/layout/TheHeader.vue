@@ -6,24 +6,24 @@
             >
                 <h1 class="logo">
                     <router-link to="/home">
-                        CatchA<span>Ride</span>
+                        4-<span>Roti !</span>
                     </router-link>
                 </h1>
                 <nav id="navbar" class="navbar">
                     <ul>
                         <li>
                             <router-link class="nav-link" to="/home"
-                                >Home
+                                >Acasa
                             </router-link>
                         </li>
                         <li>
                             <router-link class="nav-link" to="/prices"
-                                >Prices
+                                >Preturi
                             </router-link>
                         </li>
                         <li>
                             <router-link class="nav-link" to="/team"
-                                >Team
+                                >Echipa
                             </router-link>
                         </li>
                         <li v-if="!loggedIn">
@@ -134,8 +134,9 @@ h6 {
     padding: 0;
     line-height: 1;
     font-weight: 600;
-    letter-spacing: 1px;
+    letter-spacing: 3px;
     font-family: "Lobster", cursive;
+    margin-left: 50px;
 }
 #header .logo a {
     color: #ffffff;

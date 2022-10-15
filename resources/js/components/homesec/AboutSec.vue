@@ -3,30 +3,28 @@
         <section id="about" class="about section-bg">
             <div class="container">
                 <div class="section-title">
-                    <h3>Why Catch-A-<span>Ride?</span></h3>
+                    <h3>De ce 4-<span>Roti?</span></h3>
                     <p>
-                        We have the bestdeals for all kinds of brands, from the
-                        daily car to the supersport, extra comfortable cars, to
-                        the most covenient , starting up to $10 per day!
+                        Noi va oferim cele mai bune oferte pentru toate
+                        brandurile, de la minifrigidere la cele mai performante
+                        frigidere de pe piata!
                     </p>
                 </div>
 
                 <div class="row">
-                    <div
-                        class="col-lg-6"
-                    >
+                    <div class="col-lg-6">
                         <img
-                            src="../../../../public/photos/AboutPic.jpg"
+                            src="../../../../public/photos/FridgeAbout.jpg"
                             class="img-fluid"
                         />
                     </div>
                     <div
                         class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center"
                     >
-                        <h3>Find the perfect car for you !</h3>
+                        <h3>Gaseste frigiderul perfect pentru tine !</h3>
                         <p class="fst-italic">
-                            Enter your style and browse through thousands of
-                            cars shared by local hosts.
+                            Intra in stilul tau si cauta prin mii de frigidere
+                            pe care le avem la dispozitie.
                         </p>
                         <ul>
                             <li v-for="line in lines" :key="line.id">
@@ -55,13 +53,13 @@ export default {
         const lines = ref([
             {
                 icon: "bx bxs-hand",
-                title: "Free cancellation",
-                desc: "Cancel for a full refund up to 24 hours before your trip starts. Because life happens and it helps to be flexible when it does.",
+                title: "Anulare Gratuita",
+                desc: "Anuleaza pana in 24 de ore pentru a obtine un retur complet la orice produs achizitionat, pentru ca viata se poate intampla si va intelegem.",
             },
             {
                 icon: "bx bx-map",
-                title: "Covenient Delivery",
-                desc: "Get your car delivered right to you or wherever you’re going. Many hosts offer delivery to custom locations or popular points of interest like airports, train stations, and hotels.",
+                title: "Livrare Convenabila",
+                desc: "Primeste frigiderul tau de vis in orice zi a saptamanii, cu ajutorul curierilor nostrii care lucreaza 24/7 pentru a va aduce cea mai buna experienta!",
             },
         ]);
         return {

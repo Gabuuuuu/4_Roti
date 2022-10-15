@@ -30,23 +30,23 @@ export default {
         const cards = ref([
             {
                 icon: "bx bx-world",
-                title: "Gloabal Reach",
-                desc: "We are proudly anouncing that our company has branched all over the world, providing our clients with cars and drop-out points throughout the whole globe",
+                title: "Livrare oriunde in Romania !",
+                desc: "Sunt mandri sa anuntam ca firma noastra personala de curierat este acum disponibila pe tot teritoriul Romaniei, oferind tuturor clientilor nostri cele mai bune conditii!",
             },
             {
                 icon: "bx bx-wallet",
-                title: "Competitive Prices",
-                desc: "We are always trying to keep in touch with our clients, getting constant feedback from them, which helped us find way of getting the most affordable prices for our customers. ",
+                title: "Preturi Competitive",
+                desc: "Mentinem legaturi stranse cu clientii nostri pentru a mentine o legatura stransa intre nevoile acestora si ofertele noastre, oferind o gama veriata de produse, pentru toate buzunarele. ",
             },
             {
                 icon: "bx bx-car",
-                title: "Wide Variety",
-                desc: "Because we care for our customers satisfaction, we provide a massive amount of cars, covering almost every single brand and prices can do to as low as $10 per day!",
+                title: "Livrare Sigura",
+                desc: "Pentru că ne pasă de satisfacția clienților noștri, oferim protectie garantata produselor achizitionate de acestia, acoperind orice dauna pe care ar putea sa o aiba un produs in cazul in care este avariat in procesul de livrare !",
             },
             {
                 icon: "bx bx-shield-alt-2",
-                title: "Top Protection",
-                desc: "Our Policy offers you three protection plans - Premium, Standard or Minimum - based on your needs and budget. For long trips, you might have to consider getting the premium plan, that way you don't have to worry for anything that could disturb your vacation. For work or a rather short trip, then the standard or minimum plan should do the trick for you. Either way, we got you covered !",
+                title: "Garantie Pe Viata",
+                desc: "Politica noastră de garantie vă oferă trei planuri - Premium, Standard sau Minim - în funcție de nevoile și bugetul dvs. Pentru o asigurare completa, o sa doriti planul premium, în acest fel nu trebuie să vă faceți griji pentru nimic care v-ar putea provoca inconveniente. Pentru un frigider mai ieftin, atunci planul standard sau minim ar trebui să fie perfect pentru tine. Oricum, noi te avem acoperiti !",
             },
         ]);
 
