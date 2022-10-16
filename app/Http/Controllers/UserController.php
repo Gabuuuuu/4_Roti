@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Employee;
+use App\Models\Role;
 
 class UserController extends Controller
 {
@@ -85,16 +86,15 @@ class UserController extends Controller
         //
     }
 
-    public function getRole (User $user, $id)
-    {
+    public function getRole (User $user, $id) {
         $user = User::where('user_id', $id)->firstOrFail();
         $employee = Employee::where('employee_id', $user->employee_id)->firstOrFail();
+        $role = Role::where('role_id', $employee->role_id)->firstOrFail();
 
-        return response()->json($employee);
+        return response()->json($role->role_id);
     }
 
-    public function changeRole (User $user ,$id)
-    {
+    public function changeRole (User $user ,$id) {
         $user = User::findOrFail($id);
         if($user->role == '1') {
             $user->role = '0';

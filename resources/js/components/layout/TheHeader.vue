@@ -62,7 +62,6 @@ export default {
     data() {
         return {
             loggedIn: !!sessionStorage.getItem("token"),
-            role: undefined,
             verifyRole: false,
         };
     },
@@ -74,20 +73,17 @@ export default {
             sessionStorage.removeItem("role");
             this.loggedIn = false;
         },
+        verifyIfEmployee(data) {
+            if (data >= 2) {
+                this.verifyRole = true;
+            }
+        },
     },
     beforeMount() {
-            if (this.loggedIn) {
-                const id = sessionStorage.getItem("id");
-                axios.get("api/users/getRole/" + id).then(({ data }) => {
-                    console.log(data)
-                    this.role = data;
-                });
-
-                if (this.role == "1") {
-                    this.verifyRole = true;
-                }
-                this.verifyRole = false;
-            }
+        if (this.loggedIn) {
+            const id = sessionStorage.getItem("id");
+            axios.get("api/users/getRole/" + id).then(({ data }) => { this.verifyIfEmployee(data);});
+        }
     },
 };
 </script>

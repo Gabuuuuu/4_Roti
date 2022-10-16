@@ -19985,7 +19985,6 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       loggedIn: !!sessionStorage.getItem("token"),
-      role: undefined,
       verifyRole: false
     };
   },
@@ -19996,6 +19995,11 @@ __webpack_require__.r(__webpack_exports__);
       sessionStorage.removeItem("id");
       sessionStorage.removeItem("role");
       this.loggedIn = false;
+    },
+    verifyIfEmployee: function verifyIfEmployee(data) {
+      if (data >= 2) {
+        this.verifyRole = true;
+      }
     }
   },
   beforeMount: function beforeMount() {
@@ -20005,15 +20009,9 @@ __webpack_require__.r(__webpack_exports__);
       var id = sessionStorage.getItem("id");
       axios.get("api/users/getRole/" + id).then(function (_ref) {
         var data = _ref.data;
-        console.log(data);
-        _this.role = data;
+
+        _this.verifyIfEmployee(data);
       });
-
-      if (this.role == "1") {
-        this.verifyRole = true;
-      }
-
-      this.verifyRole = false;
     }
   }
 });

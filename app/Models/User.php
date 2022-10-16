@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Employee;
 
 class User extends Authenticatable
 {
@@ -44,6 +45,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function employees() {
+        return $this->belongsToMany(Employee::class);
+    }
 
     public function userHasRole($role_name) {
         foreach($this->roles as $role) {
