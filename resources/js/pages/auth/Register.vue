@@ -171,12 +171,10 @@ export default {
         },
         responseAfterLogin(res) {
             const access_token = res.data.access_token;
-            const username = res.data.name;
             const id = res.data.id;
 
-            localStorage.setItem("token", access_token);
-            localStorage.setItem("user", username);
-            localStorage.setItem("id", id);
+            sessionStorage .setItem("token", access_token);
+            sessionStorage .setItem("id", id);
 
             this.$router.push({ path: "/home" });
         },

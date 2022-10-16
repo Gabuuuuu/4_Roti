@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
-            $table->id('role_id');
+        Schema::table('roles', function (Blueprint $table) {
             $table->integer('department_id')->unsigned();
-            $table->string('denumire-rol', 35);
-
+            $table->foreign('department_id')->references('department_id')->on('department')->onDelete('cascade');
         });
     }
 
@@ -28,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        Schema::table('roles', function (Blueprint $table) {
+            //
+        });
     }
 };

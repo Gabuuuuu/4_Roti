@@ -61,16 +61,16 @@
 export default {
     data() {
         return {
-            loggedIn: !!localStorage.getItem("token"),
+            loggedIn: !!sessionStorage .getItem("token"),
             role: undefined,
         };
     },
     methods: {
         logOut() {
-            localStorage.removeItem("token");
-            localStorage.removeItem("user");
-            localStorage.removeItem("id");
-            localStorage.removeItem("role");
+            sessionStorage .removeItem("token");
+            sessionStorage .removeItem("user");
+            sessionStorage .removeItem("id");
+            sessionStorage .removeItem("role");
             this.loggedIn = false;
             then(this.loadData());
         },
@@ -78,7 +78,7 @@ export default {
     computed: {
         verifyRole() {
             if (this.loggedIn) {
-                const id = localStorage.getItem("id");
+                const id = sessionStorage .getItem("id");
                 axios.get("api/users/getRole/" + id).then(({ data }) => {
                     this.role = data;
                 });

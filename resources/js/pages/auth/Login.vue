@@ -96,6 +96,7 @@ export default {
             form: {
                 email: "",
                 password: "",
+                "_token": "{{ csrf_token() }}",
             },
         };
     },

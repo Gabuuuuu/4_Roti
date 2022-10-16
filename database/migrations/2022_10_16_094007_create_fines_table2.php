@@ -13,9 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('employees', function (Blueprint $table) {
-            $table->integer('department_id')->unsigned();
-            $table->foreign('role_id')->references('role_id')->on('roles');
+        Schema::create('fines', function (Blueprint $table) {
+            $table->id('fine_id');
+            $table->integer('employee_id');
+            $table->date('data_emiterii')->format('d/m/Y');
+            $table->string('pret_daune', 10);
+
+            $table->foreign('employee_id')->references('employee_id')->on('employees');
         });
     }
 
@@ -26,8 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('employees', function (Blueprint $table) {
-            Schema::dropColumn('role');
-        });
+        Schema::dropIfExists('fines');
     }
 };

@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('employees', function (Blueprint $table) {
-            $table->id('id_angajat');
-            $table->integer('id_departament')->unsigned();
+            $table->id('employee_id');
+            $table->integer('department_id')->unsigned();
             $table->string('nume_angajat', 50);
             $table->string('prenume_angajat', 50);
             $table->string('CNP', 13);
@@ -30,7 +30,7 @@ return new class extends Migration
             $table->date('data_inceput_ang')->format('d/m/Y')->useCurrent();
             $table->date('data_semnare_contract')->format('d/m/Y')->useCurrent();
 
-            $table->foreign('id_departament')->references('id_departament')->on('departments');
+            $table->foreign('department_id')->references('department_id')->on('departments')->onDelete('cascade');;
         });
     }
 

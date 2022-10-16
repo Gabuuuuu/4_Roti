@@ -13,13 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('fines', function (Blueprint $table) {
-            $table->id();
-            $table->integer('employee_id');
-            $table->date('data_emiterii')->format('d/m/Y');
-            $table->string('pret_daune', 10);
-
-            $table->foreign('employee_id')->references('employee_id')->on('employees');
+        Schema::create('suppliers', function (Blueprint $table) {
+            $table->id('supplier_id');
+            $table->string('denumire_furnizor', 50);
         });
     }
 
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fines');
+        Schema::dropIfExists('suppliers');
     }
 };

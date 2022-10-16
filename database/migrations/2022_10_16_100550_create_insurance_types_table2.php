@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('departments', function (Blueprint $table) {
-            $table->id('id_departament');
-            $table->string('denumire_departament', 35);
+        Schema::create('insurance_types', function (Blueprint $table) {
+            $table->id('insurance_type_id');
+            $table->string('tip_asigurare', 50);
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('departments');
+        Schema::dropIfExists('insurance_types');
     }
 };

@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('employees', function (Blueprint $table) {
-            $table->integer('department_id')->unsigned();
-            $table->foreign('role_id')->references('role_id')->on('roles');
+        Schema::create('departments', function (Blueprint $table) {
+            $table->id('department_id');
+            $table->string('denumire_departament', 35);
         });
     }
 
@@ -26,8 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('employees', function (Blueprint $table) {
-            Schema::dropColumn('role');
-        });
+        Schema::dropIfExists('departments');
     }
 };

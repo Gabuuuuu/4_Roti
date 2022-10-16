@@ -86,11 +86,12 @@ class UserController extends Controller
 
     public function getRole (User $user, $id)
     {
-        $user = User::findOrFail($id);
-        $role = $user->role;
+        // $user = User::where('user_id', $id)->firstOrFail();
+        // $role = $user->role;
 
-        return response()->json($role);
+        // return response()->json( $user);
     }
+
     public function changeRole (User $user ,$id)
     {
         $user = User::findOrFail($id);

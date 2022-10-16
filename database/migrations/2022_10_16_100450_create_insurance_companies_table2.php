@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('suppliers', function (Blueprint $table) {
-            $table->id();
-            $table->string('denumire_furnizor', 50);
+        Schema::create('insurance_companies', function (Blueprint $table) {
+            $table->id('insurance_company_id');
+            $table->string('denumire_companie_asigurari', 50);
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('suppliers');
+        Schema::dropIfExists('insurance_companies');
     }
 };

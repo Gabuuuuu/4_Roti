@@ -13,15 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('fridge_invoices', function (Blueprint $table) {
-            $table->id();
-            $table->integer('supplier_id');
+        Schema::create('fridge_models', function (Blueprint $table) {
+            $table->id('fridge_model_id');
             $table->string('denumire_model', 50);
+            $table->date('an_fabricatie')->format('d/m/Y');
+            $table->string('greutate', 3);
+            $table->string('marime', 50);
+            $table->string('consum_energetic', 10);
+            $table->string('calitate', 2);
+            $table->string('volum', 10);
             $table->string('pret', 10);
-            $table->string('cantitate', 10);
-            $table->date('data_emiterii')->format('d/m/Y');
-
-            $table->foreign('supplier_id')->references('supplier_id')->on('suppliers');
         });
     }
 
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fridge_invoices');
+        Schema::dropIfExists('fridge_models');
     }
 };

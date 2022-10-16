@@ -7,7 +7,6 @@ import Home from "./pages/landing/Home";
 import Team from "./pages/landing/Team";
 import Prices from "./pages/landing/Prices";
 import AddCar from "./components/admin/AddCar";
-import Test from "./components/admin/Test";
 import NotFound from "./pages/notFound.vue";
 import Details from "./components/pricesec/Details";
 import RentNow from "./components/pricesec/RentNow";
@@ -28,7 +27,6 @@ const router = createRouter({
         { path: "/team", component: Team },
         { path: "/prices", component: Prices },
         { path: "/addcar", component: AddCar, name: "Addcar" },
-        { path: "/test", component: Test },
         { path: "/details/:id", component: Details, name: "details" },
         { path: "/rentnow/:id", component: RentNow, name: "rentnow" },
         {

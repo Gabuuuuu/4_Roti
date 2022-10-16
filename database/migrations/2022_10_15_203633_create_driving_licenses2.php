@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('driving_licenses', function (Blueprint $table) {
-            $table->id();
+            $table->id('driving_license_id');
             $table->integer('employee_id');
             $table->integer('license_type_id');
             $table->string('nume_angajat', 50);

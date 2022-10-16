@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('insurance_types', function (Blueprint $table) {
-            $table->id();
-            $table->string('tip_asigurare', 50);
+        Schema::create('roles', function (Blueprint $table) {
+            $table->id('role_id');
+            $table->string('denumire-rol', 35);
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('insurance_types');
+        Schema::dropIfExists('roles');
     }
 };

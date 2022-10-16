@@ -14,8 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('delivered_fridges_invoices', function (Blueprint $table) {
-            $table->id();
+            $table->id('delivered_fridges_invoice_id');
             $table->integer('fridge_id');
+            $table->integer('user_id');
             $table->string('nume_beneficiar', 50);
             $table->string('nr_telefon', 11);
             $table->string('adresa_livrare', 50);
@@ -26,6 +27,7 @@ return new class extends Migration
             $table->string('pret_total', 10);
             $table->date('data_emiterii')->format('d/m/Y');
 
+            $table->foreign('user_id')->references('user_id')->on('users');
             $table->foreign('fridge_id')->references('fridge_id')->on('fridges');
         });
     }
