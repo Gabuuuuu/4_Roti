@@ -45,4 +45,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function userHasRole($role_name) {
+        foreach($this->roles as $role) {
+            if(Str::lower($role_name) == Str::lower($role->name))
+                return true;
+        }
+        return false;
+    }
 }

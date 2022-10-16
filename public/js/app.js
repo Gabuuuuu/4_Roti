@@ -19985,7 +19985,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       loggedIn: !!sessionStorage.getItem("token"),
-      role: undefined
+      role: undefined,
+      verifyRole: false
     };
   },
   methods: {
@@ -19994,26 +19995,25 @@ __webpack_require__.r(__webpack_exports__);
       sessionStorage.removeItem("user");
       sessionStorage.removeItem("id");
       sessionStorage.removeItem("role");
-      this.loggedIn = false; // then(this.loadData());
+      this.loggedIn = false;
     }
   },
-  computed: {
-    verifyRole: function verifyRole() {
-      var _this = this;
+  beforeMount: function beforeMount() {
+    var _this = this;
 
-      if (this.loggedIn) {
-        var id = sessionStorage.getItem("id");
-        axios.get("api/users/getRole/" + id).then(function (_ref) {
-          var data = _ref.data;
-          _this.role = data;
-        });
+    if (this.loggedIn) {
+      var id = sessionStorage.getItem("id");
+      axios.get("api/users/getRole/" + id).then(function (_ref) {
+        var data = _ref.data;
+        console.log(data);
+        _this.role = data;
+      });
 
-        if (this.role == "1") {
-          return true;
-        }
-
-        return false;
+      if (this.role == "1") {
+        this.verifyRole = true;
       }
+
+      this.verifyRole = false;
     }
   }
 });
@@ -21645,7 +21645,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  })])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.loggedIn && !!$options.verifyRole ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  })])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.loggedIn && !!$data.verifyRole ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: "/adminp",
     "class": "nav-link"
   }, {

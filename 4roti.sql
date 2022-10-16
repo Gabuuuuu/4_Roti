@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 16, 2022 at 02:50 PM
+-- Generation Time: Oct 16, 2022 at 03:55 PM
 -- Server version: 5.7.36
 -- PHP Version: 7.4.26
 
@@ -140,9 +140,18 @@ CREATE TABLE IF NOT EXISTS `delivered_fridges_invoices` (
 DROP TABLE IF EXISTS `departments`;
 CREATE TABLE IF NOT EXISTS `departments` (
   `department_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `denumire_departament` varchar(35) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `denumire_departament` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`department_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `departments`
+--
+
+INSERT INTO `departments` (`department_id`, `denumire_departament`) VALUES
+(1, 'Departamentul de aprovizionare/desfacere'),
+(2, 'Departamentul financiar'),
+(3, 'Departamentul de întreţinere vehicule');
 
 -- --------------------------------------------------------
 
@@ -179,30 +188,30 @@ CREATE TABLE IF NOT EXISTS `driving_licenses` (
 DROP TABLE IF EXISTS `employees`;
 CREATE TABLE IF NOT EXISTS `employees` (
   `employee_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `department_id` int(10) UNSIGNED NOT NULL,
-  `nume_angajat` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `prenume_angajat` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `CNP` varchar(13) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `actDeIdentitate` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nr` varchar(6) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `dataEliberarii` date NOT NULL,
-  `domiciliul` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `strada` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nrStrada` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `apartament` varchar(4) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sector` varchar(35) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `data_inceput_ang` date NOT NULL,
-  `data_semnare_contract` date NOT NULL,
+  `role_id` int(10) UNSIGNED DEFAULT NULL,
+  `nume_angajat` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `prenume_angajat` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `CNP` varchar(13) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `actDeIdentitate` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nr` varchar(6) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `dataEliberarii` date DEFAULT NULL,
+  `domiciliul` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `strada` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nrStrada` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `apartament` varchar(4) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sector` varchar(35) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `data_inceput_ang` date DEFAULT NULL,
+  `data_semnare_contract` date DEFAULT NULL,
   PRIMARY KEY (`employee_id`),
-  KEY `employees_department_id_foreign` (`department_id`)
+  KEY `employees_role_id_foreign` (`role_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `employees`
 --
 
-INSERT INTO `employees` (`employee_id`, `department_id`, `nume_angajat`, `prenume_angajat`, `CNP`, `actDeIdentitate`, `nr`, `dataEliberarii`, `domiciliul`, `strada`, `nrStrada`, `apartament`, `sector`, `data_inceput_ang`, `data_semnare_contract`) VALUES
-(1, 1, 'Gabi', 'Gabitzu', '321121221', 'buletin', '3212', '2022-10-12', '21312321312', 'GAGA', '3123', '1321', '1', '2022-10-04', '2022-10-19');
+INSERT INTO `employees` (`employee_id`, `role_id`, `nume_angajat`, `prenume_angajat`, `CNP`, `actDeIdentitate`, `nr`, `dataEliberarii`, `domiciliul`, `strada`, `nrStrada`, `apartament`, `sector`, `data_inceput_ang`, `data_semnare_contract`) VALUES
+(1, 1, 'Gabi', 'Gabitzu', '31231331212', 'buletin', '3212', '2022-10-12', '21312321312', 'GAGA', '3123', '1321', '1', '2022-10-04', '2022-10-19');
 
 -- --------------------------------------------------------
 
@@ -357,7 +366,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -420,7 +429,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (66, '2022_10_15_173518_create_employees_table4', 32),
 (67, '2014_10_12_000000_create_users_table4', 33),
 (68, '2014_10_12_000000_create_users_table5', 34),
-(69, '2022_10_16_101933_create_delivered_fridges_invoices_table3', 35);
+(69, '2022_10_16_101933_create_delivered_fridges_invoices_table3', 35),
+(70, '2022_10_16_153048_update_employees_table', 36),
+(71, '2014_10_12_000000_create_users_table6', 37),
+(72, '2022_10_15_173518_create_employees_table5', 38);
 
 -- --------------------------------------------------------
 
@@ -442,7 +454,7 @@ CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `personal_access_tokens`
@@ -524,7 +536,10 @@ INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `n
 (73, 'App\\Models\\User', 12, 'auth_token', '43979efad536f7d4b2d8083c5797e0c135864055850d1a8fb95f46ec8c175022', '[\"*\"]', NULL, '2022-10-16 11:30:07', '2022-10-16 11:30:07'),
 (74, 'App\\Models\\User', 13, 'auth_token', 'a276c2dd8517fcf552069ccb10c643e5a6a8a2f5cace70ab088858412aee2a23', '[\"*\"]', NULL, '2022-10-16 11:35:09', '2022-10-16 11:35:09'),
 (75, 'App\\Models\\User', 12, 'auth_token', '2b9266cbd7ec74fcb0da38e5f5c4be0c3f998c9433c3d44f77f602351503ba18', '[\"*\"]', NULL, '2022-10-16 11:46:55', '2022-10-16 11:46:55'),
-(76, 'App\\Models\\User', 12, 'auth_token', '87e2e8eb5147108bb18da989dad1f0ba907fc1211ffdd2bfc78c7ea7f142fa5d', '[\"*\"]', NULL, '2022-10-16 11:48:21', '2022-10-16 11:48:21');
+(76, 'App\\Models\\User', 12, 'auth_token', '87e2e8eb5147108bb18da989dad1f0ba907fc1211ffdd2bfc78c7ea7f142fa5d', '[\"*\"]', NULL, '2022-10-16 11:48:21', '2022-10-16 11:48:21'),
+(77, 'App\\Models\\User', 12, 'auth_token', '568133c305b88713ff0587b039f571f538edcd0a676b8f321f742e17176a577a', '[\"*\"]', NULL, '2022-10-16 11:51:58', '2022-10-16 11:51:58'),
+(78, 'App\\Models\\User', 12, 'auth_token', '32677b86bf9ffbaccdacee07efbcc792b94d22bfe89a96e3f5456ff91d27f65a', '[\"*\"]', NULL, '2022-10-16 12:22:54', '2022-10-16 12:22:54'),
+(79, 'App\\Models\\User', 1, 'auth_token', 'b99b9012aae05b2db7d3fc1e0572cb6ab7c330ef9536aa552cf7aa6d77c5367e', '[\"*\"]', NULL, '2022-10-16 12:48:55', '2022-10-16 12:48:55');
 
 -- --------------------------------------------------------
 
@@ -539,7 +554,17 @@ CREATE TABLE IF NOT EXISTS `roles` (
   `department_id` int(10) UNSIGNED NOT NULL,
   PRIMARY KEY (`role_id`),
   KEY `roles_department_id_foreign` (`department_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`role_id`, `denumire_rol`, `department_id`) VALUES
+(1, 'Guest', 0),
+(2, 'Director departament aprovizionare', 1),
+(3, 'Director departament financiar', 2),
+(4, 'Director departament intretinere', 3);
 
 -- --------------------------------------------------------
 
@@ -607,7 +632,7 @@ INSERT INTO `transmission` (`id`, `transmission`) VALUES
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `user_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `employee_id` int(10) UNSIGNED DEFAULT NULL,
+  `employee_id` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
@@ -618,15 +643,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `users_email_unique` (`email`),
   KEY `users_employee_id_foreign` (`employee_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`user_id`, `employee_id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(12, NULL, 'Cykachu99', 'gamingro99@yahoo.com', NULL, '$2y$10$DaY2jrsvH4y2nxGWQG.Zye20aTe7V9LvA9cLbbTN0ULeFTlZYIl1i', NULL, '2022-10-16 11:30:07', '2022-10-16 11:30:07'),
-(13, NULL, 'Ceva12', 'gamingro991@yahoo.com', NULL, '$2y$10$GSdWMsx/8vf4rBOskpESwef8YDWHfOOURcUDKWcC7rTMV9Bzjw6HW', NULL, '2022-10-16 11:35:09', '2022-10-16 11:35:09');
+(1, 1, 'Gabi123', 'gamingro99@yahoo.com', NULL, '$2y$10$R6GkTI.6ow7Ae8h6lDs4KeIwWGMwS92s8WREiED2kA/RN8JQublCC', NULL, '2022-10-16 12:48:55', '2022-10-16 12:48:55');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
