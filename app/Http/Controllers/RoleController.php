@@ -15,7 +15,9 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $role = Role::all();
+
+        return response()->json($role);
     }
 
     /**
@@ -70,7 +72,6 @@ class RoleController extends Controller
      */
     public function update(UpdateRoleRequest $request, Role $role)
     {
-        //
     }
 
     /**
@@ -82,10 +83,6 @@ class RoleController extends Controller
     public function destroy(Role $role)
     {
         //
-    }
-      public function loadRole () {
-        $role = Role::all();
-        return response()->json($role);
     }
 }
 

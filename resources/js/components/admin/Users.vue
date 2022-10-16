@@ -30,7 +30,7 @@
                                 <center>{{ user.email }}</center>
                             </td>
                             <td scope="row">
-                                <center>{{ user.employee_id }}</center>
+                                <center>{{ this.roles[user.employee_id].denumire_rol }}</center>
                             </td>
 
                             <td scope="row">
@@ -54,7 +54,7 @@
                                 <center>
                                     <button
                                         class="btn btn-outline-dark btn-s"
-                                        @click="changeRole()"
+                                        @click="changeRole(user.user_id)"
                                     >
                                         Schimba Rolul
                                     </button>
@@ -88,15 +88,27 @@ export default {
     },
     methods: {
         async loadData() {
-            const response = await axios.get("api/users");
-            const loadRole = await axios.get("api/roles");
-            this.users = response.data;
-            this.roles = loadRole.data;
+            const requestOne = axios.get("api/guestUsers");
+            const requestTwo = axios.get("api/roles");
+
+            await axios.all([requestOne, requestTwo]).then(axios.spread((...responses) => {
+                this.users = responses[0].data;
+                this.roles = responses[1].data;
+                this.form.role = this.roles[0].denumire_rol;
+            })).catch(errors => {
+                console.log(errors)
+            })
         },
-        changeRole() {
-            //  Don't forget to reload the data (this.loadData()) ;
+        changeRole(id) {
+            let res;
+            axios.put(`api/users/${id}`, this.form.role).then((data) => {
+                res = data;
+                console.log(res.data)
+            });
+            this.loadData();
         },
     },
 };
 </script>
+
 <style scoped></style>

@@ -105,18 +105,21 @@ export default {
                 .post("/api/login", this.form)
                 .then((res) => {
                     this.responseAfterLogin(res);
-                    this.loadData();
                 })
-                .catch((error) => console.log(error.response?.data));
+                .catch((error) => console.log(error));
         },
         responseAfterLogin(res) {
             const access_token = res.data.access_token;
             const id = res.data.id;
-            const role = res.data.role;
 
             sessionStorage.setItem("token", access_token);
-            sessionStorage.setItem("id", id);
-            sessionStorage.setItem("role", role);
+            sessionStorage.setItem("user_id", id);
+
+            axios.get(`api/users/getRole/${id}`).then((data) =>
+            {
+                const res = JSON.stringify(data.data);
+                sessionStorage.setItem('roleData', res);
+            });
 
             this.$router.push({ path: "/home" });
         },

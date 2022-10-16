@@ -19750,6 +19750,19 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     TheHeader: _components_layout_TheHeader__WEBPACK_IMPORTED_MODULE_1__["default"],
     TheFooter: _components_layout_TheFooter_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      role_id: undefined
+    };
+  },
+  created: function created() {
+    this.getRole();
+  },
+  methods: {
+    getRole: function getRole() {
+      this.role_id = JSON.parse(sessionStorage.getItem('roleData'));
+    }
   }
 });
 
@@ -19939,25 +19952,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var response, loadRole;
+        var requestOne, requestTwo;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return axios.get("api/users");
+                requestOne = axios.get("api/guestUsers");
+                requestTwo = axios.get("api/roles");
+                _context.next = 4;
+                return axios.all([requestOne, requestTwo]).then(axios.spread(function () {
+                  for (var _len = arguments.length, responses = new Array(_len), _key = 0; _key < _len; _key++) {
+                    responses[_key] = arguments[_key];
+                  }
 
-              case 2:
-                response = _context.sent;
-                _context.next = 5;
-                return axios.get("api/roles");
+                  _this.users = responses[0].data;
+                  _this.roles = responses[1].data;
+                  _this.form.role = _this.roles[0].denumire_rol;
+                }))["catch"](function (errors) {
+                  console.log(errors);
+                });
 
-              case 5:
-                loadRole = _context.sent;
-                _this.users = response.data;
-                _this.roles = loadRole.data;
-
-              case 8:
+              case 4:
               case "end":
                 return _context.stop();
             }
@@ -19965,7 +19980,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    changeRole: function changeRole() {//  Don't forget to reload the data (this.loadData()) ;
+    changeRole: function changeRole(id) {
+      var res;
+      axios.put("api/users/".concat(id), this.form.role).then(function (data) {
+        res = data;
+        console.log(res.data);
+      });
+      this.loadData();
     }
   }
 });
@@ -20056,6 +20077,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -20066,27 +20090,20 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     logOut: function logOut() {
       sessionStorage.removeItem("token");
-      sessionStorage.removeItem("user");
       sessionStorage.removeItem("id");
       sessionStorage.removeItem("role");
       this.loggedIn = false;
     },
     verifyIfEmployee: function verifyIfEmployee(data) {
-      if (data >= 2) {
+      if ((data === null || data === void 0 ? void 0 : data.role_id) >= 2) {
         this.verifyRole = true;
       }
     }
   },
   beforeMount: function beforeMount() {
-    var _this = this;
-
     if (this.loggedIn) {
-      var id = sessionStorage.getItem("id");
-      axios.get("api/users/getRole/" + id).then(function (_ref) {
-        var data = _ref.data;
-
-        _this.verifyIfEmployee(data);
-      });
+      var id = JSON.parse(sessionStorage.getItem("roleData"));
+      this.verifyIfEmployee(id);
     }
   }
 });
@@ -20525,21 +20542,19 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.post("/api/login", this.form).then(function (res) {
         _this.responseAfterLogin(res);
-
-        _this.loadData();
       })["catch"](function (error) {
-        var _error$response;
-
-        return console.log((_error$response = error.response) === null || _error$response === void 0 ? void 0 : _error$response.data);
+        return console.log(error);
       });
     },
     responseAfterLogin: function responseAfterLogin(res) {
       var access_token = res.data.access_token;
       var id = res.data.id;
-      var role = res.data.role;
       sessionStorage.setItem("token", access_token);
-      sessionStorage.setItem("id", id);
-      sessionStorage.setItem("role", role);
+      sessionStorage.setItem("user_id", id);
+      axios.get("api/users/getRole/".concat(id)).then(function (data) {
+        var res = JSON.stringify(data.data);
+        sessionStorage.setItem('roleData', res);
+      });
       this.$router.push({
         path: "/home"
       });
@@ -21076,14 +21091,9 @@ var _hoisted_6 = {
 var _hoisted_7 = {
   "class": "mb-md-6 mt-md-4 pb-5"
 };
-
-var _hoisted_8 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
-    "class": "fw-bold mb-4"
-  }, " Panou Administrativ - { Displayed based on Director/User type } ", -1
-  /* HOISTED */
-  );
-});
+var _hoisted_8 = {
+  "class": "fw-bold mb-4"
+};
 
 var _hoisted_9 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
@@ -21172,7 +21182,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TheHeader, {
     "class": "fixed-top"
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_8, " Panou Administrativ - " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.role_id.denumire_rol), 1
+  /* TEXT */
+  ), _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: "/users"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -21577,7 +21589,10 @@ var _hoisted_21 = {
 var _hoisted_22 = {
   scope: "row"
 };
+var _hoisted_23 = ["onClick"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _this = this;
+
   var _component_TheHeader = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("TheHeader");
 
   var _component_center = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("center");
@@ -21664,7 +21679,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* DYNAMIC_SLOTS */
     )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_center, null, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(user.employee_id), 1
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_this.roles[user.employee_id].denumire_rol), 1
         /* TEXT */
         )];
       }),
@@ -21700,15 +21715,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
         return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
           "class": "btn btn-outline-dark btn-s",
-          onClick: _cache[1] || (_cache[1] = function ($event) {
-            return $options.changeRole();
-          })
-        }, " Schimba Rolul ")];
+          onClick: function onClick($event) {
+            return $options.changeRole(user.user_id);
+          }
+        }, " Schimba Rolul ", 8
+        /* PROPS */
+        , _hoisted_23)];
       }),
-      _: 1
-      /* STABLE */
+      _: 2
+      /* DYNAMIC */
 
-    })])]);
+    }, 1024
+    /* DYNAMIC_SLOTS */
+    )])]);
   }), 128
   /* KEYED_FRAGMENT */
   ))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TheFooter, {

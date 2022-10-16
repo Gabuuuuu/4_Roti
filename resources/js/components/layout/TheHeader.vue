@@ -58,6 +58,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     data() {
         return {
@@ -68,21 +70,20 @@ export default {
     methods: {
         logOut() {
             sessionStorage.removeItem("token");
-            sessionStorage.removeItem("user");
             sessionStorage.removeItem("id");
             sessionStorage.removeItem("role");
             this.loggedIn = false;
         },
         verifyIfEmployee(data) {
-            if (data >= 2) {
+            if (data?.role_id >= 2) {
                 this.verifyRole = true;
             }
         },
     },
     beforeMount() {
         if (this.loggedIn) {
-            const id = sessionStorage.getItem("id");
-            axios.get("api/users/getRole/" + id).then(({ data }) => { this.verifyIfEmployee(data); });
+            const id = JSON.parse(sessionStorage.getItem("roleData"));
+            this.verifyIfEmployee(id);
         }
     },
 };

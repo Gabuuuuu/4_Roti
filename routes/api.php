@@ -9,7 +9,7 @@ use App\Http\Controllers\InvoiceController;
 
 //ROUTES
 
-//Public routes
+    //Public routes
     //ROUTE FOR REGISTER
 Route::post('/register', [AuthController::class, 'register']);
     //ROUTE FOR LOGIN
@@ -24,8 +24,13 @@ Route::get('/users/changeRole/{id}', [UserController::class, 'changeRole']);
     //ROUTE FOR ADDING INVOICES
 Route::resource('/invoices', App\Http\Controllers\InvoiceController::class);
 
+// Users
 Route::resource('/users', App\Http\Controllers\UserController::class);
+Route::get('/guestUsers', [UserController::class, 'displayGuests']);
+
 Route::resource('/roles', App\Http\Controllers\RoleController::class);
+
+// Employees
 Route::resource('/employees', App\Http\Controllers\EmployeeController::class);
 
     //ROUTES FOR ADDING CAR DETAILS

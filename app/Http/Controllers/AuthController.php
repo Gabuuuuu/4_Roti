@@ -6,7 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\Employee;
+use App\Models\Role;
 
 class AuthController extends Controller
 {
@@ -47,7 +48,6 @@ public function login(Request $request)
         }
 
         $user = User::where('email', $request['email'])->firstOrFail();
-        $user->save();
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
@@ -55,7 +55,6 @@ public function login(Request $request)
             'token_type' => 'Bearer',
             'id' => auth()->user()->user_id,
             'email' => auth()->user()->email,
-            'role' =>auth()->user()->role
         ]);
     }
 }
