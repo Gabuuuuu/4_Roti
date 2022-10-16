@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 16, 2022 at 10:23 AM
+-- Generation Time: Oct 16, 2022 at 02:05 PM
 -- Server version: 5.7.36
 -- PHP Version: 7.4.26
 
@@ -104,14 +104,7 @@ CREATE TABLE IF NOT EXISTS `cars` (
   `description` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `cars_description_unique` (`description`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `cars`
---
-
-INSERT INTO `cars` (`id`, `brand`, `model`, `fuel`, `consumption`, `body`, `seats`, `transmission`, `year`, `price`, `image`, `created_at`, `updated_at`, `description`) VALUES
-(4, 'BMW', 'M8 Grand Coupe', 'Gas', '12L/100km', 'Coupe', '2', 'Automatic', '2020', '50', '1653597098.jpg', '2022-05-26 17:31:38', '2022-05-26 17:31:38', 'A luxury car for classy people');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -121,8 +114,9 @@ INSERT INTO `cars` (`id`, `brand`, `model`, `fuel`, `consumption`, `body`, `seat
 
 DROP TABLE IF EXISTS `delivered_fridges_invoices`;
 CREATE TABLE IF NOT EXISTS `delivered_fridges_invoices` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `delivered_fridges_invoice_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `fridge_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `nume_beneficiar` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nr_telefon` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
   `adresa_livrare` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -132,7 +126,8 @@ CREATE TABLE IF NOT EXISTS `delivered_fridges_invoices` (
   `pret` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `pret_total` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `data_emiterii` date NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`delivered_fridges_invoice_id`),
+  KEY `delivered_fridges_invoices_user_id_foreign` (`user_id`),
   KEY `delivered_fridges_invoices_fridge_id_foreign` (`fridge_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -144,19 +139,10 @@ CREATE TABLE IF NOT EXISTS `delivered_fridges_invoices` (
 
 DROP TABLE IF EXISTS `departments`;
 CREATE TABLE IF NOT EXISTS `departments` (
-  `id_departament` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `denumire_departament` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id_departament`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `departments`
---
-
-INSERT INTO `departments` (`id_departament`, `denumire_departament`) VALUES
-(1, 'Departamentul de aprovizionare/desfacere'),
-(2, 'Departamentul financiar'),
-(3, 'Departamentul de intretinere');
+  `department_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `denumire_departament` varchar(35) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`department_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -166,7 +152,7 @@ INSERT INTO `departments` (`id_departament`, `denumire_departament`) VALUES
 
 DROP TABLE IF EXISTS `driving_licenses`;
 CREATE TABLE IF NOT EXISTS `driving_licenses` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `driving_license_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `employee_id` int(11) NOT NULL,
   `license_type_id` int(11) NOT NULL,
   `nume_angajat` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -179,7 +165,7 @@ CREATE TABLE IF NOT EXISTS `driving_licenses` (
   `CNP` varchar(13) COLLATE utf8mb4_unicode_ci NOT NULL,
   `Nr_permis` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `permis_suspendat` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`driving_license_id`),
   KEY `driving_licenses_employee_id_foreign` (`employee_id`),
   KEY `driving_licenses_license_type_id_foreign` (`license_type_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -207,18 +193,16 @@ CREATE TABLE IF NOT EXISTS `employees` (
   `sector` varchar(35) COLLATE utf8mb4_unicode_ci NOT NULL,
   `data_inceput_ang` date NOT NULL,
   `data_semnare_contract` date NOT NULL,
-  `role_id` int(11) NOT NULL DEFAULT '2',
   PRIMARY KEY (`employee_id`),
-  KEY `employees_id_departament_foreign` (`department_id`),
-  KEY `employees_role_id_foreign` (`role_id`)
+  KEY `employees_department_id_foreign` (`department_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `employees`
 --
 
-INSERT INTO `employees` (`employee_id`, `department_id`, `nume_angajat`, `prenume_angajat`, `CNP`, `actDeIdentitate`, `nr`, `dataEliberarii`, `domiciliul`, `strada`, `nrStrada`, `apartament`, `sector`, `data_inceput_ang`, `data_semnare_contract`, `role_id`) VALUES
-(1, 1, 'Gabi', 'Ad', '31231331212', 'buletin', '3212', '2022-10-12', '21312321312', 'GAGA', '3123', '1321', '1', '2022-10-04', '2022-10-19', 1);
+INSERT INTO `employees` (`employee_id`, `department_id`, `nume_angajat`, `prenume_angajat`, `CNP`, `actDeIdentitate`, `nr`, `dataEliberarii`, `domiciliul`, `strada`, `nrStrada`, `apartament`, `sector`, `data_inceput_ang`, `data_semnare_contract`) VALUES
+(1, 1, 'Gabi', 'Gabitzu', '321121221', 'buletin', '3212', '2022-10-12', '21312321312', 'GAGA', '3123', '1321', '1', '2022-10-04', '2022-10-19');
 
 -- --------------------------------------------------------
 
@@ -228,11 +212,11 @@ INSERT INTO `employees` (`employee_id`, `department_id`, `nume_angajat`, `prenum
 
 DROP TABLE IF EXISTS `fines`;
 CREATE TABLE IF NOT EXISTS `fines` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `fine_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `employee_id` int(11) NOT NULL,
   `data_emiterii` date NOT NULL,
   `pret_daune` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`fine_id`),
   KEY `fines_employee_id_foreign` (`employee_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -244,13 +228,13 @@ CREATE TABLE IF NOT EXISTS `fines` (
 
 DROP TABLE IF EXISTS `fridge_invoices`;
 CREATE TABLE IF NOT EXISTS `fridge_invoices` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `fridge_invoice_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `supplier_id` int(11) NOT NULL,
   `denumire_model` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `pret` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `data_emiterii` date NOT NULL,
   `cantitate` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`),
+  `data_emiterii` date NOT NULL,
+  PRIMARY KEY (`fridge_invoice_id`),
   KEY `fridge_invoices_supplier_id_foreign` (`supplier_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -262,7 +246,7 @@ CREATE TABLE IF NOT EXISTS `fridge_invoices` (
 
 DROP TABLE IF EXISTS `fridge_models`;
 CREATE TABLE IF NOT EXISTS `fridge_models` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `fridge_model_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `denumire_model` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `an_fabricatie` date NOT NULL,
   `greutate` varchar(3) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -271,7 +255,7 @@ CREATE TABLE IF NOT EXISTS `fridge_models` (
   `calitate` varchar(2) COLLATE utf8mb4_unicode_ci NOT NULL,
   `volum` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `pret` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`fridge_model_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -303,9 +287,9 @@ INSERT INTO `fuel_type` (`id`, `fuel`) VALUES
 
 DROP TABLE IF EXISTS `insurance_companies`;
 CREATE TABLE IF NOT EXISTS `insurance_companies` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `insurance_company_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `denumire_companie_asigurari` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`insurance_company_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -316,9 +300,9 @@ CREATE TABLE IF NOT EXISTS `insurance_companies` (
 
 DROP TABLE IF EXISTS `insurance_types`;
 CREATE TABLE IF NOT EXISTS `insurance_types` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `insurance_type_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `tip_asigurare` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`insurance_type_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -364,19 +348,6 @@ INSERT INTO `invoices` (`id`, `brand`, `model`, `priceday`, `email`, `cardname`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `license_types`
---
-
-DROP TABLE IF EXISTS `license_types`;
-CREATE TABLE IF NOT EXISTS `license_types` (
-  `license_type_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `denumire_categorie` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`license_type_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `migrations`
 --
 
@@ -386,7 +357,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -426,7 +397,30 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (43, '2022_10_16_101125_create_suppliers_table', 21),
 (44, '2022_10_16_101224_create_fridge_models_table', 21),
 (45, '2022_10_16_101531_create_fridge_invoices_table', 21),
-(46, '2022_10_16_101933_create_delivered_fridges_invoices_table', 22);
+(46, '2022_10_16_101933_create_delivered_fridges_invoices_table', 22),
+(47, '2022_10_16_114210_add_employee_id_column', 23),
+(48, '2022_10_16_114415_remove_role_id_column', 23),
+(49, '2022_10_16_115657_add_department_id_column', 23),
+(50, '2022_10_16_121143_add_employee_id_column', 24),
+(51, '2022_10_15_173518_create_employees_table2', 25),
+(52, '2022_10_15_173832_create_departments_table2', 26),
+(53, '2022_10_15_192804_create_roles_table2', 27),
+(54, '2022_10_15_203633_create_driving_licenses2', 27),
+(55, '2022_10_16_094007_create_fines_table2', 27),
+(56, '2022_10_16_100450_create_insurance_companies_table2', 27),
+(57, '2022_10_16_100550_create_insurance_types_table2', 27),
+(58, '2022_10_16_101125_create_suppliers_table2', 28),
+(59, '2022_10_16_101224_create_fridge_models_table2', 28),
+(60, '2022_10_16_101531_create_fridge_invoices_table2', 28),
+(61, '2022_10_16_101933_create_delivered_fridges_invoices_table2', 28),
+(62, '2022_10_15_173518_create_employees_table3', 29),
+(63, '2022_10_16_115657_add_department_1id_column', 30),
+(64, '2014_10_12_000000_create_users_table1', 31),
+(65, '2014_10_12_000000_create_users_table2', 32),
+(66, '2022_10_15_173518_create_employees_table4', 32),
+(67, '2014_10_12_000000_create_users_table4', 33),
+(68, '2014_10_12_000000_create_users_table5', 34),
+(69, '2022_10_16_101933_create_delivered_fridges_invoices_table3', 35);
 
 -- --------------------------------------------------------
 
@@ -448,7 +442,7 @@ CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `personal_access_tokens`
@@ -515,7 +509,17 @@ INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `n
 (58, 'App\\Models\\User', 9, 'auth_token', 'ac7157f8f45350b100e566f68dfbbfb67e5fe1e3bd00fe1908198b3c73a97ffc', '[\"*\"]', NULL, '2022-08-21 15:18:22', '2022-08-21 15:18:22'),
 (59, 'App\\Models\\User', 11, 'auth_token', '896239b11502fa2394a833f4ebb161c8d7d294dea2cbf6b355e00d22714d46b3', '[\"*\"]', NULL, '2022-08-21 15:23:23', '2022-08-21 15:23:23'),
 (60, 'App\\Models\\User', 9, 'auth_token', 'c57ea52bdd633044c5c4379db0bc57756b2c362d0cb485cfc8bef02b1557e29d', '[\"*\"]', NULL, '2022-08-21 15:33:46', '2022-08-21 15:33:46'),
-(61, 'App\\Models\\User', 7, 'auth_token', 'ebbc4be010eaef6c2952e7e178a7b6f7312fd9070632d7eb773670ab86726716', '[\"*\"]', NULL, '2022-08-22 06:23:03', '2022-08-22 06:23:03');
+(61, 'App\\Models\\User', 7, 'auth_token', 'ebbc4be010eaef6c2952e7e178a7b6f7312fd9070632d7eb773670ab86726716', '[\"*\"]', NULL, '2022-08-22 06:23:03', '2022-08-22 06:23:03'),
+(62, 'App\\Models\\User', 1, 'auth_token', '925ce96cd6eb3958c83a171802d4268f2b546a1be3e2f73a23f2d6ab2d6d0dd4', '[\"*\"]', NULL, '2022-10-16 10:04:56', '2022-10-16 10:04:56'),
+(63, 'App\\Models\\User', 2, 'auth_token', '508b865a8ed1cf70936e5fd3499936b2cfc82a300d20e9c9f0bd40af795ec292', '[\"*\"]', NULL, '2022-10-16 10:41:54', '2022-10-16 10:41:54'),
+(64, 'App\\Models\\User', 3, 'auth_token', 'a6c8e0f2ada453fb38c1353e1e1ba46021640f31fa30d0c8d54d9734ac9d7bcd', '[\"*\"]', NULL, '2022-10-16 10:49:30', '2022-10-16 10:49:30'),
+(65, 'App\\Models\\User', 4, 'auth_token', '9d8336e87ad833fdf918b2fac88ce6046cd993c47844aaccfdcb37822369d8d6', '[\"*\"]', NULL, '2022-10-16 10:50:41', '2022-10-16 10:50:41'),
+(66, 'App\\Models\\User', 5, 'auth_token', '9faceeab2c940bf0473f9ea62d3aa0532394529bd7cfd94772227eb45f74ff20', '[\"*\"]', NULL, '2022-10-16 10:53:14', '2022-10-16 10:53:14'),
+(67, 'App\\Models\\User', 6, 'auth_token', '960395d0c74f208999e71698acb92f6cb2e412406eec263b28fb6f06b270d581', '[\"*\"]', NULL, '2022-10-16 10:56:15', '2022-10-16 10:56:15'),
+(68, 'App\\Models\\User', 7, 'auth_token', '4a5ce15f5b81a0071cf58450764be7e0fefe6c77352ef489020fcf9fe343c24d', '[\"*\"]', NULL, '2022-10-16 11:00:34', '2022-10-16 11:00:34'),
+(69, 'App\\Models\\User', 8, 'auth_token', '7e0b668d641c7bc9bcc1112344ac1b477d5b1655607649892893930ad1ed8948', '[\"*\"]', NULL, '2022-10-16 11:00:59', '2022-10-16 11:00:59'),
+(70, 'App\\Models\\User', 9, 'auth_token', 'c8c13f1ebc8e4afc48bdb27de8cd5400c4f53c8d8dc63016c6a91a7e08dbfe75', '[\"*\"]', NULL, '2022-10-16 11:01:53', '2022-10-16 11:01:53'),
+(71, 'App\\Models\\User', 10, 'auth_token', '1d8a431dafe991add8e81b43e7b0e7083ec0c336cb922cc9433c8d7758f46df0', '[\"*\"]', NULL, '2022-10-16 11:02:40', '2022-10-16 11:02:40');
 
 -- --------------------------------------------------------
 
@@ -526,17 +530,11 @@ INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `n
 DROP TABLE IF EXISTS `roles`;
 CREATE TABLE IF NOT EXISTS `roles` (
   `role_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `denumire-rol` varchar(35) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`role_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `roles`
---
-
-INSERT INTO `roles` (`role_id`, `denumire-rol`) VALUES
-(1, 'Director'),
-(2, 'Guest');
+  `denumire_rol` varchar(35) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `department_id` int(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (`role_id`),
+  KEY `roles_department_id_foreign` (`department_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -569,9 +567,9 @@ INSERT INTO `seats` (`id`, `seats`) VALUES
 
 DROP TABLE IF EXISTS `suppliers`;
 CREATE TABLE IF NOT EXISTS `suppliers` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `supplier_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `denumire_furnizor` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`supplier_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -603,7 +601,8 @@ INSERT INTO `transmission` (`id`, `transmission`) VALUES
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `employee_id` int(10) UNSIGNED DEFAULT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
@@ -611,25 +610,17 @@ CREATE TABLE IF NOT EXISTS `users` (
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `role` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `users_email_unique` (`email`),
+  KEY `users_employee_id_foreign` (`employee_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `role`) VALUES
-(1, 'admin1', 'admin1@gmail.com', NULL, '$2y$10$WRewoi7b1Gg6sL//jkGN4.ZUFwuLcHQ.67zqeSthjaf3nohPJi4O.', NULL, '2022-04-04 10:00:11', '2022-04-04 10:00:11', 1),
-(2, 'MoraruGabriel', 'testingemail@gmail.com', NULL, '$2y$10$GeDsJRLE5ojhExR6VL4Zrupmf2u0XacQtmQqkE3SYw3XyETjc.9vK', NULL, '2022-07-13 13:42:30', '2022-08-21 09:34:17', 1),
-(3, 'Georgescu', 'Georgescu@gmail.com', NULL, '$2y$10$K9N3oHwFz7kEaNRvhhjsl.D7qvXyZI1wtm00CYQe4Qoll00EXmFzy', NULL, '2022-07-13 20:57:04', '2022-07-13 20:57:04', 0),
-(4, 'PopescuPetrica', 'PopescuPetrica@gmail.com', NULL, '$2y$10$tVwBPRiHL.Fzs1FqrKEFpu7s/WY7rnYGhibj3CzKtXLbm5VKGblhG', NULL, '2022-07-13 20:57:37', '2022-07-13 20:57:37', 0),
-(5, 'MariaIoana', 'MariaIoana@gmail.com', NULL, '$2y$10$d/hX53xG9PyGf7ceS0G8TevSAkD6KGSuMCNMhrlsDQgRSOQpF3MOC', NULL, '2022-07-13 20:57:55', '2022-07-13 20:57:55', 0),
-(6, 'IleanaCosanzeana', 'IleanaCosanzeana@gmail.com', NULL, '$2y$10$XGwj5cGkuHmF7qWOdDRyY.kRmOZh62eLDLsrTXoEmXKr.PNaaJxCe', NULL, '2022-07-13 20:58:11', '2022-07-14 03:11:02', 1),
-(7, 'MoraruGabriel', 'moraru.gabriel00@gmail.com', NULL, '$2y$10$HQ2IR6XbRGNpxa2Vjg4yIO3ZYYDKlO2JfdcGelI9BHz9iSzPP0yDi', NULL, '2022-07-13 20:58:41', '2022-08-21 14:17:25', 1),
-(8, 'asdfasf', 'asdasf@gmail.com', NULL, '$2y$10$IJ50lSxiyfsHYSrFP499pu8EU5RmEiuw40XGd.ygTCouP4R64FmB6', NULL, '2022-08-21 14:40:35', '2022-08-21 14:40:35', 0),
-(9, 'qwert413', 'qwert@gmail.com', NULL, '$2y$10$O.EQe54GQTFF43nROYgNNehV/s3Pxcav2uGFWNOnpFv7PuKU/9caO', NULL, '2022-08-21 14:45:01', '2022-08-21 14:45:01', 0);
+INSERT INTO `users` (`user_id`, `employee_id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(10, NULL, 'Gabitzu', 'gamingro99@yahoo.com', NULL, '$2y$10$5jE7VQXmokKZ6qMBvJv19OgqeQfMw8ynP9P9XD7Cua5xoHwJGPyo6', NULL, '2022-10-16 11:02:40', '2022-10-16 11:02:40');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
