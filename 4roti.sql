@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 16, 2022 at 03:55 PM
+-- Generation Time: Oct 16, 2022 at 04:34 PM
 -- Server version: 5.7.36
 -- PHP Version: 7.4.26
 
@@ -211,7 +211,7 @@ CREATE TABLE IF NOT EXISTS `employees` (
 --
 
 INSERT INTO `employees` (`employee_id`, `role_id`, `nume_angajat`, `prenume_angajat`, `CNP`, `actDeIdentitate`, `nr`, `dataEliberarii`, `domiciliul`, `strada`, `nrStrada`, `apartament`, `sector`, `data_inceput_ang`, `data_semnare_contract`) VALUES
-(1, 1, 'Gabi', 'Gabitzu', '31231331212', 'buletin', '3212', '2022-10-12', '21312321312', 'GAGA', '3123', '1321', '1', '2022-10-04', '2022-10-19');
+(1, 2, 'Gabi', 'Gabitzu', '31231331212', 'buletin', '3212', '2022-10-12', '21312321312', 'GAGA', '3123', '1321', '1', '2022-10-04', '2022-10-19');
 
 -- --------------------------------------------------------
 
@@ -454,7 +454,7 @@ CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `personal_access_tokens`
@@ -539,7 +539,8 @@ INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `n
 (76, 'App\\Models\\User', 12, 'auth_token', '87e2e8eb5147108bb18da989dad1f0ba907fc1211ffdd2bfc78c7ea7f142fa5d', '[\"*\"]', NULL, '2022-10-16 11:48:21', '2022-10-16 11:48:21'),
 (77, 'App\\Models\\User', 12, 'auth_token', '568133c305b88713ff0587b039f571f538edcd0a676b8f321f742e17176a577a', '[\"*\"]', NULL, '2022-10-16 11:51:58', '2022-10-16 11:51:58'),
 (78, 'App\\Models\\User', 12, 'auth_token', '32677b86bf9ffbaccdacee07efbcc792b94d22bfe89a96e3f5456ff91d27f65a', '[\"*\"]', NULL, '2022-10-16 12:22:54', '2022-10-16 12:22:54'),
-(79, 'App\\Models\\User', 1, 'auth_token', 'b99b9012aae05b2db7d3fc1e0572cb6ab7c330ef9536aa552cf7aa6d77c5367e', '[\"*\"]', NULL, '2022-10-16 12:48:55', '2022-10-16 12:48:55');
+(79, 'App\\Models\\User', 1, 'auth_token', 'b99b9012aae05b2db7d3fc1e0572cb6ab7c330ef9536aa552cf7aa6d77c5367e', '[\"*\"]', NULL, '2022-10-16 12:48:55', '2022-10-16 12:48:55'),
+(80, 'App\\Models\\User', 1, 'auth_token', '8cfda47563fd96e284cade51be83c040637b5d3f6742a4f2d0a5661f06517353', '[\"*\"]', NULL, '2022-10-16 13:15:21', '2022-10-16 13:15:21');
 
 -- --------------------------------------------------------
 
@@ -554,7 +555,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
   `department_id` int(10) UNSIGNED NOT NULL,
   PRIMARY KEY (`role_id`),
   KEY `roles_department_id_foreign` (`department_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `roles`
@@ -564,7 +565,10 @@ INSERT INTO `roles` (`role_id`, `denumire_rol`, `department_id`) VALUES
 (1, 'Guest', 0),
 (2, 'Director departament aprovizionare', 1),
 (3, 'Director departament financiar', 2),
-(4, 'Director departament intretinere', 3);
+(4, 'Director departament intretinere', 3),
+(5, 'Mecanic', 3),
+(6, 'Contabil', 2),
+(7, 'Curier', 1);
 
 -- --------------------------------------------------------
 
