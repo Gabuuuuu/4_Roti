@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 15, 2022 at 08:43 PM
+-- Generation Time: Oct 16, 2022 at 10:23 AM
 -- Server version: 5.7.36
 -- PHP Version: 7.4.26
 
@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `cars` (
   `description` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `cars_description_unique` (`description`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `cars`
@@ -112,6 +112,29 @@ CREATE TABLE IF NOT EXISTS `cars` (
 
 INSERT INTO `cars` (`id`, `brand`, `model`, `fuel`, `consumption`, `body`, `seats`, `transmission`, `year`, `price`, `image`, `created_at`, `updated_at`, `description`) VALUES
 (4, 'BMW', 'M8 Grand Coupe', 'Gas', '12L/100km', 'Coupe', '2', 'Automatic', '2020', '50', '1653597098.jpg', '2022-05-26 17:31:38', '2022-05-26 17:31:38', 'A luxury car for classy people');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `delivered_fridges_invoices`
+--
+
+DROP TABLE IF EXISTS `delivered_fridges_invoices`;
+CREATE TABLE IF NOT EXISTS `delivered_fridges_invoices` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `fridge_id` int(11) NOT NULL,
+  `nume_beneficiar` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nr_telefon` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `adresa_livrare` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cod_postal` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cantitate` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `taxa_livrare` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pret` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pret_total` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `data_emiterii` date NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `delivered_fridges_invoices_fridge_id_foreign` (`fridge_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -200,6 +223,60 @@ INSERT INTO `employees` (`employee_id`, `department_id`, `nume_angajat`, `prenum
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `fines`
+--
+
+DROP TABLE IF EXISTS `fines`;
+CREATE TABLE IF NOT EXISTS `fines` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `employee_id` int(11) NOT NULL,
+  `data_emiterii` date NOT NULL,
+  `pret_daune` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fines_employee_id_foreign` (`employee_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fridge_invoices`
+--
+
+DROP TABLE IF EXISTS `fridge_invoices`;
+CREATE TABLE IF NOT EXISTS `fridge_invoices` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `supplier_id` int(11) NOT NULL,
+  `denumire_model` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pret` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `data_emiterii` date NOT NULL,
+  `cantitate` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fridge_invoices_supplier_id_foreign` (`supplier_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fridge_models`
+--
+
+DROP TABLE IF EXISTS `fridge_models`;
+CREATE TABLE IF NOT EXISTS `fridge_models` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `denumire_model` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `an_fabricatie` date NOT NULL,
+  `greutate` varchar(3) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `marime` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `consum_energetic` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `calitate` varchar(2) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `volum` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pret` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `fuel_type`
 --
 
@@ -217,6 +294,32 @@ CREATE TABLE IF NOT EXISTS `fuel_type` (
 INSERT INTO `fuel_type` (`id`, `fuel`) VALUES
 (1, 'Diesel'),
 (2, 'Gas');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `insurance_companies`
+--
+
+DROP TABLE IF EXISTS `insurance_companies`;
+CREATE TABLE IF NOT EXISTS `insurance_companies` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `denumire_companie_asigurari` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `insurance_types`
+--
+
+DROP TABLE IF EXISTS `insurance_types`;
+CREATE TABLE IF NOT EXISTS `insurance_types` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `tip_asigurare` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -283,7 +386,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -316,7 +419,14 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (36, '2022_10_15_200017_create_employee_role_table', 16),
 (37, '2022_07_13_161454_add_role_employee', 17),
 (38, '2022_10_15_203459_create_license_type', 18),
-(39, '2022_10_15_203633_create_driving_licenses', 18);
+(39, '2022_10_15_203633_create_driving_licenses', 18),
+(40, '2022_10_16_094007_create_fines_table', 19),
+(41, '2022_10_16_100450_create_insurance_companies_table', 20),
+(42, '2022_10_16_100550_create_insurance_types_table', 20),
+(43, '2022_10_16_101125_create_suppliers_table', 21),
+(44, '2022_10_16_101224_create_fridge_models_table', 21),
+(45, '2022_10_16_101531_create_fridge_invoices_table', 21),
+(46, '2022_10_16_101933_create_delivered_fridges_invoices_table', 22);
 
 -- --------------------------------------------------------
 
@@ -450,6 +560,19 @@ INSERT INTO `seats` (`id`, `seats`) VALUES
 (2, '5'),
 (3, '6'),
 (4, '7');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `suppliers`
+--
+
+DROP TABLE IF EXISTS `suppliers`;
+CREATE TABLE IF NOT EXISTS `suppliers` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `denumire_furnizor` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
