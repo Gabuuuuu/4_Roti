@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 16, 2022 at 02:05 PM
+-- Generation Time: Oct 16, 2022 at 02:50 PM
 -- Server version: 5.7.36
 -- PHP Version: 7.4.26
 
@@ -442,7 +442,7 @@ CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `personal_access_tokens`
@@ -519,7 +519,12 @@ INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `n
 (68, 'App\\Models\\User', 7, 'auth_token', '4a5ce15f5b81a0071cf58450764be7e0fefe6c77352ef489020fcf9fe343c24d', '[\"*\"]', NULL, '2022-10-16 11:00:34', '2022-10-16 11:00:34'),
 (69, 'App\\Models\\User', 8, 'auth_token', '7e0b668d641c7bc9bcc1112344ac1b477d5b1655607649892893930ad1ed8948', '[\"*\"]', NULL, '2022-10-16 11:00:59', '2022-10-16 11:00:59'),
 (70, 'App\\Models\\User', 9, 'auth_token', 'c8c13f1ebc8e4afc48bdb27de8cd5400c4f53c8d8dc63016c6a91a7e08dbfe75', '[\"*\"]', NULL, '2022-10-16 11:01:53', '2022-10-16 11:01:53'),
-(71, 'App\\Models\\User', 10, 'auth_token', '1d8a431dafe991add8e81b43e7b0e7083ec0c336cb922cc9433c8d7758f46df0', '[\"*\"]', NULL, '2022-10-16 11:02:40', '2022-10-16 11:02:40');
+(71, 'App\\Models\\User', 10, 'auth_token', '1d8a431dafe991add8e81b43e7b0e7083ec0c336cb922cc9433c8d7758f46df0', '[\"*\"]', NULL, '2022-10-16 11:02:40', '2022-10-16 11:02:40'),
+(72, 'App\\Models\\User', 11, 'auth_token', '249adb919d6505a7992ad62b9a8086c0152a2dc4fa3df6445f7c75bd3dce160f', '[\"*\"]', NULL, '2022-10-16 11:10:55', '2022-10-16 11:10:55'),
+(73, 'App\\Models\\User', 12, 'auth_token', '43979efad536f7d4b2d8083c5797e0c135864055850d1a8fb95f46ec8c175022', '[\"*\"]', NULL, '2022-10-16 11:30:07', '2022-10-16 11:30:07'),
+(74, 'App\\Models\\User', 13, 'auth_token', 'a276c2dd8517fcf552069ccb10c643e5a6a8a2f5cace70ab088858412aee2a23', '[\"*\"]', NULL, '2022-10-16 11:35:09', '2022-10-16 11:35:09'),
+(75, 'App\\Models\\User', 12, 'auth_token', '2b9266cbd7ec74fcb0da38e5f5c4be0c3f998c9433c3d44f77f602351503ba18', '[\"*\"]', NULL, '2022-10-16 11:46:55', '2022-10-16 11:46:55'),
+(76, 'App\\Models\\User', 12, 'auth_token', '87e2e8eb5147108bb18da989dad1f0ba907fc1211ffdd2bfc78c7ea7f142fa5d', '[\"*\"]', NULL, '2022-10-16 11:48:21', '2022-10-16 11:48:21');
 
 -- --------------------------------------------------------
 
@@ -613,14 +618,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `users_email_unique` (`email`),
   KEY `users_employee_id_foreign` (`employee_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`user_id`, `employee_id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(10, NULL, 'Gabitzu', 'gamingro99@yahoo.com', NULL, '$2y$10$5jE7VQXmokKZ6qMBvJv19OgqeQfMw8ynP9P9XD7Cua5xoHwJGPyo6', NULL, '2022-10-16 11:02:40', '2022-10-16 11:02:40');
+(12, NULL, 'Cykachu99', 'gamingro99@yahoo.com', NULL, '$2y$10$DaY2jrsvH4y2nxGWQG.Zye20aTe7V9LvA9cLbbTN0ULeFTlZYIl1i', NULL, '2022-10-16 11:30:07', '2022-10-16 11:30:07'),
+(13, NULL, 'Ceva12', 'gamingro991@yahoo.com', NULL, '$2y$10$GSdWMsx/8vf4rBOskpESwef8YDWHfOOURcUDKWcC7rTMV9Bzjw6HW', NULL, '2022-10-16 11:35:09', '2022-10-16 11:35:09');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
