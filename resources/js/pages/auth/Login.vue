@@ -96,7 +96,6 @@ export default {
             form: {
                 email: "",
                 password: "",
-                "_token": "{{ csrf_token() }}",
             },
         };
     },
@@ -108,18 +107,16 @@ export default {
                     this.responseAfterLogin(res);
                     this.loadData();
                 })
-                .catch((error) => console.log(error.response.data));
+                .catch((error) => console.log(error.response?.data));
         },
         responseAfterLogin(res) {
             const access_token = res.data.access_token;
-            const username = res.data.name;
             const id = res.data.id;
             const role = res.data.role;
 
-            localStorage.setItem("token", access_token);
-            localStorage.setItem("user", username);
-            localStorage.setItem("id", id);
-            localStorage.setItem("role", role);
+            sessionStorage.setItem("token", access_token);
+            sessionStorage.setItem("id", id);
+            sessionStorage.setItem("role", role);
 
             this.$router.push({ path: "/home" });
         },

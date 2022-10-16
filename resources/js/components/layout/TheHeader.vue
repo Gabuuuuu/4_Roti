@@ -61,24 +61,24 @@
 export default {
     data() {
         return {
-            loggedIn: !!sessionStorage .getItem("token"),
+            loggedIn: !!sessionStorage.getItem("token"),
             role: undefined,
         };
     },
     methods: {
         logOut() {
-            sessionStorage .removeItem("token");
-            sessionStorage .removeItem("user");
-            sessionStorage .removeItem("id");
-            sessionStorage .removeItem("role");
+            sessionStorage.removeItem("token");
+            sessionStorage.removeItem("user");
+            sessionStorage.removeItem("id");
+            sessionStorage.removeItem("role");
             this.loggedIn = false;
-            then(this.loadData());
+            // then(this.loadData());
         },
     },
     computed: {
         verifyRole() {
             if (this.loggedIn) {
-                const id = sessionStorage .getItem("id");
+                const id = sessionStorage.getItem("id");
                 axios.get("api/users/getRole/" + id).then(({ data }) => {
                     this.role = data;
                 });

@@ -19994,8 +19994,7 @@ __webpack_require__.r(__webpack_exports__);
       sessionStorage.removeItem("user");
       sessionStorage.removeItem("id");
       sessionStorage.removeItem("role");
-      this.loggedIn = false;
-      then(this.loadData());
+      this.loggedIn = false; // then(this.loadData());
     }
   },
   computed: {
@@ -20443,8 +20442,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       form: {
         email: "",
-        password: "",
-        "_token": "{{ csrf_token() }}"
+        password: ""
       }
     };
   },
@@ -20457,18 +20455,18 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.loadData();
       })["catch"](function (error) {
-        return console.log(error.response.data);
+        var _error$response;
+
+        return console.log((_error$response = error.response) === null || _error$response === void 0 ? void 0 : _error$response.data);
       });
     },
     responseAfterLogin: function responseAfterLogin(res) {
       var access_token = res.data.access_token;
-      var username = res.data.name;
       var id = res.data.id;
       var role = res.data.role;
-      localStorage.setItem("token", access_token);
-      localStorage.setItem("user", username);
-      localStorage.setItem("id", id);
-      localStorage.setItem("role", role);
+      sessionStorage.setItem("token", access_token);
+      sessionStorage.setItem("id", id);
+      sessionStorage.setItem("role", role);
       this.$router.push({
         path: "/home"
       });

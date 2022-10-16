@@ -26,7 +26,6 @@ Route::resource('/invoices', App\Http\Controllers\InvoiceController::class);
 
 Route::resource('/users', App\Http\Controllers\UserController::class);
 
-
     //ROUTES FOR ADDING CAR DETAILS
 Route::get('/brands', [CarController::class, 'getBrands']);
 Route::get('/fuel_type', [CarController::class, 'getFuel']);
