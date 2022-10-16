@@ -13,6 +13,13 @@
                                 style="border-radius: 1rem"
                             >
                                 <div class="card-body p-5 text-center">
+                                    <router-link to="/home">
+                                        <button
+                                            class="btn btn-outline-light btn-lg px-6"
+                                        >
+                                            Back to the main page
+                                        </button>
+                                    </router-link>
                                     <div class="mb-md-6 mt-md-4 pb-5">
                                         <h2 class="fw-bold mb-4">
                                             Panou Administrativ - {{ this.role_id.denumire_rol }}

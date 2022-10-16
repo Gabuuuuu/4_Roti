@@ -4,7 +4,15 @@
             <TheHeader></TheHeader>
 
             <br />
+
             <div class="p-4">
+                <router-link to="/adminp">
+                    <button
+                        class="btn btn-dark btn-outline-light btn-lg px-6 mb-4"
+                    >
+                        Inapoi
+                    </button>
+                </router-link>
                 <table class="table table-striped">
                     <thead class="thead-dark table-dark">
                         <tr>
@@ -13,9 +21,6 @@
                                 <center>Nume Utilizator</center>
                             </th>
                             <th scope="col"><center>Email</center></th>
-                            <th scope="col"><center>Rol Utilizator</center></th>
-                            <th scope="col"><center>Alege un rol</center></th>
-                            <th scope="col"><center>Schimba Rolul</center></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -77,10 +82,6 @@ export default {
     data() {
         return {
             users: [],
-            roles: [],
-            form: {
-                role: "",
-            },
         };
     },
     created() {

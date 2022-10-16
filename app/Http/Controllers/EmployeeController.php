@@ -85,4 +85,10 @@ class EmployeeController extends Controller
     {
         //
     }
+
+    public function loadEmployee($id) {
+        $employee = Employee::where('employee_id', $id)->first() ?? 'Not found';
+
+        return response()->json($employee);
+    }
 }
