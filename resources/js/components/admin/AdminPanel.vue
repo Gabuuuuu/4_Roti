@@ -15,12 +15,35 @@
                                 <div class="card-body p-5 text-center">
                                     <div class="mb-md-6 mt-md-4 pb-5">
                                         <h2 class="fw-bold mb-4">
-                                            Welcome to the Admin Panel!
+                                            Panou Administrativ - { Displayed
+                                            based on Director/User type }
                                         </h2>
 
                                         <p class="text-white-50 mb-4">
-                                            Please select the desired option
+                                            Alege optiunea preferata de mai jos
+                                            !
                                         </p>
+                                        <div>
+                                            <router-link to="/users">
+                                                <button
+                                                    class="btn btn-outline-light btn-lg px-5 mb-1"
+                                                >
+                                                    Utilizatori
+                                                </button>
+                                            </router-link>
+                                        </div>
+                                        <br />
+                                        <div>
+                                            <router-link to="/employees">
+                                                <button
+                                                    class="btn btn-outline-light btn-lg px-5 mb-1"
+                                                >
+                                                    Angajati (Based on Director
+                                                    account)
+                                                </button>
+                                            </router-link>
+                                        </div>
+                                        <br />
                                         <div>
                                             <router-link to="/addcar">
                                                 <button
@@ -51,15 +74,6 @@
                                             </router-link>
                                         </div>
                                         <br />
-                                        <div>
-                                            <router-link to="/addadmins">
-                                                <button
-                                                    class="btn btn-outline-light btn-lg px-5 mb-1"
-                                                >
-                                                    Give admin privilieges
-                                                </button>
-                                            </router-link>
-                                        </div>
                                     </div>
                                 </div>
                             </div>

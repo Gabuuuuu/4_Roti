@@ -25,6 +25,8 @@ Route::get('/users/changeRole/{id}', [UserController::class, 'changeRole']);
 Route::resource('/invoices', App\Http\Controllers\InvoiceController::class);
 
 Route::resource('/users', App\Http\Controllers\UserController::class);
+Route::resource('/roles', App\Http\Controllers\RoleController::class);
+Route::resource('/employees', App\Http\Controllers\EmployeeController::class);
 
     //ROUTES FOR ADDING CAR DETAILS
 Route::get('/brands', [CarController::class, 'getBrands']);

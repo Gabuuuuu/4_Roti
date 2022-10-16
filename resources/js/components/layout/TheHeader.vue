@@ -38,7 +38,7 @@
                         </li>
                         <li v-if="loggedIn && !!verifyRole">
                             <router-link to="/adminp" class="nav-link">
-                                Admin Panel
+                                Panou Administrativ
                             </router-link>
                         </li>
                         <li v-if="loggedIn">
@@ -82,7 +82,9 @@ export default {
     beforeMount() {
         if (this.loggedIn) {
             const id = sessionStorage.getItem("id");
-            axios.get("api/users/getRole/" + id).then(({ data }) => { this.verifyIfEmployee(data);});
+            axios.get("api/users/getRole/" + id).then(({ data }) => {
+                this.verifyIfEmployee(data);
+            });
         }
     },
 };

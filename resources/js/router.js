@@ -13,8 +13,9 @@ import RentNow from "./components/pricesec/RentNow";
 import Invoices from "./components/pricesec/Invoices";
 import AdminPanel from "./components/admin/AdminPanel";
 import RemoveCar from "./components/admin/RemoveCar";
-import AddAdmins from "./components/admin/AddAdmins";
+import Users from "./components/admin/Users";
 import InvoiceDetails from "./components/pricesec/InvoiceDetails";
+import Employees from "./components/admin/Employees";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -38,11 +39,18 @@ const router = createRouter({
         { path: "/adminp", component: AdminPanel, meta: { admin: true } },
         { path: "/removecar", component: RemoveCar, meta: { admin: true } },
         {
-            path: "/addadmins",
-            component: AddAdmins,
-            name: "addadmins",
+            path: "/users",
+            component: Users,
+            name: "users",
             meta: { admin: true },
         },
+        {
+            path: "/employees",
+            component: Employees,
+            name: "employees",
+            meta: { admin: true },
+        },
+
         {
             path: "/invoicedetails/:id",
             component: InvoiceDetails,

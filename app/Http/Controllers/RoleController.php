@@ -83,4 +83,9 @@ class RoleController extends Controller
     {
         //
     }
+      public function loadRole () {
+        $role = Role::all();
+        return response()->json($role);
+    }
 }
+
