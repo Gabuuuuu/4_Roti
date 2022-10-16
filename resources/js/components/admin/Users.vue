@@ -4,7 +4,15 @@
             <TheHeader></TheHeader>
 
             <br />
+
             <div class="p-4">
+                <router-link to="/adminp">
+                    <button
+                        class="btn btn-dark btn-outline-light btn-lg px-6 mb-4"
+                    >
+                        Inapoi
+                    </button>
+                </router-link>
                 <table class="table table-striped">
                     <thead class="thead-dark table-dark">
                         <tr>
@@ -13,9 +21,6 @@
                                 <center>Nume Utilizator</center>
                             </th>
                             <th scope="col"><center>Email</center></th>
-                            <th scope="col"><center>Rol Utilizator</center></th>
-                            <th scope="col"><center>Alege un rol</center></th>
-                            <th scope="col"><center>Schimba Rolul</center></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,37 +33,6 @@
                             </td>
                             <td scope="row">
                                 <center>{{ user.email }}</center>
-                            </td>
-                            <td scope="row">
-                                <center>{{ user.employee_id }}</center>
-                            </td>
-
-                            <td scope="row">
-                                <center>
-                                    <select
-                                        v-model="form.role"
-                                        class="selectpicker btn btn-outline-dark btn-s dropdown-toggle form-control form-control-lg"
-                                        data-style="btn-success"
-                                    >
-                                        <option
-                                            v-for="role in roles"
-                                            :key="role.index"
-                                        >
-                                            {{ role.denumire_rol }}
-                                        </option>
-                                    </select>
-                                </center>
-                            </td>
-
-                            <td scope="row">
-                                <center>
-                                    <button
-                                        class="btn btn-outline-dark btn-s"
-                                        @click="changeRole()"
-                                    >
-                                        Schimba Rolul
-                                    </button>
-                                </center>
                             </td>
                         </tr>
                     </tbody>
@@ -77,10 +51,6 @@ export default {
     data() {
         return {
             users: [],
-            roles: [],
-            form: {
-                role: "",
-            },
         };
     },
     created() {
@@ -89,12 +59,7 @@ export default {
     methods: {
         async loadData() {
             const response = await axios.get("api/users");
-            const loadRole = await axios.get("api/roles");
             this.users = response.data;
-            this.roles = loadRole.data;
-        },
-        changeRole() {
-            //  Don't forget to reload the data (this.loadData()) ;
         },
     },
 };

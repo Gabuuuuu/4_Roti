@@ -16,6 +16,7 @@ import RemoveCar from "./components/admin/RemoveCar";
 import Users from "./components/admin/Users";
 import InvoiceDetails from "./components/pricesec/InvoiceDetails";
 import Employees from "./components/admin/Employees";
+import EmployeeDetails from "./components/admin/EmployeeDetails";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -57,6 +58,13 @@ const router = createRouter({
             name: "invoicedetails",
             meta: { admin: true },
         },
+        {
+            path: "/employeedetails/:id",
+            component: EmployeeDetails,
+            name: "employeedetails",
+            meta: { admin: true },
+        },
+
         {
             path: "/:notFound(.*)",
             component: NotFound,

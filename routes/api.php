@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\EmployeeController;
 
 //ROUTES
 
@@ -35,6 +36,7 @@ Route::get('/body_type', [CarController::class, 'getBody']);
 Route::get('/seats', [CarController::class, 'getSeats']);
 Route::get('/transmission', [CarController::class, 'getTransmission']);
 Route::get('/loadCar/{id}', [CarController::class, 'loadCar']);
+Route::get('/loadEmployee/{id}', [EmployeeController::class, 'loadEmployee']);
 Route::get('/loadInvoice/{id}',[InvoiceController::class, 'loadInvoice']);
 
 
