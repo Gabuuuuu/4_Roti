@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
-
+use App\Models\Role;
+use Illuminate\Http\Request;
+use DB;
 class EmployeeController extends Controller
 {
     /**
@@ -70,9 +72,13 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateEmployeeRequest $request, Employee $employee)
+    public function update(Request $request, Employee $employee)
     {
-        //
+        $role = Role::where('role_id', $request->role_id)->first();
+
+        $employee = Employee::find($employee->employee_id);
+        $employee->role_id = $request->input('role');
+        $employee->save();
     }
 
     /**

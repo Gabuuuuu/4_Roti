@@ -113,8 +113,7 @@
                                             <h4>
                                                 Pozitie:
                                                 {{
-                                                    roles[employee.role_id]
-                                                        .denumire_rol
+                                                    roles[employee.role_id]?.denumire_rol
                                                 }}
                                             </h4>
                                         </div>
@@ -143,7 +142,7 @@
                                             <h4>
                                                 <button
                                                     class="btn btn-success form-control form-control-lg btn-lg"
-                                                    @click="changeRole()"
+                                                    @click="changeRole(form.role)"
                                                 >
                                                     Schimba Rolul
                                                 </button>
@@ -176,22 +175,30 @@ export default {
     },
     methods: {
         async loadData() {
-            const response = await axios.get(
-                "/api/loadEmployee/" + this.$route.params.id
-            );
-            const loadRole = await axios.get("api/roles");
+            const requestOne = axios.get("/api/loadEmployee/" + this.$route.params.id);
+            const requestTwo = axios.get("/api/roles");
 
-            this.employee = response.data;
-            this.roles = loadRole.data;
-            this.form.role = this.roles.denumire_rol;
+            await axios
+                .all([requestOne, requestTwo])
+                .then(
+                    axios.spread((...responses) => {
+                        this.employee = responses[0].data;
+                        this.roles = responses[1].data;
+                        this.form.role = this.roles[this.employee.role_id].denumire_rol;
+                    })
+                )
+                .catch((errors) => {
+                    console.log(errors);
+                });
         },
-        changeRole(id) {
-            let res;
-            axios.put(`api/users/${id}`, this.form.role).then((data) => {
-                res = data;
-                console.log(res.data);
+        changeRole() {
+            const payload = {
+                role: this.roles.filter((item) => item.denumire_rol === this.form.role)[0].role_id,
+            }
+            axios.put(`/api/employees/${this.$route.params.id}`, payload).then(() => {
+                this.loadData;
+                this.$router.replace('/employees');
             });
-            this.loadData();
         },
     },
 };

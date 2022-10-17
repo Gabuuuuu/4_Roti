@@ -13,8 +13,11 @@ class Employee extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'employee_id';
+    public $timestamps = false;
+
     protected $fillable = [
-        'employee_id',
+        'role_id',
         'nume_angajat',
         'prenume_angajat',
         'CNP',

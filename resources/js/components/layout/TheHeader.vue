@@ -45,32 +45,26 @@
 import { mapMutations, mapGetters } from "vuex";
 
 export default {
-  data() {
-    return {
-    };
-  },
   methods: {
     logout() {
-            Swal.fire({
-            title: 'Are you sure you want to log out?',
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Log me out'
-            }).then((result) => {
-            if (result.isConfirmed) {
-                this.$store.dispatch('logout');
-                this.$router.replace('/login');
-                }
-            })
-        },
+      Swal.fire({
+        title: 'Are you sure you want to log out?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Log me out'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.$store.dispatch('logout');
+          this.$router.replace('/login');
+        }
+      })
+    },
     ...mapMutations(["loginVerify"]),
   },
-
   mounted() {
     this.loginVerify();
-    console.log()
   },
   computed: {
     ...mapGetters(["isAuthenticated", "retrieveRoleData"]),

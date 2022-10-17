@@ -17,12 +17,12 @@
                                         <button
                                             class="btn btn-outline-light btn-lg px-6"
                                         >
-                                            Back to the main page
+                                            Inapoi la pagina principala
                                         </button>
                                     </router-link>
                                     <div class="mb-md-6 mt-md-4 pb-5">
                                         <h2 class="fw-bold mb-4">
-                                            Panou Administrativ - {{ this.role_id.denumire_rol }}
+                                            Panou Administrativ - {{ denumireRol }}
                                         </h2>
 
                                         <p class="text-white-50 mb-4">
@@ -96,20 +96,12 @@
 import TheFooter from "../../components/layout/TheFooter.vue";
 import TheHeader from "../../components/layout/TheHeader";
 export default {
-    components: { TheHeader, TheFooter },
     data() {
         return {
-            role_id: undefined
-        };
-    },
-    created() {
-        this.getRole();
-    },
-    methods: {
-        getRole() {
-            this.role_id = JSON.parse(sessionStorage.getItem('roleData'));
+            denumireRol: JSON.parse(localStorage.getItem('roleData')).denumire_rol,
         }
-    }
+    },
+    components: { TheHeader, TheFooter },
 };
 </script>
 
