@@ -54,14 +54,7 @@
                                                 {{ employee.dataEliberarii }}
                                             </h4>
                                         </div>
-                                        <div
-                                            class="form-outline form-white mb-4"
-                                        >
-                                            <h4>
-                                                Pozitie:
-                                                {{ employee.role_id }}
-                                            </h4>
-                                        </div>
+
                                         <div
                                             class="form-outline form-white mb-4"
                                         >
@@ -114,6 +107,48 @@
                                                 {{ employee.data_inceput_ang }}
                                             </h4>
                                         </div>
+                                        <div
+                                            class="form-outline form-white mb-4"
+                                        >
+                                            <h4>
+                                                Pozitie:
+                                                {{
+                                                    roles[employee.role_id]
+                                                        .denumire_rol
+                                                }}
+                                            </h4>
+                                        </div>
+                                        <div
+                                            class="form-outline form-white mb-4"
+                                        >
+                                            <h4>Alege pozitia dorita:</h4>
+                                            <h4>
+                                                <select
+                                                    v-model="form.role"
+                                                    class="selectpicker btn btn-outline-light btn-s dropdown-toggle form-control form-control-lg"
+                                                    data-style="btn-success"
+                                                >
+                                                    <option
+                                                        v-for="role in roles"
+                                                        :key="role.index"
+                                                    >
+                                                        {{ role.denumire_rol }}
+                                                    </option>
+                                                </select>
+                                            </h4>
+                                        </div>
+                                        <div
+                                            class="form-outline form-white mb-4"
+                                        >
+                                            <h4>
+                                                <button
+                                                    class="btn btn-success form-control form-control-lg btn-lg"
+                                                    @click="changeRole()"
+                                                >
+                                                    Schimba Rolul
+                                                </button>
+                                            </h4>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -130,6 +165,10 @@ export default {
     data() {
         return {
             employee: [],
+            roles: [],
+            form: {
+                role: "",
+            },
         };
     },
     created() {
@@ -140,7 +179,19 @@ export default {
             const response = await axios.get(
                 "/api/loadEmployee/" + this.$route.params.id
             );
+            const loadRole = await axios.get("api/roles");
+
             this.employee = response.data;
+            this.roles = loadRole.data;
+            this.form.role = this.roles.denumire_rol;
+        },
+        changeRole(id) {
+            let res;
+            axios.put(`api/users/${id}`, this.form.role).then((data) => {
+                res = data;
+                console.log(res.data);
+            });
+            this.loadData();
         },
     },
 };
