@@ -15,18 +15,16 @@
                 <table class="table table-striped">
                     <thead class="thead-dark table-dark">
                         <tr>
-                            <th scope="col"><p class="text-center">ID Angajat</p></th>
+                            <th scope="col">
+                                <p class="text-center">ID Angajat</p>
+                            </th>
 
                             <th scope="col"><p class="text-center">Nume</p></th>
-                            <th scope="col"><p class="text-center">Prenume</p></th>
+                            <th scope="col">
+                                <p class="text-center">Prenume</p>
+                            </th>
                             <th scope="col">
                                 <p class="text-center">Rol Angajat</p>
-                            </th>
-                            <th scope="col">
-                                <p class="text-center">Schimba Rolul</p>
-                            </th>
-                            <th scope="col">
-                                <p class="text-center">Confirma</p>
                             </th>
                             <th scope="col">
                                 <p class="text-center">Detalii Complete</p>
@@ -36,42 +34,24 @@
                     <tbody>
                         <tr v-for="employee in employees" :key="employee.index">
                             <td scope="row">
-                                <p class="text-center">{{ employee.employee_id }}</p>
+                                <p class="text-center">
+                                    {{ employee.employee_id }}
+                                </p>
                             </td>
 
                             <td scope="row">
-                                <p class="text-center">{{ employee.nume_angajat }}</p>
-                            </td>
-                            <td scope="row">
-                                <p class="text-center">{{ employee.prenume_angajat }}</p>
-                            </td>
-                            <td scope="row">
-                                <p class="text-center">{{ roles[employee.role_id].denumire_rol }}</p>
-                            </td>
-                            <td scope="row">
                                 <p class="text-center">
-                                    <select
-                                        v-model="form.role"
-                                        class="selectpicker btn btn-outline-dark btn-s dropdown-toggle form-control form-control-lg"
-                                        data-style="btn-success"
-                                    >
-                                        <option
-                                            v-for="role in roles"
-                                            :key="role.index"
-                                        >
-                                            {{ role.denumire_rol }}
-                                        </option>
-                                    </select>
+                                    {{ employee.nume_angajat }}
                                 </p>
                             </td>
                             <td scope="row">
                                 <p class="text-center">
-                                    <button
-                                        class="btn btn-success btn-s"
-                                        @click="changeRole()"
-                                    >
-                                        Schimba Rolul
-                                    </button>
+                                    {{ employee.prenume_angajat }}
+                                </p>
+                            </td>
+                            <td scope="row">
+                                <p class="text-center">
+                                    {{ roles[employee.role_id].denumire_rol }}
                                 </p>
                             </td>
 
@@ -107,10 +87,6 @@ export default {
     data() {
         return {
             employees: [],
-            role: [],
-            form: {
-                role: "",
-            },
         };
     },
     beforeMount() {
@@ -121,23 +97,18 @@ export default {
             const requestOne = axios.get("api/employees");
             const requestTwo = axios.get("api/roles");
 
-            await axios.all([requestOne, requestTwo]).then(axios.spread((...responses) => {
-                this.employees = responses[0].data;
-                this.roles = responses[1].data;
-                console.log()
-                this.form.role = this.roles[0].denumire_rol;
-            })).catch(errors => {
-                console.log(errors)
-            })
-
-        },
-        changeRole(id) {
-            let res;
-            axios.put(`api/users/${id}`, this.form.role).then((data) => {
-                res = data;
-                console.log(res.data)
-            });
-            this.loadData();
+            await axios
+                .all([requestOne, requestTwo])
+                .then(
+                    axios.spread((...responses) => {
+                        this.employees = responses[0].data;
+                        this.roles = responses[1].data;
+                        this.form.role = this.roles[0].denumire_rol;
+                    })
+                )
+                .catch((errors) => {
+                    console.log(errors);
+                });
         },
     },
 };
