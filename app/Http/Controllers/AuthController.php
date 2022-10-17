@@ -18,7 +18,8 @@ public function register(Request $request)
     $validatedData = $request->validate([
         'name' => 'required|string|min:6',
         'email' => 'required|string|email|max:255|unique:users',
-        'password' => 'required|string|min:8|confirmed',
+        'password' => 'required|string|min:8|same:confirm_password',
+        'confirm_password' => 'required ',
     ]);
 
     $user = User::create([

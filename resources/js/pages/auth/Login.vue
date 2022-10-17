@@ -100,28 +100,25 @@ export default {
         };
     },
     methods: {
-        login() {
-            axios
-                .post("/api/login", this.form)
-                .then((res) => {
-                    this.responseAfterLogin(res);
+        async login() {
+            const payload = {
+                    email: this.form.email,
+                    password: this.form.password,
+                }
+
+            try {
+                await this.$store.dispatch('login', payload);
+
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Signed in successfully'
                 })
-                .catch((error) => console.log(error));
-        },
-        responseAfterLogin(res) {
-            const access_token = res.data.access_token;
-            const id = res.data.id;
 
-            sessionStorage.setItem("token", access_token);
-            sessionStorage.setItem("user_id", id);
-
-            axios.get(`api/users/getRole/${id}`).then((data) =>
-            {
-                const res = JSON.stringify(data.data);
-                sessionStorage.setItem('roleData', res);
-            });
-
-            this.$router.push({ path: "/home" });
+                await this.$router.replace('/');
+            } catch(error) {
+                console.log(error);
+                this.error = error.message || 'Failed to authenticate. Try again later.'
+            }
         },
     },
 };

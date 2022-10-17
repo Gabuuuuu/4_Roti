@@ -156,27 +156,30 @@ export default {
                 name: "",
                 email: "",
                 password: "",
-                confirm_password: "",
+                password_confirmation: "",
             },
         };
     },
     methods: {
-        register() {
-            axios
-                .post("/api/register", this.form)
-                .then((res) => {
-                    this.responseAfterLogin(res);
+        async register() {
+            const payload = {
+                name: this.form.name,
+                email: this.form.email,
+                password: this.form.password,
+                confirm_password: this.form.password_confirmation,
+            }
+
+            try {
+                await this.$store.dispatch('signup', payload);
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Signed up successfully'
                 })
-                .catch((error) => console.log(error.response.data));
-        },
-        responseAfterLogin(res) {
-            const access_token = res.data.access_token;
-            const id = res.data.id;
-
-            sessionStorage .setItem("token", access_token);
-            sessionStorage .setItem("id", id);
-
-            this.$router.push({ path: "/home" });
+                await this.$router.push({ path: '/' });
+            } catch(error) {
+                console.log(error);
+                this.error = error.message || 'Failed to register. Try again later.'
+            }
         },
     },
 };
