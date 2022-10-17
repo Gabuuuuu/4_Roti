@@ -36,7 +36,7 @@
                                 >Register
                             </router-link>
                         </li>
-                        <li v-if="loggedIn && verifyRole">
+                        <li v-if="loggedIn && verifIsEmployee">
                             <router-link to="/adminp" class="nav-link">
                                 Panou Administrativ
                             </router-link>
@@ -58,34 +58,31 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
     data() {
         return {
             loggedIn: !!sessionStorage.getItem("token"),
-            verifyRole: false,
+            isEmployee: JSON.parse(sessionStorage.getItem('roleData'))?.role_id,
         };
     },
     methods: {
         logOut() {
             sessionStorage.removeItem("token");
-            sessionStorage.removeItem("id");
-            sessionStorage.removeItem("role");
+            sessionStorage.removeItem("user_id");
+            sessionStorage.removeItem("roleData");
             this.loggedIn = false;
         },
-        verifyIfEmployee(data) {
-            if (data?.role_id >= 2) {
-                this.verifyRole = true;
+        verifIsEmployee() {
+            if(this.isEmployee >= 2) {
+                return true;
             }
-        },
-    },
-    beforeMount() {
-        if (this.loggedIn) {
-            const id = JSON.parse(sessionStorage.getItem("roleData"));
-            this.verifyIfEmployee(id);
+            return false;
         }
     },
+    created() {
+        this.verifIsEmployee();
+    }
+
 };
 </script>
 

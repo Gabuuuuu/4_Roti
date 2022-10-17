@@ -15,41 +15,41 @@
                 <table class="table table-striped">
                     <thead class="thead-dark table-dark">
                         <tr>
-                            <th scope="col"><center>ID Angajat</center></th>
+                            <th scope="col"><p class="text-center">ID Angajat</p></th>
 
-                            <th scope="col"><center>Nume</center></th>
-                            <th scope="col"><center>Prenume</center></th>
+                            <th scope="col"><p class="text-center">Nume</p></th>
+                            <th scope="col"><p class="text-center">Prenume</p></th>
                             <th scope="col">
-                                <center>Rol Angajat</center>
+                                <p class="text-center">Rol Angajat</p>
                             </th>
                             <th scope="col">
-                                <center>Schimba Rolul</center>
+                                <p class="text-center">Schimba Rolul</p>
                             </th>
                             <th scope="col">
-                                <center>Confirma</center>
+                                <p class="text-center">Confirma</p>
                             </th>
                             <th scope="col">
-                                <center>Detalii Complete</center>
+                                <p class="text-center">Detalii Complete</p>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr v-for="employee in employees" :key="employee.index">
                             <td scope="row">
-                                <center>{{ employee.employee_id }}</center>
+                                <p class="text-center">{{ employee.employee_id }}</p>
                             </td>
 
                             <td scope="row">
-                                <center>{{ employee.nume_angajat }}</center>
+                                <p class="text-center">{{ employee.nume_angajat }}</p>
                             </td>
                             <td scope="row">
-                                <center>{{ employee.prenume_angajat }}</center>
+                                <p class="text-center">{{ employee.prenume_angajat }}</p>
                             </td>
                             <td scope="row">
-                                <center>{{ employee.role_id }}</center>
+                                <p class="text-center">{{ roles[employee.role_id].denumire_rol }}</p>
                             </td>
                             <td scope="row">
-                                <center>
+                                <p class="text-center">
                                     <select
                                         v-model="form.role"
                                         class="selectpicker btn btn-outline-dark btn-s dropdown-toggle form-control form-control-lg"
@@ -62,21 +62,21 @@
                                             {{ role.denumire_rol }}
                                         </option>
                                     </select>
-                                </center>
+                                </p>
                             </td>
                             <td scope="row">
-                                <center>
+                                <p class="text-center">
                                     <button
                                         class="btn btn-success btn-s"
                                         @click="changeRole()"
                                     >
                                         Schimba Rolul
                                     </button>
-                                </center>
+                                </p>
                             </td>
 
                             <td scope="row">
-                                <center>
+                                <p class="text-center">
                                     <router-link
                                         :to="{
                                             name: 'employeedetails',
@@ -88,7 +88,7 @@
                                     >
                                         Detalii
                                     </router-link>
-                                </center>
+                                </p>
                             </td>
                         </tr>
                     </tbody>
@@ -118,10 +118,26 @@ export default {
     },
     methods: {
         async loadData() {
-            const response = await axios.get("api/employees");
-            const loadRole = await axios.get("api/roles");
-            this.roles = loadRole.data;
-            this.employees = response.data;
+            const requestOne = axios.get("api/employees");
+            const requestTwo = axios.get("api/roles");
+
+            await axios.all([requestOne, requestTwo]).then(axios.spread((...responses) => {
+                this.employees = responses[0].data;
+                this.roles = responses[1].data;
+                console.log()
+                this.form.role = this.roles[0].denumire_rol;
+            })).catch(errors => {
+                console.log(errors)
+            })
+
+        },
+        changeRole(id) {
+            let res;
+            axios.put(`api/users/${id}`, this.form.role).then((data) => {
+                res = data;
+                console.log(res.data)
+            });
+            this.loadData();
         },
     },
 };
