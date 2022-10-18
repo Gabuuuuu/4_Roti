@@ -14,10 +14,13 @@
                             >
                                 <div class="card-body p-5 text-center">
                                     <div class="mb-md-6 mt-md-4 pb-5">
-                                        <h2 class="fw-bold mb-4">Add a car</h2>
+                                        <h2 class="fw-bold mb-4">
+                                            Achizitioneaza o masina
+                                        </h2>
 
                                         <p class="text-white-50 mb-4">
-                                            Fill all the available spaces
+                                            Complteaza toate datele pentru
+                                            achizitionarea masini
                                         </p>
                                         <form
                                             @submit.prevent="addcar"
@@ -25,182 +28,192 @@
                                             enctype="multipart/form-data"
                                         >
                                             <div
-                                                class="form-outline form-white mb-4"
+                                                class="form-outline form-white"
                                             >
+                                                <p>
+                                                    Asociaza un departament
+                                                    masinii
+                                                </p>
                                                 <select
-                                                    v-model="form.brand"
                                                     class="selectpicker btn btn-secondary btn-lg dropdown-toggle form-control form-control-lg"
                                                     data-style="btn-success"
                                                 >
-                                                    <option disabled hidden>
-                                                        Brand
+                                                    <option>
+                                                        Departament 1 2
                                                     </option>
-                                                    <option
-                                                        v-for="brand in brands"
-                                                        :key="brand.id"
-                                                    >
-                                                        {{ brand.brand }}
-                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div
+                                                class="form-outline form-white"
+                                            >
+                                                <p>Alege un tip de masina</p>
+                                                <select
+                                                    class="selectpicker btn btn-secondary btn-lg dropdown-toggle form-control form-control-lg"
+                                                    data-style="btn-success"
+                                                >
+                                                    <option>Tip 1 2</option>
+                                                </select>
+                                            </div>
+                                            <div
+                                                class="form-outline form-white"
+                                            >
+                                                <p>
+                                                    Alege o marca pentru masina
+                                                </p>
+                                                <select
+                                                    class="selectpicker btn btn-secondary btn-lg dropdown-toggle form-control form-control-lg"
+                                                    data-style="btn-success"
+                                                >
+                                                    <option>Marca 1 2</option>
                                                 </select>
                                             </div>
 
                                             <div
-                                                class="form-outline form-white mb-4"
+                                                class="form-outline form-white"
                                             >
-                                                <select
-                                                    v-model="form.fuel"
-                                                    class="selectpicker btn btn-secondary btn-lg dropdown-toggle form-control form-control-lg"
-                                                    data-style="btn-success"
-                                                >
-                                                    <option
-                                                        hidden
-                                                        disabled
-                                                        selected
-                                                    >
-                                                        Fuel Type
-                                                    </option>
-                                                    <option
-                                                        v-for="fuel in fuels"
-                                                        :key="fuel.id"
-                                                    >
-                                                        {{ fuel.fuel }}
-                                                    </option>
-                                                </select>
-                                            </div>
-
-                                            <div
-                                                class="form-outline form-white mb-4"
-                                            >
-                                                <select
-                                                    v-model="form.body"
-                                                    class="selectpicker btn btn-secondary btn-lg dropdown-toggle form-control form-control-lg"
-                                                    data-style="btn-success"
-                                                >
-                                                    <option
-                                                        hidden
-                                                        disabled
-                                                        selected
-                                                    >
-                                                        Body Type
-                                                    </option>
-                                                    <option
-                                                        v-for="body in bodies"
-                                                        :key="body.id"
-                                                    >
-                                                        {{ body.body }}
-                                                    </option>
-                                                </select>
-                                            </div>
-
-                                            <div
-                                                class="form-outline form-white mb-4"
-                                            >
-                                                <select
-                                                    v-model="form.seats"
-                                                    class="selectpicker btn btn-secondary btn-lg dropdown-toggle form-control form-control-lg"
-                                                    data-style="btn-success"
-                                                >
-                                                    <option
-                                                        hidden
-                                                        disabled
-                                                        selected
-                                                    >
-                                                        Seats
-                                                    </option>
-                                                    <option
-                                                        v-for="seat in seats"
-                                                        :key="seat.id"
-                                                    >
-                                                        {{ seat.seats }}
-                                                    </option>
-                                                </select>
-                                            </div>
-
-                                            <div
-                                                class="form-outline form-white mb-4"
-                                            >
-                                                <select
-                                                    v-model="form.transmission"
-                                                    class="selectpicker btn btn-secondary btn-lg dropdown-toggle form-control form-control-lg"
-                                                    data-style="btn-success"
-                                                >
-                                                    <option
-                                                        hidden
-                                                        disabled
-                                                        selected
-                                                    >
-                                                        Transmission
-                                                    </option>
-                                                    <option
-                                                        v-for="transmission in transmissions"
-                                                        :key="transmission.id"
-                                                    >
-                                                        {{
-                                                            transmission.transmission
-                                                        }}
-                                                    </option>
-                                                </select>
-                                            </div>
-
-                                            <div
-                                                class="form-outline form-white mb-4"
-                                            >
+                                                <p>Introduceti modelul</p>
                                                 <input
-                                                    type="file"
-                                                    class="form-control form-control-lg"
-                                                    @change="changeImage"
-                                                />
-                                            </div>
-
-                                            <div
-                                                class="form-outline form-white mb-4"
-                                            >
-                                                <input
-                                                    v-model="form.model"
-                                                    placeholder="Model Masina"
-                                                    type="text"
-                                                    class="form-control form-control-lg"
-                                                />
-                                            </div>
-
-                                            <div
-                                                class="form-outline form-white mb-4"
-                                            >
-                                                <input
-                                                    v-model="form.consumption"
-                                                    placeholder="Consumption"
+                                                    placeholder="Model"
                                                     type="text"
                                                     class="form-control form-control-lg"
                                                 />
                                             </div>
                                             <div
-                                                class="form-outline form-white mb-4"
+                                                class="form-outline form-white"
                                             >
+                                                <p>Introduceti anul</p>
                                                 <input
-                                                    v-model="form.year"
-                                                    placeholder="Year"
+                                                    placeholder="An"
                                                     type="text"
                                                     class="form-control form-control-lg"
                                                 />
                                             </div>
-
                                             <div
-                                                class="form-outline form-white mb-4"
+                                                class="form-outline form-white"
                                             >
+                                                <p>
+                                                    Introduceti Km masinii la
+                                                    achizitionare
+                                                </p>
                                                 <input
-                                                    v-model="form.price"
-                                                    placeholder="Price/Day"
+                                                    placeholder="Km"
                                                     type="text"
                                                     class="form-control form-control-lg"
                                                 />
                                             </div>
+                                            <div
+                                                class="form-outline form-white"
+                                            >
+                                                <p>
+                                                    Alege tipul de combustibil
+                                                </p>
+                                                <select
+                                                    class="selectpicker btn btn-secondary btn-lg dropdown-toggle form-control form-control-lg"
+                                                    data-style="btn-success"
+                                                >
+                                                    <option>
+                                                        Combustibil 1 2
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div
+                                                class="form-outline form-white"
+                                            >
+                                                <p>Alege tipul de transmisie</p>
+                                                <select
+                                                    class="selectpicker btn btn-secondary btn-lg dropdown-toggle form-control form-control-lg"
+                                                    data-style="btn-success"
+                                                >
+                                                    <option>
+                                                        Transmisie 1 2
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div
+                                                class="form-outline form-white"
+                                            >
+                                                <p>Alege numarul de portiere</p>
+                                                <select
+                                                    class="selectpicker btn btn-secondary btn-lg dropdown-toggle form-control form-control-lg"
+                                                    data-style="btn-success"
+                                                >
+                                                    <option>
+                                                        portiere 1 2
+                                                    </option>
+                                                </select>
+                                            </div>
 
+                                            <div
+                                                class="form-outline form-white"
+                                            >
+                                                <p>Introduceti caii putere</p>
+                                                <input
+                                                    placeholder="Cai putere"
+                                                    type="text"
+                                                    class="form-control form-control-lg"
+                                                />
+                                            </div>
+                                            <div
+                                                class="form-outline form-white"
+                                            >
+                                                <p>Alege culoarea masinii</p>
+                                                <select
+                                                    class="selectpicker btn btn-secondary btn-lg dropdown-toggle form-control form-control-lg"
+                                                    data-style="btn-success"
+                                                >
+                                                    <option>Culoare 1 2</option>
+                                                </select>
+                                            </div>
+                                            <div
+                                                class="form-outline form-white"
+                                            >
+                                                <p>
+                                                    Introduceti VIN-ul masinii
+                                                </p>
+                                                <input
+                                                    placeholder="VIN"
+                                                    type="text"
+                                                    class="form-control form-control-lg"
+                                                />
+                                            </div>
+                                            <div
+                                                class="form-outline form-white"
+                                            >
+                                                <p>
+                                                    Introduceti pretul curent al
+                                                    masinii
+                                                </p>
+                                                <input
+                                                    placeholder="Pret curent"
+                                                    type="text"
+                                                    class="form-control form-control-lg"
+                                                />
+                                            </div>
+                                            <div
+                                                class="form-outline form-white"
+                                            >
+                                                <p>
+                                                    Introduceti numele
+                                                    firmei/persoanei fizica
+                                                    alaturi de care s-a realizat
+                                                    contractul
+                                                </p>
+                                                <input
+                                                    placeholder="Firma/Persoana fizica"
+                                                    type="text"
+                                                    class="form-control form-control-lg"
+                                                />
+                                            </div>
                                             <div
                                                 class="form-outline form-white mb-4"
                                             >
+                                                <p>
+                                                    Introduceti daunele pe care
+                                                    le prezinta masina la
+                                                    cumparare
+                                                </p>
                                                 <textarea
-                                                    v-model="form.description"
-                                                    placeholder="Description"
+                                                    placeholder="Daune"
                                                     type="text"
                                                     class="form-control form-control-lg"
                                                     rows="5"
@@ -211,7 +224,7 @@
                                                 class="btn btn-outline-light btn-lg px-5 mb-1"
                                                 type="submit"
                                             >
-                                                Add the car
+                                                Achizitionare
                                             </button>
                                         </form>
                                     </div>
@@ -233,23 +246,29 @@ export default {
     components: { TheHeader, TheFooter },
     data() {
         return {
+            departments: [],
+            types: [],
             brands: [],
-            fuels: [],
-            bodies: [],
-            seats: [],
+            fuel_type: [],
             transmissions: [],
+            seats: [],
+            colors: [],
             form: {
+                department: "",
+                type: "",
                 brand: "",
-                fuel: "",
-                body: "",
-                seats: "",
-                transmission: "",
                 model: "",
-                consumption: "",
                 year: "",
+                km: "",
+                fuel: "",
+                transmission: "",
+                seats: "",
+                putere: "",
+                color: "",
+                vin: "",
                 price: "",
-                file: "",
-                description: "",
+                seller: "",
+                daune: "",
             },
             success: "",
         };
@@ -279,36 +298,31 @@ export default {
         },
 
         loadData() {
-            const loadBrands = axios.get("/api/brands");
-            const loadFuels = axios.get("/api/fuel_type");
-            const loadBodies = axios.get("/api/body_type");
-            const loadSeats = axios.get("/api/seats");
-            const loadTransmission = axios.get("/api/transmission");
-
-            axios
-                .all([
-                    loadBrands,
-                    loadFuels,
-                    loadBodies,
-                    loadSeats,
-                    loadTransmission,
-                ])
-                .then(
-                    axios.spread((...responses) => {
-                        this.brands = responses[0].data;
-                        this.fuels = responses[1].data;
-                        this.bodies = responses[2].data;
-                        this.seats = responses[3].data;
-                        this.transmissions = responses[4].data;
-                    })
-                );
+            // const loadBrands = axios.get("/api/brands");
+            // const loadFuels = axios.get("/api/fuel_type");
+            // const loadBodies = axios.get("/api/body_type");
+            // const loadSeats = axios.get("/api/seats");
+            // const loadTransmission = axios.get("/api/transmission");
+            // axios
+            //     .all([
+            //         loadBrands,
+            //         loadFuels,
+            //         loadBodies,
+            //         loadSeats,
+            //         loadTransmission,
+            //     ])
+            //     .then(
+            //         axios.spread((...responses) => {
+            //             this.brands = responses[0].data;
+            //             this.fuels = responses[1].data;
+            //             this.bodies = responses[2].data;
+            //             this.seats = responses[3].data;
+            //             this.transmissions = responses[4].data;
+            //         })
+            //     );
         },
         responseAfterLogin(res) {
             this.$router.push({ path: "/home" });
-        },
-
-        changeImage(e) {
-            this.form.file = e.target.files[0];
         },
     },
 };

@@ -11,24 +11,16 @@
                                 :key="car.index"
                             >
                                 <div class="card">
-                                    <div class="img-card">
-                                        <img
-                                            :src="'/images/cars/' + car.image"
-                                            alt="Error"
-                                        />
-                                    </div>
                                     <div class="card-content">
                                         <h4 class="card-title">
-                                            {{ car.brand }} {{ car.model }}
+                                            (MARCA)-(MODEL)
                                         </h4>
-                                        <p class="">
-                                            {{ car.description }}
-                                        </p>
+                                        <p class="">(DEPARTAMENT)</p>
                                     </div>
                                     <div class="card-read-more">
-                                        <a class="btn btn-block"
-                                            >Price: ${{ car.price }}</a
-                                        >
+                                        <p class="btn btn-block">
+                                            (TIP(autotren - pickup etc))
+                                        </p>
                                         <router-link
                                             :to="{
                                                 name: 'details',
@@ -36,7 +28,7 @@
                                             }"
                                             class="btn btn-link btn-block"
                                         >
-                                            Extra Details
+                                            Detalii Complete
                                         </router-link>
                                     </div>
                                 </div>
@@ -48,6 +40,8 @@
         </section>
     </div>
 </template>
+
+<!-- DEtalii complete redirectioneaza catre details -->
 
 <script>
 export default {

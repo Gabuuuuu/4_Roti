@@ -22,42 +22,51 @@ class CarController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'brand' => 'required|string|max:255',
-            'model' => 'required|string|max:255|unique:cars',
-            'fuel' => 'required|string|max:255',
-            'consumption' => 'required|string|max:255',
-            'body' => 'required|string|max:255',
-            'seats' => 'required|string|max:255',
-            'transmission' => 'required|string|max:255',
-            'year' => 'required|string|max:255',
-            'price' => 'required|string|max:255',
-            'file' => 'required|mimes:jpg,jpeg,png,csv,txt,xlx,xls,pdf|max:2048',
-            'description' => 'required|string|max:255',
+            'department_id' => 'required|string|max:255',
+            'car_type_id' => 'required|string|max:255',
+            'marca' => 'required|string|max:255',
+            'model' => 'required|string|max:255',
+            'an' => 'required|string|max:255',
+            'km' => 'required|string|max:255',
+            'combustibil' => 'required|string|max:255',
+            'putere' => 'required|string|max:255',
+            'transmisie' => 'required|string|max:255',
+            'nr_portiere' => 'required|string|max:255',
+            'culoare' => 'required|string|max:255',
+            'vin' => 'required|string|max:255',
+            'oferit_de' => 'required|string|max:255',
+            'pret_curent' => 'required|string|max:255',
+            'daune' => 'required|string|max:255',
+
         ]);
 
         if($request->hasfile('file')) {
 
-            $image = $request->file('file');
 
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
 
             $car = new Car([
-                'brand' => $request->brand,
+                'department_id' => $request->department_id,
+                'car_type_id' => $request->car_type_id,
+                'marca' => $request->marca,
                 'model' => $request->model,
-                'fuel' => $request->fuel,
-                'consumption' => $request->consumption,
-                'body'=> $request->body,
-                'seats' => $request->seats,
-                'transmission' => $request->transmission,
-                'year' => $request->year,
-                'price' => $request->price,
-                'image' => $imageName,
-                'description' => $request->description,
+                'an'=> $request->an,
+                'km' => $request->km,
+                'combustibil' => $request->combustibil,
+                'putere' => $request->putere,
+                'transmisie' => $request->transmisie,
+                'nr_portiere' => $nr_portiere,
+                'culoare' => $request->culoare,
+                'vin' => $request->vin,
+                'oferit_de' => $request->oferit_de,
+                'pret_curent' => $request->pret_curent,
+                'culoare' => $request->culoare,
+                'daune' => $request->daune,
+
+
 
             ]);
 
-            Image::make($image)->resize(500, 500)->save(public_path('/images/cars/' . $imageName));
-
++
             $car->save();
         }
 
@@ -99,11 +108,6 @@ class CarController extends Controller
         $fuel = DB::select('SELECT * FROM fuel_type');
 
         return response()->json($fuel);
-    }
-        public function getBody() {
-        $body = DB::select('SELECT * FROM body_type');
-
-        return response()->json($body);
     }
         public function getSeats() {
         $seats = DB::select('SELECT * FROM seats');

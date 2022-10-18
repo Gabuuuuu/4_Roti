@@ -10,17 +10,20 @@ class Car extends Model
     use HasFactory;
 
     protected $fillable = [
-        'brand',
+        'department_id',
+        'car_type_id',
+        'marca',
         'model',
-        'fuel',
-        'consumption',
-        'body',
-        'doors',
-        'seats',
-        'transmission',
-        'year',
-        'price',
-        'image',
-        'description'
+        'an',
+        'km',
+        'putere',
+        'combustibil',
+        'nr_portiere',
+        'transmisie',
+        'vin',
+        'culoare',
+        'pret_curent',
+        'oferit_de',
+        'daune',
     ];
 }

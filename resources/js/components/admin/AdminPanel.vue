@@ -22,7 +22,8 @@
                                     </router-link>
                                     <div class="mb-md-6 mt-md-4 pb-5">
                                         <h2 class="fw-bold mb-4">
-                                            Panou Administrativ - {{ denumireRol }}
+                                            Panou Administrativ -
+                                            {{ denumireRol }}
                                         </h2>
 
                                         <p class="text-white-50 mb-4">
@@ -55,11 +56,12 @@
                                                 <button
                                                     class="btn btn-outline-light btn-lg px-5 mb-1"
                                                 >
-                                                    Add a Car
+                                                    Achizitioneaza o masina
                                                 </button>
                                             </router-link>
                                         </div>
                                         <br />
+
                                         <div>
                                             <router-link to="/invoices">
                                                 <button
@@ -98,8 +100,9 @@ import TheHeader from "../../components/layout/TheHeader";
 export default {
     data() {
         return {
-            denumireRol: JSON.parse(localStorage.getItem('roleData')).denumire_rol,
-        }
+            denumireRol: JSON.parse(localStorage.getItem("roleData"))
+                .denumire_rol,
+        };
     },
     components: { TheHeader, TheFooter },
 };
