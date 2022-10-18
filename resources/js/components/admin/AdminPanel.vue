@@ -63,11 +63,11 @@
                                         <br />
 
                                         <div>
-                                            <router-link to="/invoices">
+                                            <router-link to="/carinvoices">
                                                 <button
                                                     class="btn btn-outline-light btn-lg px-5 mb-1"
                                                 >
-                                                    Invoices
+                                                    Facturi masini
                                                 </button>
                                             </router-link>
                                         </div>

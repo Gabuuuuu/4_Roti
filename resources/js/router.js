@@ -10,11 +10,11 @@ import AddCar from "./components/admin/AddCar";
 import NotFound from "./pages/notFound.vue";
 import Details from "./components/pricesec/Details";
 import RentNow from "./components/pricesec/RentNow";
-import Invoices from "./components/pricesec/Invoices";
+import CarInvoices from "./components/pricesec/CarInvoices";
 import AdminPanel from "./components/admin/AdminPanel";
 import RemoveCar from "./components/admin/RemoveCar";
 import Users from "./components/admin/Users";
-import InvoiceDetails from "./components/pricesec/InvoiceDetails";
+import CarInvoiceDetails from "./components/pricesec/CarInvoiceDetails";
 import Employees from "./components/admin/Employees";
 import EmployeeDetails from "./components/admin/EmployeeDetails";
 
@@ -32,9 +32,9 @@ const router = createRouter({
         { path: "/details/:id", component: Details, name: "details" },
         { path: "/rentnow/:id", component: RentNow, name: "rentnow" },
         {
-            path: "/invoices",
-            component: Invoices,
-            name: "invoices",
+            path: "/carinvoices",
+            component: CarInvoices,
+            name: "carinvoices",
             meta: { admin: true },
         },
         { path: "/adminp", component: AdminPanel, meta: { admin: true } },
@@ -53,9 +53,9 @@ const router = createRouter({
         },
 
         {
-            path: "/invoicedetails/:id",
-            component: InvoiceDetails,
-            name: "invoicedetails",
+            path: "/carinvoicedetails/:id",
+            component: CarInvoiceDetails,
+            name: "carinvoicedetails",
             meta: { admin: true },
         },
         {

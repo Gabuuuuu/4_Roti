@@ -11,7 +11,7 @@
                                     <div class="row">
                                         <h1 class="logo">
                                             <router-link to="/home">
-                                                CatchA<span>Ride</span>
+                                                4<span>Roti</span>
                                             </router-link>
                                         </h1>
                                     </div>
@@ -19,9 +19,9 @@
                                     <div class="row">
                                         <div class="col-xs-12">
                                             <h2>
-                                                INVOICE<br />
+                                                Factura<br />
                                                 <span class="small"
-                                                    >Order
+                                                    >Comanda
                                                     {{ invoice.id }}</span
                                                 >
                                             </h2>
@@ -32,8 +32,8 @@
                                 <div class="row m-b-4">
                                     <div class="col-xs-6">
                                         <address>
-                                            <strong>Billed From:</strong><br />
-                                            Romania, Bucharest<br />
+                                            <strong>Livrat catre:</strong><br />
+                                            Romania, Bucuresti<br />
                                             Sector 5, Str. Ileana Cosanzeana
                                             10<br />
                                             305142<br />
@@ -45,10 +45,9 @@
                                         class="col-xs-6 text-end position-absolute end-0"
                                     >
                                         <address>
-                                            <strong>Shipped To:</strong><br />
+                                            <strong>Livrat de catre:</strong
+                                            ><br />
                                             {{ invoice.cardname }}<br />
-                                            {{ invoice.email }}<br />
-                                            {{ invoice.zip }} <br />
                                         </address>
                                     </div>
                                 </div>
@@ -56,7 +55,7 @@
                                 <div class="row">
                                     <div class="col-xs-6">
                                         <address>
-                                            <strong>Payment Method:</strong
+                                            <strong>Metoda de plata:</strong
                                             ><br />
                                             Visa ending **** 1234<br />
                                         </address>
@@ -72,24 +71,48 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <h3>ORDER SUMMARY</h3>
+                                        <h3>REZUMATUL COMENZII</h3>
                                         <table class="table table-striped">
                                             <thead>
                                                 <tr class="line">
                                                     <td class="text-center">
-                                                        <strong>BRAND</strong>
+                                                        <strong>Marca</strong>
                                                     </td>
                                                     <td class="text-center">
-                                                        <strong>MODEL</strong>
+                                                        <strong>Model</strong>
                                                     </td>
                                                     <td class="text-center">
-                                                        <strong>DAYS</strong>
+                                                        <strong>An</strong>
                                                     </td>
                                                     <td class="text-center">
-                                                        <strong>RATE</strong>
+                                                        <strong>Km</strong>
                                                     </td>
                                                     <td class="text-center">
-                                                        <strong>TOTAL</strong>
+                                                        <strong
+                                                            >Combustibil</strong
+                                                        >
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <strong>Putere</strong>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <strong
+                                                            >Transmisie</strong
+                                                        >
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <strong>VIN</strong>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <strong
+                                                            >Nr. Locuri</strong
+                                                        >
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <strong>Culoare</strong>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <strong>Daune</strong>
                                                     </td>
                                                 </tr>
                                             </thead>
@@ -103,6 +126,36 @@
                                                     </td>
                                                     <td class="text-center">
                                                         {{ invoice.days }}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        ${{
+                                                            invoice.priceday
+                                                        }}/day
+                                                    </td>
+                                                    <td class="text-center">
+                                                        ${{
+                                                            invoice.priceday
+                                                        }}/day
+                                                    </td>
+                                                    <td class="text-center">
+                                                        ${{
+                                                            invoice.priceday
+                                                        }}/day
+                                                    </td>
+                                                    <td class="text-center">
+                                                        ${{
+                                                            invoice.priceday
+                                                        }}/day
+                                                    </td>
+                                                    <td class="text-center">
+                                                        ${{
+                                                            invoice.priceday
+                                                        }}/day
+                                                    </td>
+                                                    <td class="text-center">
+                                                        ${{
+                                                            invoice.priceday
+                                                        }}/day
                                                     </td>
                                                     <td class="text-center">
                                                         ${{
@@ -123,8 +176,8 @@
                                 <div class="row">
                                     <div class="col-md-12 text-right identity">
                                         <p>
-                                            Invoice Offered By<br /><strong
-                                                >CatchARide SRL.</strong
+                                            Factura generata de<br /><strong
+                                                >4 Roti SRL.</strong
                                             >
                                         </p>
                                     </div>
