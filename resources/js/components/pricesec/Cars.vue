@@ -14,24 +14,20 @@
                             >
                                 <div class="card">
                                     <div class="card-content">
-                                        <h4 class="card-title">
-                                            (MARCA)-(MODEL)
+                                        <h4 class="card-title text-center">
+                                            {{ car.marca }} {{ car.model }}
                                         </h4>
-                                        <p class="">(DEPARTAMENT)</p>
+                                        <h3 class="text-center card-title">
+                                            {{ car.car_type_id }} (Denumirea
+                                            tipului de masina)
+                                        </h3>
                                     </div>
-                                    <div class="card-read-more">
-                                        <p class="btn btn-block">
-                                            (TIP(autotren - pickup etc))
-                                        </p>
-                                        <router-link
-                                            :to="{
-                                                name: 'details',
-                                                params: { id: car.id },
-                                            }"
-                                            class="btn btn-link btn-block"
-                                        >
-                                            Detalii Complete
-                                        </router-link>
+                                    <div class="card-content">
+                                        <h3 class="text-center">
+                                            Folosit de:
+                                            {{ car.department_id }}(Denumirea
+                                            departamentului)
+                                        </h3>
                                     </div>
                                 </div>
                             </div>
@@ -165,14 +161,5 @@ h1.heading {
 .card-title a {
     color: #000;
     text-decoration: none !important;
-}
-.card-read-more {
-    border-top: 1px solid #d4d4d4;
-}
-.card-read-more a {
-    text-decoration: none !important;
-    padding: 10px;
-    font-weight: 600;
-    text-transform: uppercase;
 }
 </style>
