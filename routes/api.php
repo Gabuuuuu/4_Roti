@@ -35,11 +35,7 @@ Route::resource('/roles', App\Http\Controllers\RoleController::class);
 Route::resource('/employees', App\Http\Controllers\EmployeeController::class);
 
     //ROUTES FOR ADDING CAR DETAILS
-Route::get('/brands', [CarController::class, 'getBrands']);
-Route::get('/fuel_type', [CarController::class, 'getFuel']);
-Route::get('/seats', [CarController::class, 'getSeats']);
-Route::get('/transmission', [CarController::class, 'getTransmission']);
-
+Route::get('/loadCarParts', [CarController::class, 'loadCarParts']);
 
 Route::get('/loadCar/{id}', [CarController::class, 'loadCar']);
 Route::get('/loadEmployee/{id}', [EmployeeController::class, 'loadEmployee']);

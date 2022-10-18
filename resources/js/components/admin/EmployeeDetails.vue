@@ -113,7 +113,7 @@
                                             <h4>
                                                 Pozitie:
                                                 {{
-                                                    roles[employee.role_id]?.denumire_rol
+                                                    getUsersRole(employee)?.denumire_rol
                                                 }}
                                             </h4>
                                         </div>
@@ -184,7 +184,7 @@ export default {
                     axios.spread((...responses) => {
                         this.employee = responses[0].data;
                         this.roles = responses[1].data;
-                        this.form.role = this.roles[this.employee.role_id].denumire_rol;
+                        this.form.role = this.getUsersRole(this.employee)?.denumire_rol;
                     })
                 )
                 .catch((errors) => {
@@ -192,14 +192,20 @@ export default {
                 });
         },
         changeRole() {
+
             const payload = {
                 role: this.roles.filter((item) => item.denumire_rol === this.form.role)[0].role_id,
             }
+
             axios.put(`/api/employees/${this.$route.params.id}`, payload).then(() => {
                 this.loadData;
                 this.$router.replace('/employees');
             });
         },
+        getUsersRole(employee) {
+            const filteredRole = this.roles.filter((item) => item.role_id === employee.role_id)[0];
+            return filteredRole;
+        }
     },
 };
 </script>

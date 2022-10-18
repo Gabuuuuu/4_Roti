@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 18, 2022 at 04:05 PM
+-- Generation Time: Oct 18, 2022 at 09:21 PM
 -- Server version: 5.7.36
 -- PHP Version: 7.4.26
 
@@ -20,6 +20,31 @@ SET time_zone = "+00:00";
 --
 -- Database: `4roti`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `body_type`
+--
+
+DROP TABLE IF EXISTS `body_type`;
+CREATE TABLE IF NOT EXISTS `body_type` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `body` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `body_type`
+--
+
+INSERT INTO `body_type` (`id`, `body`) VALUES
+(1, 'Sedan'),
+(2, 'Coupe'),
+(3, 'Hatchback'),
+(4, 'SUV'),
+(5, 'Crossover'),
+(6, 'Convertibles');
 
 -- --------------------------------------------------------
 
@@ -64,14 +89,14 @@ INSERT INTO `brands` (`id`, `brand`) VALUES
 DROP TABLE IF EXISTS `cars`;
 CREATE TABLE IF NOT EXISTS `cars` (
   `car_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `car_type_id` int(11) NOT NULL,
   `department_id` int(11) NOT NULL,
   `pret_curent` int(11) NOT NULL,
   `oferit_De` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `car_type_id` int(11) NOT NULL,
   `marca` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `model` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `an` date NOT NULL,
   `km` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `an` varchar(4) COLLATE utf8mb4_unicode_ci NOT NULL,
   `combustibil` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `putere` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `transmisie` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -79,17 +104,19 @@ CREATE TABLE IF NOT EXISTS `cars` (
   `nr_portiere` int(11) NOT NULL,
   `culoare` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `daune` tinyint(1) NOT NULL,
+  `data_emiterii` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`car_id`),
   KEY `cars_department_id_foreign` (`department_id`),
   KEY `cars_car_type_id_foreign` (`car_type_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `cars`
 --
 
-INSERT INTO `cars` (`car_id`, `department_id`, `pret_curent`, `oferit_De`, `car_type_id`, `marca`, `model`, `an`, `km`, `combustibil`, `putere`, `transmisie`, `VIN`, `nr_portiere`, `culoare`, `daune`) VALUES
-(1, 1, 1000, 'Gabi srl', 1, 'BMW', 'X5', '2022-10-12', '14232', 'Diesel', '260', 'manual', '6636326326325', 3, 'rosie', 1);
+INSERT INTO `cars` (`car_id`, `car_type_id`, `department_id`, `pret_curent`, `oferit_De`, `marca`, `model`, `km`, `an`, `combustibil`, `putere`, `transmisie`, `VIN`, `nr_portiere`, `culoare`, `daune`, `data_emiterii`) VALUES
+(1, 1, 1, 1000, 'Gabi srl', 'BMW', 'X5', '14232', '', 'Diesel', '260', 'manual', '6636326326325', 3, 'rosie', 1, '2022-10-18 21:19:27'),
+(2, 1, 1, 213, '321', 'BMW', '312', '213', '132', 'Diesel', '312', 'Automatic', '321', 2, 'alb', 0, '2022-10-18 21:20:19');
 
 -- --------------------------------------------------------
 
@@ -118,15 +145,29 @@ INSERT INTO `car_type` (`car_type_id`, `denumire_tip_masina`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `culori`
+-- Table structure for table `colors`
 --
 
-DROP TABLE IF EXISTS `culori`;
-CREATE TABLE IF NOT EXISTS `culori` (
+DROP TABLE IF EXISTS `colors`;
+CREATE TABLE IF NOT EXISTS `colors` (
   `Culoare_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `Culoare_denumire` int(20) NOT NULL,
+  `Culoare_denumire` varchar(20) NOT NULL,
   PRIMARY KEY (`Culoare_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `colors`
+--
+
+INSERT INTO `colors` (`Culoare_id`, `Culoare_denumire`) VALUES
+(1, 'alb'),
+(2, 'negru'),
+(3, 'rosu'),
+(4, 'albastru'),
+(5, 'roz'),
+(6, 'galben'),
+(7, 'cacaniu'),
+(8, 'mov');
 
 -- --------------------------------------------------------
 
@@ -233,7 +274,7 @@ CREATE TABLE IF NOT EXISTS `employees` (
 --
 
 INSERT INTO `employees` (`employee_id`, `role_id`, `nume_angajat`, `prenume_angajat`, `CNP`, `actDeIdentitate`, `nr`, `dataEliberarii`, `domiciliul`, `strada`, `nrStrada`, `apartament`, `sector`, `data_inceput_ang`, `data_semnare_contract`) VALUES
-(1, 3, 'Gabi', 'Gabitzu', '31231331212', 'buletin', '3212', '2022-10-12', '21312321312', 'GAGA', '3123', '1321', '1', '2022-10-04', '2022-10-19');
+(1, 5, 'Gabi', 'Gabitzu', '31231331212', 'buletin', '3212', '2022-10-12', '21312321312', 'GAGA', '3123', '1321', '1', '2022-10-04', '2022-10-19');
 
 -- --------------------------------------------------------
 
@@ -339,46 +380,6 @@ CREATE TABLE IF NOT EXISTS `insurance_types` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `invoices`
---
-
-DROP TABLE IF EXISTS `invoices`;
-CREATE TABLE IF NOT EXISTS `invoices` (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `brand` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `model` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `priceday` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `cardname` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `days` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `total` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `cardnumbers` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `month` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ccv` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `zip` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `invoices`
---
-
-INSERT INTO `invoices` (`id`, `brand`, `model`, `priceday`, `email`, `cardname`, `days`, `total`, `created_at`, `updated_at`, `cardnumbers`, `month`, `ccv`, `zip`) VALUES
-(1, 'BMW', '640i', '40', 'Maria@gmail.com', 'Marian Popescu', '2', '80', '2022-07-13 21:07:54', '2022-07-13 21:07:54', '2345123454321234', '12/20', '901', '130031'),
-(2, 'BMW', '640i', '40', 'Maria@gmail.com', 'Marian Popescu', '1', '40', '2022-07-13 21:07:45', '2022-07-13 21:07:45', '2345123454321234', '12/20', '901', '130031'),
-(3, 'BMW', '640i', '40', 'Maria@gmail.com', 'Marian Popescu', '1', '40', '2022-07-13 21:07:38', '2022-07-13 21:07:38', '2345123454321234', '12/20', '901', '130031'),
-(4, 'BMW', '640i', '40', 'Maria@gmail.com', 'Marian Popescu', '1', '40', '2022-07-13 21:07:38', '2022-07-13 21:07:38', '2345123454321234', '12/20', '901', '130031'),
-(5, 'BMW', '640i', '40', 'Maria@gmail.com', 'Marian Popescu', '2', '80', '2022-07-13 21:07:34', '2022-07-13 21:07:34', '2345123454321234', '12/20', '901', '130031'),
-(6, 'BMW', '640i', '40', 'moraruboss6@yahoo.com', 'Moraru Gabriel Danut', '1', '40', '2022-07-13 15:57:44', '2022-07-13 15:57:44', '1234123412341234', '11/24', '500', '140041'),
-(7, 'BMW', '640i', '40', 'Robert@gmail.com', 'Andrei Harduchiu', '3', '120', '2022-07-13 21:08:34', '2022-07-13 21:08:34', '988823452134565', '10/13', '523', '160451'),
-(8, 'BMW', 'M850', '70', 'Stefan@gmail.com', 'Stefan Harduchi', '2', '140', '2022-07-14 03:16:35', '2022-07-14 03:16:35', '1234123456789087', '11/20', '542', '160029'),
-(9, 'BMW', 'M850', '70', 'moraru.gabriel00@gmail.cpm', 'Moraru Gabriel Danut', '3', '210', '2022-08-18 11:39:19', '2022-08-18 11:39:19', '6753453423432344', '12/20', '743', '170012');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `migrations`
 --
 
@@ -388,7 +389,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -456,7 +457,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (71, '2014_10_12_000000_create_users_table6', 37),
 (72, '2022_10_15_173518_create_employees_table5', 38),
 (73, '2022_10_17_180247_create_car_type_table', 39),
-(74, '2022_04_04_084544_create_car_controllers_table2', 40);
+(74, '2022_04_04_084544_create_car_controllers_table2', 40),
+(75, '2022_10_18_211412_create_data_emiterii_cars_table', 41);
 
 -- --------------------------------------------------------
 

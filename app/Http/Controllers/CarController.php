@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Car;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use DB;
 use Image;
@@ -37,13 +38,9 @@ class CarController extends Controller
             'oferit_de' => 'required|string|max:255',
             'pret_curent' => 'required|string|max:255',
             'daune' => 'required|string|max:255',
-
         ]);
 
-        if($request->hasfile('file')) {
-
-
-
+        // if($request->hasfile('file')) {
             $car = new Car([
                 'department_id' => $request->department_id,
                 'car_type_id' => $request->car_type_id,
@@ -54,21 +51,17 @@ class CarController extends Controller
                 'combustibil' => $request->combustibil,
                 'putere' => $request->putere,
                 'transmisie' => $request->transmisie,
-                'nr_portiere' => $nr_portiere,
+                'nr_portiere' => $request->nr_portiere,
                 'culoare' => $request->culoare,
                 'vin' => $request->vin,
                 'oferit_de' => $request->oferit_de,
                 'pret_curent' => $request->pret_curent,
                 'culoare' => $request->culoare,
                 'daune' => $request->daune,
-
-
-
             ]);
 
-+
             $car->save();
-        }
+        // }
 
         return response()->json('Car successfully added');
     }
@@ -98,32 +91,21 @@ class CarController extends Controller
         return response()->json('Car successfully deleted');
     }
 
-    public function getBrands() {
-        $brands = DB::select('SELECT * FROM brands');
-
-        return response()->json($brands);
-    }
-
-        public function getFuel() {
-        $fuel = DB::select('SELECT * FROM fuel_type');
-
-        return response()->json($fuel);
-    }
-        public function getSeats() {
-        $seats = DB::select('SELECT * FROM seats');
-
-        return response()->json($seats);
-    }
-
-        public function getTransmission() {
-        $transmission = DB::select('SELECT * FROM transmission');
-
-        return response()->json($transmission);
-    }
-
     public function loadCar ($id) {
         $car = Car::findOrFail($id);
         return response()->json($car);
     }
 
+    public function loadCarParts () {
+        $carParts = [];
+        $carParts[0] = DB::select('SELECT * FROM transmission');
+        $carParts[1] = DB::select('SELECT * FROM seats');
+        $carParts[2] = DB::select('SELECT * FROM colors');
+        $carParts[3] = DB::select('SELECT * FROM fuel_type');
+        $carParts[4] = DB::select('SELECT * FROM brands');
+        $carParts[5] = DB::select('SELECT * FROM car_Type');
+        $carParts[6] = Department::all();
+
+        return response()->json($carParts);
+    }
 }

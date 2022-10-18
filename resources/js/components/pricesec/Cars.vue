@@ -41,7 +41,7 @@
     </div>
 </template>
 
-<!-- DEtalii complete redirectioneaza catre details -->
+<!-- Detalii complete redirectioneaza catre details -->
 
 <script>
 export default {

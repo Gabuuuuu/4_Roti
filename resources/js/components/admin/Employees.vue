@@ -51,7 +51,7 @@
                             </td>
                             <td scope="row">
                                 <p class="text-center">
-                                    {{ roles[employee.role_id].denumire_rol }}
+                                    {{ getUsersRole(employee) }}
                                 </p>
                             </td>
 
@@ -103,13 +103,16 @@ export default {
                     axios.spread((...responses) => {
                         this.employees = responses[0].data;
                         this.roles = responses[1].data;
-                        this.form.role = this.roles[0].denumire_rol;
                     })
                 )
                 .catch((errors) => {
                     console.log(errors);
                 });
         },
+        getUsersRole(employee) {
+            const filteredRole = this.roles.filter((item) => item.role_id === employee.role_id)[0];
+            return filteredRole.denumire_rol;
+        }
     },
 };
 </script>

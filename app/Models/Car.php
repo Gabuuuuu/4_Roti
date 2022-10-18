@@ -4,10 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use DateTimeInterface;
 
 class Car extends Model
 {
     use HasFactory;
+
+    protected $primaryKey = 'car_id';
+    public $timestamps = false;
 
     protected $fillable = [
         'department_id',
@@ -26,4 +30,9 @@ class Car extends Model
         'oferit_de',
         'daune',
     ];
+
+    protected function serializeDate(DateTimeInterface $date) {
+        return $date->format('Y-m-d H:i:s');
+    }
+
 }

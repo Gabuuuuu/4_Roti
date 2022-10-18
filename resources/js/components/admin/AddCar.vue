@@ -19,7 +19,7 @@
                                         </h2>
 
                                         <p class="text-white-50 mb-4">
-                                            Complteaza toate datele pentru
+                                            Completeaza toate datele pentru
                                             achizitionarea masini
                                         </p>
                                         <form
@@ -37,9 +37,10 @@
                                                 <select
                                                     class="selectpicker btn btn-secondary btn-lg dropdown-toggle form-control form-control-lg"
                                                     data-style="btn-success"
+                                                    v-model="form.department"
                                                 >
-                                                    <option>
-                                                        Departament 1 2
+                                                    <option v-for="department in departments" :key="department.department_id">
+                                                        {{ department.denumire_departament }}
                                                     </option>
                                                 </select>
                                             </div>
@@ -50,8 +51,11 @@
                                                 <select
                                                     class="selectpicker btn btn-secondary btn-lg dropdown-toggle form-control form-control-lg"
                                                     data-style="btn-success"
+                                                    v-model="form.type"
                                                 >
-                                                    <option>Tip 1 2</option>
+                                                    <option v-for="body_type in body_types" :key="body_type.car_type_id">
+                                                        {{ body_type.denumire_tip_masina }}
+                                                    </option>
                                                 </select>
                                             </div>
                                             <div
@@ -64,7 +68,9 @@
                                                     class="selectpicker btn btn-secondary btn-lg dropdown-toggle form-control form-control-lg"
                                                     data-style="btn-success"
                                                 >
-                                                    <option>Marca 1 2</option>
+                                                    <option v-for="brand in brands" :key="brand.id">
+                                                        {{ brand.brand }}
+                                                    </option>
                                                 </select>
                                             </div>
 
@@ -76,6 +82,7 @@
                                                     placeholder="Model"
                                                     type="text"
                                                     class="form-control form-control-lg"
+                                                    v-model="form.model"
                                                 />
                                             </div>
                                             <div
@@ -86,6 +93,7 @@
                                                     placeholder="An"
                                                     type="text"
                                                     class="form-control form-control-lg"
+                                                    v-model="form.year"
                                                 />
                                             </div>
                                             <div
@@ -99,6 +107,7 @@
                                                     placeholder="Km"
                                                     type="text"
                                                     class="form-control form-control-lg"
+                                                    v-model="form.km"
                                                 />
                                             </div>
                                             <div
@@ -110,9 +119,10 @@
                                                 <select
                                                     class="selectpicker btn btn-secondary btn-lg dropdown-toggle form-control form-control-lg"
                                                     data-style="btn-success"
+                                                    v-model="form.fuel"
                                                 >
-                                                    <option>
-                                                        Combustibil 1 2
+                                                    <option v-for="fuel_type in fuel_types" :key="fuel_type.id">
+                                                        {{ fuel_type.fuel }}
                                                     </option>
                                                 </select>
                                             </div>
@@ -123,22 +133,24 @@
                                                 <select
                                                     class="selectpicker btn btn-secondary btn-lg dropdown-toggle form-control form-control-lg"
                                                     data-style="btn-success"
+                                                    v-model="form.transmission"
                                                 >
-                                                    <option>
-                                                        Transmisie 1 2
+                                                    <option v-for="transmission in transmissions" :key="transmission.id">
+                                                        {{ transmission.transmission }}
                                                     </option>
                                                 </select>
                                             </div>
                                             <div
                                                 class="form-outline form-white"
                                             >
-                                                <p>Alege numarul de portiere</p>
+                                                <p>Alege numarul de locuri</p>
                                                 <select
                                                     class="selectpicker btn btn-secondary btn-lg dropdown-toggle form-control form-control-lg"
                                                     data-style="btn-success"
+                                                    v-model="form.seats"
                                                 >
-                                                    <option>
-                                                        portiere 1 2
+                                                    <option v-for="seat in seats" :key="seat.id">
+                                                        {{ seat.seats }}
                                                     </option>
                                                 </select>
                                             </div>
@@ -151,6 +163,7 @@
                                                     placeholder="Cai putere"
                                                     type="text"
                                                     class="form-control form-control-lg"
+                                                    v-model="form.putere"
                                                 />
                                             </div>
                                             <div
@@ -160,8 +173,11 @@
                                                 <select
                                                     class="selectpicker btn btn-secondary btn-lg dropdown-toggle form-control form-control-lg"
                                                     data-style="btn-success"
+                                                    v-model="form.color"
                                                 >
-                                                    <option>Culoare 1 2</option>
+                                                    <option v-for="color in colors" :key="color.Culoare_id">
+                                                        {{ color.Culoare_denumire }}
+                                                    </option>
                                                 </select>
                                             </div>
                                             <div
@@ -174,6 +190,7 @@
                                                     placeholder="VIN"
                                                     type="text"
                                                     class="form-control form-control-lg"
+                                                    v-model="form.vin"
                                                 />
                                             </div>
                                             <div
@@ -187,6 +204,7 @@
                                                     placeholder="Pret curent"
                                                     type="text"
                                                     class="form-control form-control-lg"
+                                                    v-model="form.price"
                                                 />
                                             </div>
                                             <div
@@ -202,24 +220,9 @@
                                                     placeholder="Firma/Persoana fizica"
                                                     type="text"
                                                     class="form-control form-control-lg"
+                                                    v-model="form.seller"
                                                 />
                                             </div>
-                                            <div
-                                                class="form-outline form-white mb-4"
-                                            >
-                                                <p>
-                                                    Introduceti daunele pe care
-                                                    le prezinta masina la
-                                                    cumparare
-                                                </p>
-                                                <textarea
-                                                    placeholder="Daune"
-                                                    type="text"
-                                                    class="form-control form-control-lg"
-                                                    rows="5"
-                                                />
-                                            </div>
-
                                             <button
                                                 class="btn btn-outline-light btn-lg px-5 mb-1"
                                                 type="submit"
@@ -247,12 +250,13 @@ export default {
     data() {
         return {
             departments: [],
-            types: [],
+            fuel_types: [],
+            body_types: [],
             brands: [],
-            fuel_type: [],
-            transmissions: [],
             seats: [],
+            transmissions: [],
             colors: [],
+            dataBunch: [],
             form: {
                 department: "",
                 type: "",
@@ -278,51 +282,50 @@ export default {
     },
     methods: {
         addcar() {
-            const data = new FormData();
-            data.append("brand", this.form.brand);
-            data.append("fuel", this.form.fuel);
-            data.append("body", this.form.body);
-            data.append("seats", this.form.seats);
-            data.append("transmission", this.form.transmission);
-            data.append("model", this.form.model);
-            data.append("consumption", this.form.consumption);
-            data.append("year", this.form.year);
-            data.append("price", this.form.price);
-            data.append("file", this.form.file);
-            data.append("description", this.form.description);
+            const dep = this.departments.filter((item) => item.denumire_departament === this.form.department);
+            const tip = this.body_types.filter((item) => item.denumire_tip_masina === this.form.type);
 
-            axios.post("/api/cars", data).then((res) => {
-                this.responseAfterLogin(res);
+            const data = new FormData();
+            data.append("department_id", dep[0].department_id);
+            data.append("car_type_id", tip[0].car_type_id);
+            data.append("marca", this.form.brand);
+            data.append("model", this.form.model);
+            data.append("an", this.form.year);
+            data.append("km", this.form.km);
+            data.append("combustibil", this.form.fuel);
+            data.append("putere", this.form.putere);
+            data.append("transmisie", this.form.transmission);
+            data.append("nr_portiere", this.form.seats);
+            data.append("culoare", this.form.color);
+            data.append("vin", this.form.vin);
+            data.append("oferit_de", this.form.seller);
+            data.append("pret_curent", this.form.price);
+            data.append("daune", 0);
+
+            axios.post("/api/cars", data).then(() => {
+                this.$router.push({ path: "/home" });
                 this.loadData();
             });
         },
-
         loadData() {
-            // const loadBrands = axios.get("/api/brands");
-            // const loadFuels = axios.get("/api/fuel_type");
-            // const loadBodies = axios.get("/api/body_type");
-            // const loadSeats = axios.get("/api/seats");
-            // const loadTransmission = axios.get("/api/transmission");
-            // axios
-            //     .all([
-            //         loadBrands,
-            //         loadFuels,
-            //         loadBodies,
-            //         loadSeats,
-            //         loadTransmission,
-            //     ])
-            //     .then(
-            //         axios.spread((...responses) => {
-            //             this.brands = responses[0].data;
-            //             this.fuels = responses[1].data;
-            //             this.bodies = responses[2].data;
-            //             this.seats = responses[3].data;
-            //             this.transmissions = responses[4].data;
-            //         })
-            //     );
-        },
-        responseAfterLogin(res) {
-            this.$router.push({ path: "/home" });
+            axios.get('/api/loadCarParts').then((res) => {
+                const responseData = res.data;
+
+                this.transmissions = responseData[0];
+                this.form.transmission = responseData[0][0].transmission;
+                this.seats = responseData[1];
+                this.form.seats =responseData[1][0].seats;
+                this.colors = responseData[2];
+                this.form.color = responseData[2][0].Culoare_denumire;
+                this.fuel_types = responseData[3];
+                this.form.fuel = responseData[3][0].fuel;
+                this.brands = responseData[4];
+                this.form.brand = responseData[4][0].brand;
+                this.body_types = responseData[5];
+                this.form.type = responseData[5][0].denumire_tip_masina;
+                this.departments = responseData[6];
+                this.form.department = responseData[6][0].denumire_departament;
+            });
         },
     },
 };
