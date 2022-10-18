@@ -59,46 +59,46 @@
                 </div>
             </div>
             <br />
+
             <div class="p-4">
+                <router-link to="/adminp">
+                    <button
+                        class="btn btn-dark btn-outline-light btn-lg px-6 mb-4"
+                    >
+                        Inapoi
+                    </button>
+                </router-link>
                 <table class="table table-striped">
                     <thead class="thead-dark table-dark">
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Brand</th>
+                        <tr class="text-center">
+                            <th scope="col">Nr. masinii</th>
+                            <th scope="col">Marca</th>
                             <th scope="col">Model</th>
-                            <th scope="col">Price/Day</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Card Name</th>
-                            <th scope="col">Days</th>
-                            <th scope="col">Total Paid</th>
-                            <th scope="col">Created at</th>
-                            <th scope="col">Full invoice</th>
+                            <th scope="col">Anul</th>
+                            <th scope="col">Tipul masinii</th>
+                            <th scope="col">Factura completa</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr
-                            v-for="invoice in filterInvoices"
-                            :key="invoice.index"
-                        >
-                            <th scope="row">{{ invoice.id }}</th>
-                            <td>{{ invoice.brand }}</td>
-                            <td>{{ invoice.model }}</td>
-                            <td>${{ invoice.priceday }}</td>
-                            <td>{{ invoice.email }}</td>
-                            <td>{{ invoice.cardname }}</td>
-                            <td>{{ invoice.days }}</td>
-                            <td>${{ invoice.total }}</td>
-                            <td>{{ invoice.created_at }}</td>
+
+                    <tbody class="text-center fs-5">
+                        <tr v-for="car in cars" :key="car.index">
+                            <th scope="row">{{ car.car_id }}</th>
+                            <td>{{ car.marca }}</td>
+                            <td>{{ car.model }}</td>
+                            <td>{{ car.an }}</td>
+                            <td>{{ car.car_type_id }}</td>
                             <td>
-                                <button class="btn btn-outline-dark btn-s">
+                                <button
+                                    class="btn btn-light btn-outline-info btn-s"
+                                >
                                     <router-link
-                                        class="text-muted"
+                                        class="text-muted text-decoration-none fs-5"
                                         :to="{
-                                            name: 'invoicedetails',
-                                            params: { id: invoice.id },
+                                            name: 'carinvoicedetails',
+                                            params: { id: car.car_id },
                                         }"
                                     >
-                                        Full Invoice
+                                        Factura Completa
                                     </router-link>
                                 </button>
                             </td>
@@ -118,7 +118,7 @@ export default {
     components: { TheHeader, TheFooter },
     data() {
         return {
-            invoices: [],
+            cars: [],
             filterBrand: "",
             filterModel: "",
             filterPrice: "",
@@ -133,8 +133,8 @@ export default {
     },
     methods: {
         async loadData() {
-            const response = await axios.get("api/invoices");
-            this.invoices = response.data;
+            const response = await axios.get("api/cars");
+            this.cars = response.data;
         },
     },
     computed: {
@@ -187,8 +187,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.button {
-    text-decoration: none;
-}
-</style>
+<style scoped></style>
