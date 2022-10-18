@@ -1,5 +1,7 @@
 <template>
     <div>
+        <TheHeader class="fixed-top"></TheHeader>
+
         <section class="wrapper">
             <div class="container-fostrap">
                 <div class="content">
@@ -38,13 +40,20 @@
                 </div>
             </div>
         </section>
+        <TheFooter></TheFooter>
     </div>
 </template>
 
 <!-- DEtalii complete redirectioneaza catre details -->
 
 <script>
+import TheFooter from "../../components/layout/TheFooter.vue";
+import TheHeader from "../../components/layout/TheHeader";
 export default {
+    components: {
+        TheFooter,
+        TheHeader,
+    },
     data() {
         return {
             cars: [],

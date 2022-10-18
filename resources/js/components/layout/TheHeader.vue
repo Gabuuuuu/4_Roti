@@ -22,7 +22,7 @@
                             </router-link>
                         </li>
                         <li>
-                            <router-link class="nav-link" to="/prices"
+                            <router-link class="nav-link" to="/cars"
                                 >Masini
                             </router-link>
                         </li>

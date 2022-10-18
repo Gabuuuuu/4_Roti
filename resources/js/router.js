@@ -5,7 +5,7 @@ import Register from "./pages/auth/Register";
 import Forgot from "./pages/auth/Forgot";
 import Home from "./pages/landing/Home";
 import Team from "./pages/landing/Team";
-import Prices from "./pages/landing/Prices";
+import Cars from "./components/pricesec/Cars";
 import AddCar from "./components/admin/AddCar";
 import NotFound from "./pages/notFound.vue";
 import Details from "./components/pricesec/Details";
@@ -27,7 +27,7 @@ const router = createRouter({
         { path: "/forgot", component: Forgot, meta: { guest: true } },
         { path: "/home", component: Home },
         { path: "/team", component: Team },
-        { path: "/prices", component: Prices },
+        { path: "/cars", component: Cars },
         { path: "/addcar", component: AddCar, name: "Addcar" },
         { path: "/details/:id", component: Details, name: "details" },
         { path: "/rentnow/:id", component: RentNow, name: "rentnow" },

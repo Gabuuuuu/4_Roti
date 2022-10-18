@@ -12,12 +12,6 @@
                                 :key="car.id"
                             >
                                 <div class="card">
-                                    <div class="img-card">
-                                        <img
-                                            :src="'/images/cars/' + car.image"
-                                            alt="Error"
-                                        />
-                                    </div>
                                     <div class="card-content">
                                         <h4 class="card-title">
                                             {{ car.brand }} {{ car.model }}
