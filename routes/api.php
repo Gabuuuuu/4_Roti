@@ -7,6 +7,8 @@ use App\Http\Controllers\CarController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\CarRevisionController;
+
 
 //ROUTES
 
@@ -33,6 +35,7 @@ Route::resource('/roles', App\Http\Controllers\RoleController::class);
 
 // Employees
 Route::resource('/employees', App\Http\Controllers\EmployeeController::class);
+Route::resource('/revisions', App\Http\Controllers\CarRevisionController::class);
 
     //ROUTES FOR ADDING CAR DETAILS
 Route::get('/loadCarParts', [CarController::class, 'loadCarParts']);
@@ -40,5 +43,7 @@ Route::get('/loadCarParts', [CarController::class, 'loadCarParts']);
 Route::get('/loadCar/{id}', [CarController::class, 'loadCar']);
 Route::get('/loadEmployee/{id}', [EmployeeController::class, 'loadEmployee']);
 Route::get('/loadInvoice/{id}',[InvoiceController::class, 'loadInvoice']);
+Route::get('/loadRevision/{id}',[CarRevisionController::class, 'loadRevision']);
+
 
 
