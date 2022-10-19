@@ -24,7 +24,7 @@ return new class extends Migration
             $table->boolean('StareSistemElectric');
             $table->boolean('StareDotari');
             $table->boolean('StareCauciucuri');
-            $table->date('data_emiterii')->format('d/m/Y');
+             $table->timestamp('data_emiterii')->useCurrent();
 
             $table->foreign('car_id')->references('car_id')->on('cars');
         });

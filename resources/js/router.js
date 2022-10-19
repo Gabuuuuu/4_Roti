@@ -19,6 +19,7 @@ import Employees from "./components/admin/Employees";
 import EmployeeDetails from "./components/admin/EmployeeDetails";
 import Revisions from "./components/admin/Revisions";
 import FullRevision from "./components/admin/FullRevision";
+import AddRevision from "./components/admin/AddRevision";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -30,6 +31,8 @@ const router = createRouter({
         { path: "/home", component: Home },
         { path: "/team", component: Team },
         { path: "/cars", component: Cars },
+        { path: "/addrevision", component: AddRevision, name: "addrevision" },
+
         {
             path: "/revisions",
             component: Revisions,

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 19, 2022 at 03:08 PM
+-- Generation Time: Oct 19, 2022 at 04:10 PM
 -- Server version: 5.7.36
 -- PHP Version: 7.4.26
 
@@ -136,17 +136,18 @@ CREATE TABLE IF NOT EXISTS `car_revisions` (
   `StareSistemElectric` tinyint(1) NOT NULL,
   `StareDotari` tinyint(1) NOT NULL,
   `StareCauciucuri` tinyint(1) NOT NULL,
-  `data_emiterii` date NOT NULL,
+  `data_emiterii` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`Id_revizie`),
   KEY `car_revisions_car_id_foreign` (`car_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `car_revisions`
 --
 
 INSERT INTO `car_revisions` (`Id_revizie`, `car_id`, `StareMotor`, `StareLumini`, `StareSuspensii`, `StareAmortizor`, `StareFrana`, `StareSistemElectric`, `StareDotari`, `StareCauciucuri`, `data_emiterii`) VALUES
-(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2022-10-20');
+(1, 2, 0, 1, 1, 1, 0, 1, 0, 0, '2022-10-19 16:02:55'),
+(2, 2, 0, 0, 1, 1, 0, 1, 0, 1, '2022-10-19 16:07:31');
 
 -- --------------------------------------------------------
 
@@ -419,7 +420,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -489,7 +490,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (73, '2022_10_17_180247_create_car_type_table', 39),
 (74, '2022_04_04_084544_create_car_controllers_table2', 40),
 (75, '2022_10_18_211412_create_data_emiterii_cars_table', 41),
-(76, '2022_10_19_123318_create_car_revisions_table', 42);
+(77, '2022_10_19_123318_create_car_revisions_table', 42);
 
 -- --------------------------------------------------------
 

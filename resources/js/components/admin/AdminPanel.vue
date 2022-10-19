@@ -73,6 +73,16 @@
                                         </div>
                                         <br />
                                         <div>
+                                            <router-link to="/addrevision">
+                                                <button
+                                                    class="btn btn-outline-light btn-lg px-5 mb-1"
+                                                >
+                                                    Inregistreaza o revizie
+                                                </button>
+                                            </router-link>
+                                        </div>
+                                        <br />
+                                        <div>
                                             <router-link to="/revisions">
                                                 <button
                                                     class="btn btn-outline-light btn-lg px-5 mb-1"

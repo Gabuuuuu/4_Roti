@@ -12,7 +12,7 @@
                                 style="border-radius: 1rem"
                             >
                                 <div class="card-body p-5 text-center">
-                                    <router-link to="/employees">
+                                    <router-link to="/revisions">
                                         <button
                                             class="btn btn-outline-light btn-lg px-6 mb-2"
                                             type="submit"
