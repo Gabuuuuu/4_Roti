@@ -28,10 +28,10 @@
                                         </h2>
                                         <h2 class="fw-bold mb-4">
                                             Data reviziei:
-                                            {{ revision.data_emiterii }}
+                                            {{ formatDate(revision.data_emiterii) }}
                                         </h2>
                                         <h2 class="fw-bold mb-4">
-                                            Masina: {{ revision.car_id }}
+                                            Masina: {{ car.car_id }} - {{ car.marca }} {{ car.model }}
                                         </h2>
 
                                         <p class="text-white-50 mb-4">
@@ -113,6 +113,7 @@ export default {
     data() {
         return {
             revision: [],
+            car: [],
         };
     },
     created() {
@@ -120,21 +121,24 @@ export default {
     },
     methods: {
         async loadData() {
-            const requestOne = axios.get(
-                "/api/loadRevision/" + this.$route.params.id
-            );
-            await axios
-                .all([requestOne])
-                .then(
-                    axios.spread((...responses) => {
-                        this.revision = responses[0].data;
-                    })
-                )
-                .catch((errors) => {
-                    console.log(errors);
-                });
+            const response = await axios.get("/api/loadRevision/" + this.$route.params.id);
+            this.revision = response.data[0];
+            this.car = response.data[1];
+
+            for (const item in this.revision) {
+                if(item.includes('Stare')) {
+                    if(this.revision[item] === 0) {
+                        this.revision[item] = 'Buna';
+                    } else {
+                        this.revision[item] = 'Defect';
+                    }
+                }
+            }
         },
-    },
+        formatDate(dateToday) {
+            return new Date(dateToday).toLocaleDateString();
+        }
+    }
 };
 </script>
 

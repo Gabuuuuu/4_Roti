@@ -89,17 +89,8 @@ export default {
     },
     methods: {
         async loadData() {
-            const requestOne = axios.get("api/revisions");
-            await axios
-                .all([requestOne])
-                .then(
-                    axios.spread((...responses) => {
-                        this.revisions = responses[0].data;
-                    })
-                )
-                .catch((errors) => {
-                    console.log(errors);
-                });
+            const res = await axios.get("api/revisions");
+            this.revisions = res.data;
         },
     },
 };

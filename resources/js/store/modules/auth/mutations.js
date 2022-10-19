@@ -16,6 +16,9 @@ export default {
     removeRole(state) {
         state.userRole = null;
     },
+    setIsAuthenticated(state, payload) {
+        state.isAuthenticated = payload;
+    },
     loginVerify(state) {
         const storeToken = localStorage.getItem("token");
         const storeUser = localStorage.getItem("user_id");

@@ -112,7 +112,7 @@
                                                         <strong>Culoare</strong>
                                                     </td>
                                                     <td class="text-center">
-                                                        <strong>Daune</strong>
+                                                        <strong>Conditie</strong>
                                                     </td>
                                                 </tr>
                                             </thead>
@@ -152,7 +152,7 @@
                                                         class="text-center"
                                                         format="yyyy-MM-dd HH:mm:ss"
                                                     >
-                                                        {{ car.daune }}
+                                                        {{ daune[car.daune] }}
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -183,6 +183,11 @@ export default {
     data() {
         return {
             car: [],
+            daune: {
+                0: 'Buna',
+                1: 'Utilizabila',
+                2: 'Inutilizabila',
+            }
         };
     },
     created() {
