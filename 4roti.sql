@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 18, 2022 at 09:21 PM
+-- Generation Time: Oct 19, 2022 at 03:08 PM
 -- Server version: 5.7.36
 -- PHP Version: 7.4.26
 
@@ -115,8 +115,38 @@ CREATE TABLE IF NOT EXISTS `cars` (
 --
 
 INSERT INTO `cars` (`car_id`, `car_type_id`, `department_id`, `pret_curent`, `oferit_De`, `marca`, `model`, `km`, `an`, `combustibil`, `putere`, `transmisie`, `VIN`, `nr_portiere`, `culoare`, `daune`, `data_emiterii`) VALUES
-(1, 1, 1, 1000, 'Gabi srl', 'BMW', 'X5', '14232', '', 'Diesel', '260', 'manual', '6636326326325', 3, 'rosie', 1, '2022-10-18 21:19:27'),
+(1, 1, 1, 1000, 'Gabi srl', 'BMW', 'X5', '14232', '2000', 'Diesel', '260', 'manual', '6636326326325', 3, 'rosie', 1, '2022-10-18 21:19:27'),
 (2, 1, 1, 213, '321', 'BMW', '312', '213', '132', 'Diesel', '312', 'Automatic', '321', 2, 'alb', 0, '2022-10-18 21:20:19');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `car_revisions`
+--
+
+DROP TABLE IF EXISTS `car_revisions`;
+CREATE TABLE IF NOT EXISTS `car_revisions` (
+  `Id_revizie` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `car_id` int(11) NOT NULL,
+  `StareMotor` tinyint(1) NOT NULL,
+  `StareLumini` tinyint(1) NOT NULL,
+  `StareSuspensii` tinyint(1) NOT NULL,
+  `StareAmortizor` tinyint(1) NOT NULL,
+  `StareFrana` tinyint(1) NOT NULL,
+  `StareSistemElectric` tinyint(1) NOT NULL,
+  `StareDotari` tinyint(1) NOT NULL,
+  `StareCauciucuri` tinyint(1) NOT NULL,
+  `data_emiterii` date NOT NULL,
+  PRIMARY KEY (`Id_revizie`),
+  KEY `car_revisions_car_id_foreign` (`car_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `car_revisions`
+--
+
+INSERT INTO `car_revisions` (`Id_revizie`, `car_id`, `StareMotor`, `StareLumini`, `StareSuspensii`, `StareAmortizor`, `StareFrana`, `StareSistemElectric`, `StareDotari`, `StareCauciucuri`, `data_emiterii`) VALUES
+(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2022-10-20');
 
 -- --------------------------------------------------------
 
@@ -389,7 +419,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -458,7 +488,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (72, '2022_10_15_173518_create_employees_table5', 38),
 (73, '2022_10_17_180247_create_car_type_table', 39),
 (74, '2022_04_04_084544_create_car_controllers_table2', 40),
-(75, '2022_10_18_211412_create_data_emiterii_cars_table', 41);
+(75, '2022_10_18_211412_create_data_emiterii_cars_table', 41),
+(76, '2022_10_19_123318_create_car_revisions_table', 42);
 
 -- --------------------------------------------------------
 
@@ -480,7 +511,7 @@ CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `personal_access_tokens`
@@ -573,7 +604,8 @@ INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `n
 (84, 'App\\Models\\User', 2, 'auth_token', 'f8ad1b7e02aab01896eb18b82c7642d0db15f7720cef986409dc5cc870d5fa5e', '[\"*\"]', NULL, '2022-10-17 13:42:40', '2022-10-17 13:42:40'),
 (85, 'App\\Models\\User', 2, 'auth_token', 'da6a8f2fe38bfa8190ccca567ded55a9697c6b9c8c80a0c093f8e04e364acb77', '[\"*\"]', NULL, '2022-10-17 14:06:56', '2022-10-17 14:06:56'),
 (86, 'App\\Models\\User', 2, 'auth_token', '2f344c2ba5f1fd5ba15429e569a99e665712befc14fc2610be7eaf33bdad8937', '[\"*\"]', NULL, '2022-10-18 06:31:36', '2022-10-18 06:31:36'),
-(87, 'App\\Models\\User', 2, 'auth_token', '7d9e0013155a7881abef7ab998eb18b4c6fc7616ee1c0a3ed707b9ab1552e15f', '[\"*\"]', NULL, '2022-10-18 10:03:53', '2022-10-18 10:03:53');
+(87, 'App\\Models\\User', 2, 'auth_token', '7d9e0013155a7881abef7ab998eb18b4c6fc7616ee1c0a3ed707b9ab1552e15f', '[\"*\"]', NULL, '2022-10-18 10:03:53', '2022-10-18 10:03:53'),
+(88, 'App\\Models\\User', 2, 'auth_token', 'cdb01a8a76788aea730cae588a40986a4a4b6d74f3496961c262e2f9a2809c4f', '[\"*\"]', NULL, '2022-10-19 08:31:06', '2022-10-19 08:31:06');
 
 -- --------------------------------------------------------
 
