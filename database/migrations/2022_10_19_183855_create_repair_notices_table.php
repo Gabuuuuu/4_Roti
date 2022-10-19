@@ -13,20 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('car_revisions', function (Blueprint $table) {
-            $table->id('Id_revizie');
+        Schema::create('repair_notices', function (Blueprint $table) {
+            $table->id('Id_repair_notice');
             $table->integer('car_id');
-            $table->boolean('StareMotor');
-            $table->boolean('StareLumini');
-            $table->boolean('StareSuspensii');
-            $table->boolean('StareAmortizor');
-            $table->boolean('StareFrana');
-            $table->boolean('StareSistemElectric');
-            $table->boolean('StareDotari');
-            $table->boolean('StareCauciucuri');
+            $table->integer('employee_id');
+            $table->string('damage_info' , 250);
+            $table->string('damage_cost');
             $table->timestamp('data_emiterii')->useCurrent();
 
             $table->foreign('car_id')->references('car_id')->on('cars');
+            $table->foreign('employee_id')->references('employee_id')->on('employees');
+
+
         });
     }
 
@@ -37,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('car_revisions');
+        Schema::dropIfExists('repair_notices');
     }
 };

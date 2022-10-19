@@ -20,6 +20,8 @@ import EmployeeDetails from "./components/admin/EmployeeDetails";
 import Revisions from "./components/admin/Revisions";
 import FullRevision from "./components/admin/FullRevision";
 import AddRevision from "./components/admin/AddRevision";
+import RepairNotices from "./components/admin/RepairNotices";
+import FullRepairNotice from "./components/admin/FullRepairNotice";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -32,6 +34,11 @@ const router = createRouter({
         { path: "/team", component: Team },
         { path: "/cars", component: Cars },
         { path: "/addrevision", component: AddRevision, name: "addrevision" },
+        {
+            path: "/repairnotices",
+            component: RepairNotices,
+            name: "repairnotices",
+        },
 
         {
             path: "/revisions",
@@ -80,6 +87,12 @@ const router = createRouter({
             path: "/fullrevision/:id",
             component: FullRevision,
             name: "fullrevision",
+            meta: { admin: true },
+        },
+        {
+            path: "/fullrepairnotice/:id",
+            component: FullRepairNotice,
+            name: "fullrepairnotice",
             meta: { admin: true },
         },
 

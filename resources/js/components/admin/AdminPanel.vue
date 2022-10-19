@@ -93,6 +93,16 @@
                                         </div>
                                         <br />
                                         <div>
+                                            <router-link to="/repairnotices">
+                                                <button
+                                                    class="btn btn-outline-light btn-lg px-5 mb-1"
+                                                >
+                                                    Lista constatari daune
+                                                </button>
+                                            </router-link>
+                                        </div>
+                                        <br />
+                                        <div>
                                             <router-link to="/removecar">
                                                 <button
                                                     class="btn btn-outline-light btn-lg px-5 mb-1"
