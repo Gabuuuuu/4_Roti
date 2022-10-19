@@ -91,6 +91,11 @@ class CarController extends Controller
         return response()->json('Car successfully deleted');
     }
 
+    public function loadCarTypes () {
+        $carTypes = DB::select('SELECT * FROM car_type');
+        return response()->json($carTypes);
+    }
+
     public function loadCar($id) {
         $car = Car::where('car_id', $id)->first() ?? 'Not found';
 

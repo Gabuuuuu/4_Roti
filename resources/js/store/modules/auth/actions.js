@@ -64,6 +64,8 @@ export default {
             roleData: [],
         });
 
+        context.commit("setUser", false);
+
         axios.get("api/logout");
     },
 };

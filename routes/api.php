@@ -8,46 +8,43 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\CarRevisionController;
-use App\Http\Controllers\RepairNoticeController;
-
 
 //ROUTES
 
-    //Public routes
-    //ROUTE FOR REGISTER
+// Auth
 Route::post('/register', [AuthController::class, 'register']);
-    //ROUTE FOR LOGIN
 Route::post('/login', [AuthController::class, 'login']);
 
-    //ROUTE FOR ADDING A NEW CAR
-Route::resource('/cars', App\Http\Controllers\CarController::class);
-
-Route::get('/users/getRole/{id}', [UserController::class, 'getRole']);
-Route::get('/users/changeRole/{id}', [UserController::class, 'changeRole']);
-
-    //ROUTE FOR ADDING INVOICES
+// Invoices
 Route::resource('/invoices', App\Http\Controllers\InvoiceController::class);
+Route::get('/loadInvoice/{id}',[InvoiceController::class, 'loadInvoice']);
 
 // Users
 Route::resource('/users', App\Http\Controllers\UserController::class);
 Route::get('/guestUsers', [UserController::class, 'displayGuests']);
+Route::get('/users/getRole/{id}', [UserController::class, 'getRole']);
+Route::get('/users/changeRole/{id}', [UserController::class, 'changeRole']);
 
+// Roles
 Route::resource('/roles', App\Http\Controllers\RoleController::class);
 
 // Employees
 Route::resource('/employees', App\Http\Controllers\EmployeeController::class);
+Route::get('/loadEmployee/{id}', [EmployeeController::class, 'loadEmployee']);
+
+// Car revisions
 Route::resource('/revisions', App\Http\Controllers\CarRevisionController::class);
 Route::resource('/repairnotices', App\Http\Controllers\RepairNoticeController::class);
 
-
-    //ROUTES FOR ADDING CAR DETAILS
-Route::get('/loadCarParts', [CarController::class, 'loadCarParts']);
-
-Route::get('/loadCar/{id}', [CarController::class, 'loadCar']);
-Route::get('/loadEmployee/{id}', [EmployeeController::class, 'loadEmployee']);
-Route::get('/loadInvoice/{id}',[InvoiceController::class, 'loadInvoice']);
 Route::get('/loadRevision/{id}',[CarRevisionController::class, 'loadRevision']);
+
+// Car
+Route::resource('/cars', App\Http\Controllers\CarController::class);
+Route::get('/loadCarParts', [CarController::class, 'loadCarParts']);
+Route::get('/loadCar/{id}', [CarController::class, 'loadCar']);
+Route::get('/loadCarTypes', [CarController::class, 'loadCarTypes']);
 Route::get('/loadRepairNotice/{id}',[RepairNoticeController::class, 'loadRepairNotice']);
+
 
 
 

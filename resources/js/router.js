@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import store from '../js/store/index';
 
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
@@ -103,18 +104,32 @@ const router = createRouter({
     ],
 });
 
-router.beforeEach((to, _) => {
-    const loggedIn = !!localStorage.getItem("token");
-    const Role = localStorage.getItem("role");
+router.beforeEach((to, _, next) => {
+    const userRole = store.getters.retrieveRoleData?.length ? JSON.parse(store.getters.retrieveRoleData).role_id : 0;
+    // if(to.meta.guest && !loggedIn) {
+    //     return {
+    //         path: '/home'
+    //     }
+    // } else if (to.meta.guest && loggedIn) {
+    //     return {
+    //         path: "/cars",
+    //     };
+    // } else if (role >= 2 && loggedIn && to.meta.admin) {
+    //     return {
+    //         path: "/adminp",
+    //     };
+    // }
 
-    if (to.meta.guest && loggedIn) {
-        return {
-            path: "/home",
-        };
-    } else if (Role === "0" && loggedIn && to.meta.admin) {
-        return {
-            path: "/home",
-        };
+    if(to.meta.requiresAuth && store.getters.isAuthenticated && userRole < 2 && to.meta.requiresAdmin) {
+        next('/');
+    }
+    else if(to.meta.requiresAuth && !store.getters.isAuthenticated) {
+        next('/login');
+    }
+    else if(to.meta.guest && store.getters.isAuthenticated) {
+        next('/cars');
+    } else {
+        next();
     }
 });
 
