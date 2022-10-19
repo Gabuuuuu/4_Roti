@@ -22,7 +22,7 @@
                                                 Factura<br />
                                                 <span class="small"
                                                     >Comanda
-                                                    {{ invoice.id }}</span
+                                                    {{ car.car_id }}</span
                                                 >
                                             </h2>
                                         </div>
@@ -47,7 +47,7 @@
                                         <address>
                                             <strong>Livrat de catre:</strong
                                             ><br />
-                                            {{ invoice.cardname }}<br />
+                                            {{ car.oferit_De }}<br />
                                         </address>
                                     </div>
                                 </div>
@@ -65,7 +65,7 @@
                                     >
                                         <address>
                                             <strong>Order Date:</strong><br />
-                                            {{ invoice.created_at }}
+                                            {{ car.data_emiterii }}
                                         </address>
                                     </div>
                                 </div>
@@ -119,54 +119,40 @@
                                             <tbody>
                                                 <tr>
                                                     <td class="text-center">
-                                                        {{ invoice.brand }}
+                                                        {{ car.marca }}
                                                     </td>
                                                     <td class="text-center">
-                                                        {{ invoice.model }}
+                                                        {{ car.model }}
                                                     </td>
                                                     <td class="text-center">
-                                                        {{ invoice.days }}
+                                                        {{ car.an }}
                                                     </td>
                                                     <td class="text-center">
-                                                        ${{
-                                                            invoice.priceday
-                                                        }}/day
+                                                        {{ car.km }}
                                                     </td>
                                                     <td class="text-center">
-                                                        ${{
-                                                            invoice.priceday
-                                                        }}/day
+                                                        {{ car.combustibil }}
                                                     </td>
                                                     <td class="text-center">
-                                                        ${{
-                                                            invoice.priceday
-                                                        }}/day
+                                                        {{ car.putere }}
                                                     </td>
                                                     <td class="text-center">
-                                                        ${{
-                                                            invoice.priceday
-                                                        }}/day
+                                                        {{ car.transmisie }}
                                                     </td>
                                                     <td class="text-center">
-                                                        ${{
-                                                            invoice.priceday
-                                                        }}/day
+                                                        {{ car.VIN }}
                                                     </td>
                                                     <td class="text-center">
-                                                        ${{
-                                                            invoice.priceday
-                                                        }}/day
+                                                        {{ car.nr_portiere }}
                                                     </td>
                                                     <td class="text-center">
-                                                        ${{
-                                                            invoice.priceday
-                                                        }}/day
+                                                        {{ car.culoare }}
                                                     </td>
                                                     <td
                                                         class="text-center"
                                                         format="yyyy-MM-dd HH:mm:ss"
                                                     >
-                                                        ${{ invoice.total }}
+                                                        {{ car.daune }}
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -196,7 +182,7 @@
 export default {
     data() {
         return {
-            invoice: [],
+            car: [],
         };
     },
     created() {
@@ -205,9 +191,9 @@ export default {
     methods: {
         async loadData() {
             const response = await axios.get(
-                "/api/loadInvoice/" + this.$route.params.id
+                "/api/loadCar/" + this.$route.params.id
             );
-            this.invoice = response.data;
+            this.car = response.data;
         },
     },
 };

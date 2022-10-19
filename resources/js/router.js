@@ -17,6 +17,8 @@ import Users from "./components/admin/Users";
 import CarInvoiceDetails from "./components/pricesec/CarInvoiceDetails";
 import Employees from "./components/admin/Employees";
 import EmployeeDetails from "./components/admin/EmployeeDetails";
+import Revisions from "./components/admin/Revisions";
+import FullRevision from "./components/admin/FullRevision";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -28,9 +30,16 @@ const router = createRouter({
         { path: "/home", component: Home },
         { path: "/team", component: Team },
         { path: "/cars", component: Cars },
+        {
+            path: "/revisions",
+            component: Revisions,
+            name: "revisions",
+            meta: { admin: true },
+        },
         { path: "/addcar", component: AddCar, name: "Addcar" },
         { path: "/details/:id", component: Details, name: "details" },
         { path: "/rentnow/:id", component: RentNow, name: "rentnow" },
+
         {
             path: "/carinvoices",
             component: CarInvoices,
@@ -62,6 +71,12 @@ const router = createRouter({
             path: "/employeedetails/:id",
             component: EmployeeDetails,
             name: "employeedetails",
+            meta: { admin: true },
+        },
+        {
+            path: "/fullrevision/:id",
+            component: FullRevision,
+            name: "fullrevision",
             meta: { admin: true },
         },
 

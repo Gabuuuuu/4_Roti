@@ -73,6 +73,16 @@
                                         </div>
                                         <br />
                                         <div>
+                                            <router-link to="/revisions">
+                                                <button
+                                                    class="btn btn-outline-light btn-lg px-5 mb-1"
+                                                >
+                                                    Reviziile masinilor
+                                                </button>
+                                            </router-link>
+                                        </div>
+                                        <br />
+                                        <div>
                                             <router-link to="/removecar">
                                                 <button
                                                     class="btn btn-outline-light btn-lg px-5 mb-1"

@@ -91,8 +91,9 @@ class CarController extends Controller
         return response()->json('Car successfully deleted');
     }
 
-    public function loadCar ($id) {
-        $car = Car::findOrFail($id);
+    public function loadCar($id) {
+        $car = Car::where('car_id', $id)->first() ?? 'Not found';
+
         return response()->json($car);
     }
 
@@ -108,4 +109,6 @@ class CarController extends Controller
 
         return response()->json($carParts);
     }
+
+
 }
