@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 20, 2022 at 04:34 PM
+-- Generation Time: Oct 20, 2022 at 08:37 PM
 -- Server version: 5.7.36
 -- PHP Version: 7.4.26
 
@@ -298,14 +298,15 @@ CREATE TABLE IF NOT EXISTS `employees` (
   `data_semnare_contract` date DEFAULT NULL,
   PRIMARY KEY (`employee_id`),
   KEY `employees_role_id_foreign` (`role_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `employees`
 --
 
 INSERT INTO `employees` (`employee_id`, `role_id`, `nume_angajat`, `prenume_angajat`, `CNP`, `actDeIdentitate`, `nr`, `dataEliberarii`, `domiciliul`, `strada`, `nrStrada`, `apartament`, `sector`, `data_inceput_ang`, `data_semnare_contract`) VALUES
-(1, 5, 'Gabi', 'Gabitzu', '31231331212', 'buletin', '3212', '2022-10-12', '21312321312', 'GAGA', '3123', '1321', '1', '2022-10-04', '2022-10-19');
+(1, 5, 'Gabi', 'Gabitzu', '31231331212', 'buletin', '3212', '2022-10-12', '21312321312', 'GAGA', '3123', '1321', '1', '2022-10-04', '2022-10-19'),
+(2, 3, 'Leonte', 'Dalmatianul', '31231331212', 'buletin', '3212', '2022-10-12', '21312321312', 'ADASDADWA', '3123', '1321', '2', '2022-10-04', '2022-10-29');
 
 -- --------------------------------------------------------
 
@@ -626,7 +627,7 @@ CREATE TABLE IF NOT EXISTS `repair_notices` (
   PRIMARY KEY (`Id_repair_notice`),
   KEY `repair_notices_car_id_foreign` (`car_id`),
   KEY `repair_notices_employee_id_foreign` (`employee_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `repair_notices`
@@ -634,7 +635,8 @@ CREATE TABLE IF NOT EXISTS `repair_notices` (
 
 INSERT INTO `repair_notices` (`Id_repair_notice`, `car_id`, `employee_id`, `damage_info`, `damage_cost`, `data_emiterii`) VALUES
 (1, 1, 1, 'Masina a fost busita pe stanga da un cocalar cu bemveu d ala vechi d acu 100 da ani', '3000', '2022-10-19 19:38:05'),
-(2, 1, 1, 'Masina a fost rupta in cur', '3000', '2022-10-20 14:31:01');
+(2, 2, 1, 'Masina a fost rupta in cur', '3000', '2022-10-20 14:31:01'),
+(3, 1, 1, 'FASFA', '22', '2022-10-20 19:53:04');
 
 -- --------------------------------------------------------
 

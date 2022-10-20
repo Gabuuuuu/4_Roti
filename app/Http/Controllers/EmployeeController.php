@@ -6,6 +6,8 @@ use App\Models\Employee;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
 use App\Models\Role;
+use App\Models\Car;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use DB;
 class EmployeeController extends Controller
@@ -97,4 +99,6 @@ class EmployeeController extends Controller
 
         return response()->json($employee);
     }
+
+
 }

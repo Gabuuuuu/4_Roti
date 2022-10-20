@@ -20,7 +20,7 @@
                             </th>
 
                             <th scope="col">
-                                <p class="text-center">ID Masina</p>
+                                <p class="text-center"> Masina</p>
                             </th>
 
                             <th scope="col">
@@ -41,7 +41,7 @@
 
                             <td scope="row">
                                 <p class="text-center">
-                                    {{ repairnotice.car_id }}
+                                    {{ idToCarName(repairnotice.car_id) }}
                                 </p>
                             </td>
 
@@ -77,6 +77,7 @@ export default {
     data() {
         return {
             repairnotices: [],
+            cars: [],
         };
     },
     beforeMount() {
@@ -84,18 +85,26 @@ export default {
     },
     methods: {
         async loadData() {
-            const requestOne = axios.get("api/repairnotices");
+            const requestOne = axios.get("/api/repairnotices");
+            const requestTwo = axios.get("/api/cars");
+
             await axios
-                .all([requestOne])
+                .all([requestOne, requestTwo])
                 .then(
                     axios.spread((...responses) => {
                         this.repairnotices = responses[0].data;
+                        this.cars = responses[1].data;
                     })
                 )
                 .catch((errors) => {
                     console.log(errors);
                 });
         },
+        idToCarName (id) {
+            const carDetails = this.cars.filter((item) => item.car_id === id)[0];
+            const newCarDetails = `${carDetails.car_id} - ${carDetails.marca} ${carDetails.model}`;
+            return newCarDetails;
+        }
     },
 };
 </script>

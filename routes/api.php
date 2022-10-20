@@ -35,9 +35,11 @@ Route::get('/loadEmployee/{id}', [EmployeeController::class, 'loadEmployee']);
 
 // Car revisions
 Route::resource('/revisions', App\Http\Controllers\CarRevisionController::class);
-Route::resource('/repairnotices', App\Http\Controllers\RepairNoticeController::class);
-
 Route::get('/loadRevision/{id}',[CarRevisionController::class, 'loadRevision']);
+
+// Repair notice
+Route::resource('/repairnotices', App\Http\Controllers\RepairNoticeController::class);
+Route::get('/LoadRepairNoticeData', [RepairNoticeController::class, 'repairNotice']);
 
 // Car
 Route::resource('/cars', App\Http\Controllers\CarController::class);
