@@ -10,7 +10,7 @@ import { createApp } from "vue";
 import App from "./App.vue";
 
 //Importing the router from res/js
-import router from "./router.js";
+import router from "./router/index.js";
 import store from './store';
 
 // Sweet Alert is a popular public package used for alerts inside the application:
