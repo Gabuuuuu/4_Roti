@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\CarRevisionController;
+use App\Http\Controllers\RepairNoticeController;
 
 //ROUTES
 
@@ -44,6 +45,8 @@ Route::get('/loadCarParts', [CarController::class, 'loadCarParts']);
 Route::get('/loadCar/{id}', [CarController::class, 'loadCar']);
 Route::get('/loadCarTypes', [CarController::class, 'loadCarTypes']);
 Route::get('/loadRepairNotice/{id}',[RepairNoticeController::class, 'loadRepairNotice']);
+
+
 
 
 

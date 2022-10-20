@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import store from '../js/store/index';
+import store from "../js/store/index";
 
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
@@ -23,6 +23,9 @@ import FullRevision from "./components/admin/FullRevision";
 import AddRevision from "./components/admin/AddRevision";
 import RepairNotices from "./components/admin/RepairNotices";
 import FullRepairNotice from "./components/admin/FullRepairNotice";
+import AddRepairNotice from "./components/admin/AddRepairNotice";
+import RepairInvoice from "./components/admin/RepairInvoice";
+import RepairInvoices from "./components/admin/RepairInvoices";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -39,6 +42,11 @@ const router = createRouter({
             path: "/repairnotices",
             component: RepairNotices,
             name: "repairnotices",
+        },
+        {
+            path: "/repairinvoices",
+            component: RepairInvoices,
+            name: "repairinvoices",
         },
 
         {
@@ -59,6 +67,18 @@ const router = createRouter({
         },
         { path: "/adminp", component: AdminPanel, meta: { admin: true } },
         { path: "/removecar", component: RemoveCar, meta: { admin: true } },
+        {
+            path: "/addrepairnotice",
+            component: AddRepairNotice,
+            meta: { admin: true },
+        },
+        {
+            path: "/repairinvoice/:id",
+            component: RepairInvoice,
+            name: "loadRepairNotice",
+            meta: { admin: true },
+        },
+
         {
             path: "/users",
             component: Users,
@@ -105,7 +125,9 @@ const router = createRouter({
 });
 
 router.beforeEach((to, _, next) => {
-    const userRole = store.getters.retrieveRoleData?.length ? JSON.parse(store.getters.retrieveRoleData).role_id : 0;
+    const userRole = store.getters.retrieveRoleData?.length
+        ? JSON.parse(store.getters.retrieveRoleData).role_id
+        : 0;
     // if(to.meta.guest && !loggedIn) {
     //     return {
     //         path: '/home'
@@ -120,14 +142,17 @@ router.beforeEach((to, _, next) => {
     //     };
     // }
 
-    if(to.meta.requiresAuth && store.getters.isAuthenticated && userRole < 2 && to.meta.requiresAdmin) {
-        next('/');
-    }
-    else if(to.meta.requiresAuth && !store.getters.isAuthenticated) {
-        next('/login');
-    }
-    else if(to.meta.guest && store.getters.isAuthenticated) {
-        next('/cars');
+    if (
+        to.meta.requiresAuth &&
+        store.getters.isAuthenticated &&
+        userRole < 2 &&
+        to.meta.requiresAdmin
+    ) {
+        next("/");
+    } else if (to.meta.requiresAuth && !store.getters.isAuthenticated) {
+        next("/login");
+    } else if (to.meta.guest && store.getters.isAuthenticated) {
+        next("/cars");
     } else {
         next();
     }

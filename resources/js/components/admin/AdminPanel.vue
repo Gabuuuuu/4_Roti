@@ -93,11 +93,32 @@
                                         </div>
                                         <br />
                                         <div>
+                                            <router-link to="/addrepairnotice">
+                                                <button
+                                                    class="btn btn-outline-light btn-lg px-5 mb-1"
+                                                >
+                                                    Trimite o constatare de
+                                                    daune
+                                                </button>
+                                            </router-link>
+                                        </div>
+                                        <br />
+                                        <div>
                                             <router-link to="/repairnotices">
                                                 <button
                                                     class="btn btn-outline-light btn-lg px-5 mb-1"
                                                 >
                                                     Lista constatari daune
+                                                </button>
+                                            </router-link>
+                                        </div>
+                                        <br />
+                                        <div>
+                                            <router-link to="/repairinvoices">
+                                                <button
+                                                    class="btn btn-outline-light btn-lg px-5 mb-1"
+                                                >
+                                                    Facturi reparatii
                                                 </button>
                                             </router-link>
                                         </div>

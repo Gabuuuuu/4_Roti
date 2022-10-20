@@ -1,8 +1,8 @@
 <template>
     <div>
         <section>
-            <TheHeader class="fixed-top"></TheHeader>
             <div class="bg-image">
+                <TheHeader class="fixed-top"></TheHeader>
                 <div class="container py-5 h-100">
                     <div
                         class="row d-flex justify-content-center align-items-center h-100"
@@ -13,6 +13,14 @@
                                 style="border-radius: 1rem"
                             >
                                 <div class="card-body p-5 text-center">
+                                    <router-link to="/adminp">
+                                        <button
+                                            class="btn btn-outline-light btn-lg px-6 mb-2"
+                                            type="submit"
+                                        >
+                                            Inapoi
+                                        </button>
+                                    </router-link>
                                     <div class="mb-md-6 mt-md-4 pb-5">
                                         <h2 class="fw-bold mb-4">
                                             Inregistreaza o constatare de daune
@@ -22,7 +30,7 @@
                                             Completeaza datele constatarii
                                         </p>
                                         <form
-                                            @submit.prevent="addrevision"
+                                            @submit.prevent="addnotice"
                                             method="POST"
                                             enctype="multipart/form-data"
                                         >
@@ -50,14 +58,23 @@
                                                 class="form-outline form-white mb-4"
                                             >
                                                 <p>
-                                                    Starea motorului
+                                                    Alege angajatul implicat in
+                                                    accident
                                                     <select
                                                         class="selectpicker btn btn-secondary btn-lg dropdown-toggle form-control form-control-lg"
                                                         data-style="btn-success"
-                                                        v-model="form.motor"
+                                                        v-model="form.employee"
                                                     >
-                                                        <option>0</option>
-                                                        <option>1</option>
+                                                        <option
+                                                            v-for="employee in employees"
+                                                            :key="
+                                                                employee.employee_id
+                                                            "
+                                                        >
+                                                            {{
+                                                                employee.employee_id
+                                                            }}
+                                                        </option>
                                                     </select>
                                                 </p>
                                             </div>
@@ -65,114 +82,32 @@
                                                 class="form-outline form-white mb-4"
                                             >
                                                 <p>
-                                                    Starea luminilor
-
-                                                    <select
-                                                        class="selectpicker btn btn-secondary btn-lg dropdown-toggle form-control form-control-lg"
-                                                        data-style="btn-success"
-                                                        v-model="form.lumini"
-                                                    >
-                                                        <option>0</option>
-                                                        <option>1</option>
-                                                    </select>
-                                                </p>
-                                            </div>
-                                            <div
-                                                class="form-outline form-white mb-4"
-                                            >
-                                                <p>
-                                                    Starea suspensiilor
-
-                                                    <select
-                                                        class="selectpicker btn btn-secondary btn-lg dropdown-toggle form-control form-control-lg"
-                                                        data-style="btn-success"
-                                                        v-model="form.suspensii"
-                                                    >
-                                                        <option>0</option>
-                                                        <option>1</option>
-                                                    </select>
-                                                </p>
-                                            </div>
-                                            <div
-                                                class="form-outline form-white mb-4"
-                                            >
-                                                <p>
-                                                    Starea amortizorului
-
-                                                    <select
-                                                        class="selectpicker btn btn-secondary btn-lg dropdown-toggle form-control form-control-lg"
-                                                        data-style="btn-success"
-                                                        v-model="form.amortizor"
-                                                    >
-                                                        <option>0</option>
-                                                        <option>1</option>
-                                                    </select>
-                                                </p>
-                                            </div>
-                                            <div
-                                                class="form-outline form-white mb-4"
-                                            >
-                                                <p>
-                                                    Starea franelor
-
-                                                    <select
-                                                        class="selectpicker btn btn-secondary btn-lg dropdown-toggle form-control form-control-lg"
-                                                        data-style="btn-success"
-                                                        v-model="form.frane"
-                                                    >
-                                                        <option>0</option>
-                                                        <option>1</option>
-                                                    </select>
-                                                </p>
-                                            </div>
-                                            <div
-                                                class="form-outline form-white mb-4"
-                                            >
-                                                <p>
-                                                    Starea sistemului electric
-
-                                                    <select
-                                                        class="selectpicker btn btn-secondary btn-lg dropdown-toggle form-control form-control-lg"
-                                                        data-style="btn-success"
-                                                        v-model="form.sistem"
-                                                    >
-                                                        <option>0</option>
-                                                        <option>1</option>
-                                                    </select>
-                                                </p>
-                                            </div>
-                                            <div
-                                                class="form-outline form-white mb-4"
-                                            >
-                                                <p>
-                                                    Starea dotarilor
-
-                                                    <select
-                                                        class="selectpicker btn btn-secondary btn-lg dropdown-toggle form-control form-control-lg"
-                                                        data-style="btn-success"
-                                                        v-model="form.dotari"
-                                                    >
-                                                        <option>0</option>
-                                                        <option>1</option>
-                                                    </select>
-                                                </p>
-                                            </div>
-                                            <div
-                                                class="form-outline form-white mb-4"
-                                            >
-                                                <p>
-                                                    Starea cauciucurilor
-
-                                                    <select
-                                                        class="selectpicker btn btn-secondary btn-lg dropdown-toggle form-control form-control-lg"
+                                                    Te rog sa introduci avariile
+                                                    pe care masina le-a
+                                                    prezentat
+                                                    <textarea
+                                                        class="form-control form-control-lg"
                                                         data-style="btn-success"
                                                         v-model="
-                                                            form.cauciucuri
+                                                            form.damage_info
                                                         "
                                                     >
-                                                        <option>0</option>
-                                                        <option>1</option>
-                                                    </select>
+                                                    </textarea>
+                                                </p>
+                                            </div>
+                                            <div
+                                                class="form-outline form-white mb-4"
+                                            >
+                                                <p>
+                                                    Introduceti suma totala care
+                                                    a fost necesara repararii
+                                                    masinii prezentat
+                                                    <input
+                                                        class="form-control form-control-lg"
+                                                        v-model="
+                                                            form.damage_cost
+                                                        "
+                                                    />
                                                 </p>
                                             </div>
 
@@ -180,7 +115,7 @@
                                                 class="btn btn-outline-light btn-lg px-5 mb-1"
                                                 type="submit"
                                             >
-                                                Adauga revizia
+                                                Trimite instiintarea
                                             </button>
                                         </form>
                                     </div>
@@ -189,8 +124,8 @@
                         </div>
                     </div>
                 </div>
+                <TheFooter class="fixed-bottom"></TheFooter>
             </div>
-            <TheFooter></TheFooter>
         </section>
     </div>
 </template>
@@ -203,16 +138,12 @@ export default {
     data() {
         return {
             cars: [],
+            employees: [],
             form: {
                 car: "",
-                motor: "",
-                lumini: "",
-                suspensii: "",
-                amortizor: "",
-                frane: "",
-                sistem: "",
-                dotari: "",
-                cauciucuri: "",
+                employee: "",
+                damage_info: "",
+                damage_cost: "",
             },
             success: "",
         };
@@ -221,26 +152,23 @@ export default {
         this.loadData();
     },
     methods: {
-        addrevision() {
+        addnotice() {
             const data = new FormData();
             data.append("car_id", this.form.car);
-            data.append("StareMotor", this.form.motor);
-            data.append("StareLumini", this.form.lumini);
-            data.append("StareSuspensii", this.form.suspensii);
-            data.append("StareAmortizor", this.form.amortizor);
-            data.append("StareFrana", this.form.frane);
-            data.append("StareSistemElectric", this.form.sistem);
-            data.append("StareDotari", this.form.dotari);
-            data.append("StareCauciucuri", this.form.cauciucuri);
+            data.append("employee_id", this.form.employee);
+            data.append("damage_info", this.form.damage_info);
+            data.append("damage_cost", this.form.damage_cost);
 
-            axios.post("/api/revisions", data).then(() => {
+            axios.post("/api/repairnotices", data).then(() => {
                 this.$router.push({ path: "/adminp" });
                 this.loadData();
             });
         },
         async loadData() {
             const response = await axios.get("api/cars");
+            const response1 = await axios.get("api/employees");
             this.cars = response.data;
+            this.employees = response1.data;
         },
     },
 };
