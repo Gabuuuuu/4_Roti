@@ -21,7 +21,7 @@
                                 >Preturi
                             </router-link>
                         </li>
-                        <li>
+                        <li v-if="departmentIDs.includes(returnDepRoleProperty('dep'))">
                             <router-link class="nav-link" to="/cars"
                                 >Masini
                             </router-link>
@@ -44,7 +44,7 @@
                         <li
                             v-if="
                                 isAuthenticated &&
-                                JSON.parse(this.retrieveRoleData)?.role_id >= 2
+                                returnDepRoleProperty('role') >= 2
                             "
                         >
                             <router-link to="/adminp" class="nav-link">
@@ -71,6 +71,11 @@
 import { mapMutations, mapGetters } from "vuex";
 
 export default {
+    data() {
+        return {
+            departmentIDs: [1, 3],
+        }
+    },
     methods: {
         logout() {
             Swal.fire({
@@ -86,6 +91,18 @@ export default {
                     this.$router.replace("/login");
                 }
             });
+        },
+        returnDepRoleProperty(property) {
+            if(this.retrieveRoleData?.length) {
+                const roleProperties = JSON.parse(this.retrieveRoleData);
+
+                switch (property) {
+                    case 'dep':
+                        return roleProperties.department_id;
+                    case 'role':
+                        return roleProperties.role_id;
+                }
+            }
         },
         ...mapMutations(["loginVerify"]),
     },

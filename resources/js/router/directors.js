@@ -11,7 +11,7 @@ export default [
         meta: { requiresAuth: true, requiresAdmin: true },
     },
     {
-        path: "/addcar",
+        path: "/addCar",
         component: AddCar,
         name: "Addcar",
         meta: { requiresAuth: true, requiresAdmin: true },

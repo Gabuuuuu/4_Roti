@@ -21,8 +21,14 @@ export default [
         meta: { requiresAuth: true, requiresAdmin: true },
     },
     {
-        path: "/addrevision",
+        path: "/addRevision",
         component: AddRevision,
+        meta: { requiresAuth: true, requiresAdmin: true },
+    },
+    {
+        path: "/repairNotices",
+        component: RepairNotices,
+        name: "repairnotices",
         meta: { requiresAuth: true, requiresAdmin: true },
     },
     {
@@ -32,13 +38,7 @@ export default [
         meta: { requiresAuth: true, requiresAdmin: true },
     },
     {
-        path: "/repairnotices",
-        component: RepairNotices,
-        name: "repairnotices",
-        meta: { requiresAuth: true, requiresAdmin: true },
-    },
-    {
-        path: "/addrepairnotice",
+        path: "/addRepairNotice",
         component: AddRepairNotice,
         meta: { requiresAuth: true, requiresAdmin: true },
     },

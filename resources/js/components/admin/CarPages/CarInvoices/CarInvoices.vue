@@ -89,7 +89,7 @@
 
 <script>
 import TheFooter from "../../../layout/TheFooter";
-import TheHeader from "../../../layout/TheFooter";
+import TheHeader from "../../../layout/TheHeader";
 export default {
   components: { TheHeader, TheFooter },
   data() {
