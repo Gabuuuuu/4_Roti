@@ -144,7 +144,7 @@ export default {
 
 <style scoped>
 .bg-image {
-    background-image: url("../../../../public/photos/BgAuth.jpg");
+    background-image: url("../../../../../../public/photos/BgAuth.jpg");
     background-size: cover;
     background-position: center;
 }

@@ -1,10 +1,11 @@
 // Mechanics
-import Revisions from "../components/admin/Revisions";
-import FullRevision from "../components/admin/FullRevision";
-import AddRevision from "../components/admin/AddRevision";
-import RepairNotices from "../components/admin/RepairNotices";
-import FullRepairNotice from "../components/admin/FullRepairNotice";
-import AddRepairNotice from "../components/admin/AddRepairNotice";
+import Revisions from "../components/admin/CarPages/Revision/Revisions";
+import FullRevision from "../components/admin/CarPages/Revision/FullRevision";
+import AddRevision from "../components/admin/CarPages/Revision/AddRevision";
+
+import RepairNotices from "../components/admin/CarPages/RepairNotice/RepairNotices";
+import FullRepairNotice from "../components/admin/CarPages/RepairNotice/FullRepairNotice";
+import AddRepairNotice from "../components/admin/CarPages/RepairNotice/AddRepairNotice";
 
 export default [
     {

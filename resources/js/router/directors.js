@@ -1,7 +1,7 @@
 import Users from "../components/admin/Users";
-import AddCar from "../components/admin/AddCar";
-import Employees from "../components/admin/Employees";
-import EmployeeDetails from "../components/admin/EmployeeDetails";
+import AddCar from "../components/admin/CarPages/AddCar.vue";
+import Employees from "../components/admin/EmployeePages/Employees";
+import EmployeeDetails from "../components/admin/EmployeePages/EmployeeDetails";
 
 export default [
     {

@@ -121,8 +121,9 @@
 </template>
 
 <script>
-import TheFooter from "../../components/layout/TheFooter.vue";
-import TheHeader from "../../components/layout/TheHeader";
+import TheFooter from "../../../layout/TheFooter";
+import TheHeader from "../../../layout/TheHeader";
+
 export default {
   components: { TheHeader, TheFooter },
   data() {
@@ -190,7 +191,7 @@ export default {
 
 <style scoped>
 .bg-image {
-  background-image: url("../../../../public/photos/BgAuth.jpg");
+  background-image: url("../../../../../../public/photos/BgAuth.jpg");
   background-size: cover;
   background-position: center;
 }

@@ -24,7 +24,7 @@
                             </th>
 
                             <th scope="col">
-                                <p class="text-center">Detalii Complete</p>
+                                <p class="text-center">Detalii Factura</p>
                             </th>
                         </tr>
                     </thead>
@@ -49,7 +49,7 @@
                                 <p class="text-center">
                                     <router-link
                                         :to="{
-                                            name: 'fullrepairnotice',
+                                            name: 'loadRepairNotice',
                                             params: {
                                                 id: repairnotice.Id_repair_notice,
                                             },
@@ -70,8 +70,9 @@
 </template>
 
 <script>
-import TheFooter from "../../components/layout/TheFooter.vue";
-import TheHeader from "../../components/layout/TheHeader";
+import TheFooter from "../../../layout/TheFooter";
+import TheHeader from "../../../layout/TheHeader";
+
 export default {
     components: { TheHeader, TheFooter },
     data() {
@@ -100,10 +101,9 @@ export default {
                     console.log(errors);
                 });
         },
-        idToCarName (id) {
+        idToCarName(id) {
             const carDetails = this.cars.filter((item) => item.car_id === id)[0];
-            const newCarDetails = `${carDetails.car_id} - ${carDetails.marca} ${carDetails.model}`;
-            return newCarDetails;
+            return `${carDetails.car_id} - ${carDetails.marca} ${carDetails.model}`;
         }
     },
 };

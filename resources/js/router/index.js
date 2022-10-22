@@ -5,7 +5,7 @@ import store from "../store/index";
 import NotFound from "../pages/notFound.vue";
 import Home from "../pages/landing/Home";
 import Team from "../pages/landing/Team";
-import Cars from "../components/pricesec/Cars";
+import Cars from "../components/admin/CarPages/Cars";
 
 // Employees only
 import AdminPanel from "../components/admin/AdminPanel";

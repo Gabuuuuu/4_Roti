@@ -43,8 +43,8 @@
 <!-- Detalii complete redirectioneaza catre details -->
 
 <script>
-import TheFooter from "../../components/layout/TheFooter.vue";
-import TheHeader from "../../components/layout/TheHeader";
+import TheFooter from "../../../components/layout/TheFooter";
+import TheHeader from "../../../components/layout/TheHeader";
 export default {
     components: {
         TheFooter,

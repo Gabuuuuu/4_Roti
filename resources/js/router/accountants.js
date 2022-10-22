@@ -1,7 +1,8 @@
-import CarInvoices from "../components/pricesec/CarInvoices";
-import CarInvoiceDetails from "../components/pricesec/CarInvoiceDetails";
-import RepairInvoices from "../components/admin/RepairInvoices";
-import RepairInvoice from "../components/admin/RepairInvoice";
+import CarInvoices from "../components/admin/CarPages/CarInvoices/CarInvoices";
+import CarInvoiceDetails from "../components/admin/CarPages/CarInvoices/CarInvoiceDetails";
+
+import RepairInvoices from "../components/admin/CarPages/RepairInvoice/RepairInvoices";
+import RepairInvoice from "../components/admin/CarPages/RepairInvoice/RepairInvoice";
 
 export default [
     {

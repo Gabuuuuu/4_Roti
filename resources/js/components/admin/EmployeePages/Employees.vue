@@ -80,8 +80,9 @@
 </template>
 
 <script>
-import TheFooter from "../../components/layout/TheFooter.vue";
-import TheHeader from "../../components/layout/TheHeader";
+import TheFooter from "../../../components/layout/TheFooter";
+import TheHeader from "../../../components/layout/TheHeader";
+
 export default {
     components: { TheHeader, TheFooter },
     data() {
