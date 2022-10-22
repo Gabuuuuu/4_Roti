@@ -156,7 +156,7 @@ export default {
       data.append("damage_cost", this.form.damage_cost);
 
       axios.post("/api/repairnotices", data).then(() => {
-        this.$router.push({ path: "/adminp" });
+        this.$router.push({ path: "/repairNotices" });
         this.loadData();
       });
     },

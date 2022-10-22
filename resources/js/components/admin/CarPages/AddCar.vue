@@ -368,7 +368,7 @@ export default {
             data.append("daune", 0);
 
             axios.post("/api/cars", data).then(() => {
-                this.$router.push({ path: "/home" });
+                this.$router.push({ path: "/cars" });
                 this.loadData();
             });
         },

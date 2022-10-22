@@ -60,6 +60,7 @@ export default {
         },
         deleteCar(id) {
             axios.delete("/api/cars/" + id).then(() => {
+                this.$router.push({ path: "/cars" });
                 this.loadData();
             });
         },

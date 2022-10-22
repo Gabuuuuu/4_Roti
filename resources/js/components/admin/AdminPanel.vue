@@ -145,6 +145,10 @@ export default {
             linkText: "Facturi reparatii masini",
             linkURL: "/repairinvoices",
           },
+          {
+            linkText: "Lista constatari daune",
+            linkURL: "/repairNotices",
+          },
         ],
         3: [
           {

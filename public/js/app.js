@@ -19661,6 +19661,9 @@ __webpack_require__.r(__webpack_exports__);
         }, {
           linkText: "Facturi reparatii masini",
           linkURL: "/repairinvoices"
+        }, {
+          linkText: "Lista constatari daune",
+          linkURL: "/repairNotices"
         }],
         3: [{
           linkText: "Reviziile masinilor",
@@ -19790,7 +19793,7 @@ __webpack_require__.r(__webpack_exports__);
       data.append("daune", 0);
       axios.post("/api/cars", data).then(function () {
         _this.$router.push({
-          path: "/home"
+          path: "/cars"
         });
 
         _this.loadData();
@@ -20271,7 +20274,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       data.append("damage_cost", this.form.damage_cost);
       axios.post("/api/repairnotices", data).then(function () {
         _this.$router.push({
-          path: "/adminp"
+          path: "/repairNotices"
         });
 
         _this.loadData();
@@ -20565,7 +20568,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         console.log(res);
 
         _this.$router.push({
-          path: "/adminp"
+          path: "/revisions"
         });
 
         _this.loadData();

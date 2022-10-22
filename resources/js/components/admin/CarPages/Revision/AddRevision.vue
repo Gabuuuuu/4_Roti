@@ -267,7 +267,7 @@ export default {
 
       axios.post("/api/revisions", data).then((res) => {
         console.log(res)
-        this.$router.push({ path: "/adminp" });
+        this.$router.push({ path: "/revisions" });
         this.loadData();
       });
     },
