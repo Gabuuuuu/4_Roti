@@ -87,6 +87,7 @@ export default {
     components: { TheHeader, TheFooter },
     data() {
         return {
+            rolProperties: JSON.parse(localStorage.getItem("roleData")),
             employees: [],
         };
     },
@@ -95,8 +96,9 @@ export default {
     },
     methods: {
         async loadData() {
-            const requestOne = axios.get("api/employees");
-            const requestTwo = axios.get("api/roles");
+            const roleID = this.getUsersRoleID();
+            const requestOne = axios.get(`/api/employeesByDepartment/` + roleID);
+            const requestTwo = axios.get("/api/roles");
 
             await axios
                 .all([requestOne, requestTwo])
@@ -109,6 +111,9 @@ export default {
                 .catch((errors) => {
                     console.log(errors);
                 });
+        },
+        getUsersRoleID() {
+            return this.rolProperties.role_id;
         },
         getUsersRole(employee) {
             const filteredRole = this.roles.filter((item) => item.role_id === employee.role_id)[0];

@@ -45,11 +45,9 @@
     </div>
 </template>
 
-<script>
-export default {};
-</script>
-
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
 section {
     padding: 60px 0;
     overflow: hidden;
@@ -87,7 +85,6 @@ section {
 
 .team {
     padding: 158px 0;
-    margin-top: 8vh;
 }
 .team .member {
     text-align: center;
@@ -154,5 +151,4 @@ section {
     opacity: 1;
     bottom: 15px;
 }
-@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 </style>

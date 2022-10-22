@@ -18,12 +18,26 @@
                   <div class="mb-md-6 mt-md-4 pb-5">
                     <h2 class="fw-bold mb-4">
                       Panou Administrativ -
-                      {{ getUsersRole() }}
+                      {{ getUsersRoleName() }}
                     </h2>
 
-                    <p class="text-white-50 mb-4">
+                    <p v-if="matchingDynamicLinks.length" class="text-white-50 mb-4">
                       Alege optiunea preferata de mai jos !
                     </p>
+
+                    <p v-else class="text-white-50 mb-4">
+                      Nu s-au putut gasi optiuni. Reveniti mai tarziu.
+                    </p>
+
+                    <div v-if="this.isDirector">
+                      <div v-for="link in routesByRole[4]" :key="link.id">
+                        <router-link :to="link.linkURL">
+                          <button class="btn btn-outline-light btn-lg px-6">
+                            {{ link.linkText }}
+                          </button>
+                        </router-link>
+                      </div>
+                    </div>
 
                     <div v-for="link in matchingDynamicLinks" :key="link.id">
                       <router-link :to="link.linkURL">
@@ -32,87 +46,6 @@
                         </button>
                       </router-link>
                     </div>
-
-                    <!-- <div>
-                      <router-link to="/users">
-                        <button class="btn btn-outline-light btn-lg px-5 mb-1">
-                          Utilizatori
-                        </button>
-                      </router-link>
-                    </div>
-                    <br />
-                    <div>
-                      <router-link to="/employees">
-                        <button class="btn btn-outline-light btn-lg px-5 mb-1">
-                          Angajati
-                        </button>
-                      </router-link>
-                    </div>
-                    <br />
-                    <div>
-                      <router-link to="/addCar">
-                        <button class="btn btn-outline-light btn-lg px-5 mb-1">
-                          Achizitioneaza o masina
-                        </button>
-                      </router-link>
-                    </div>
-                    <br />
-                    <div>
-                      <router-link to="/carinvoices">
-                        <button class="btn btn-outline-light btn-lg px-5 mb-1">
-                          Facturi masini
-                        </button>
-                      </router-link>
-                    </div>
-                    <br />
-                    <div>
-                      <router-link to="/addRevision">
-                        <button class="btn btn-outline-light btn-lg px-5 mb-1">
-                          Inregistreaza o revizie
-                        </button>
-                      </router-link>
-                    </div>
-                    <br />
-                    <div>
-                      <router-link to="/revisions">
-                        <button class="btn btn-outline-light btn-lg px-5 mb-1">
-                          Reviziile masinilor
-                        </button>
-                      </router-link>
-                    </div>
-                    <br />
-                    <div>
-                      <router-link to="/addrepairnotice">
-                        <button class="btn btn-outline-light btn-lg px-5 mb-1">
-                          Trimite o constatare de daune
-                        </button>
-                      </router-link>
-                    </div>
-                    <br />
-                    <div>
-                      <router-link to="/repairnotices">
-                        <button class="btn btn-outline-light btn-lg px-5 mb-1">
-                          Lista constatari daune
-                        </button>
-                      </router-link>
-                    </div>
-                    <br />
-                    <div>
-                      <router-link to="/repairinvoices">
-                        <button class="btn btn-outline-light btn-lg px-5 mb-1">
-                          Facturi reparatii
-                        </button>
-                      </router-link>
-                    </div>
-                    <br />
-                    <div>
-                      <router-link to="/removecar">
-                        <button class="btn btn-outline-light btn-lg px-5 mb-1">
-                          Remove a Car
-                        </button>
-                      </router-link>
-                    </div>
-                    <br /> -->
                   </div>
                 </div>
               </div>
@@ -174,31 +107,41 @@ export default {
             linkURL: "/users",
           },
           {
-            linkText: "Adauga o masina",
-            linkURL: "/addCar",
-          },
-          {
             linkText: "Angajati",
             linkURL: "/employees",
+          },
+          {
+            linkText: "Adauga o masina",
+            linkURL: "/addCar",
           },
         ],
       },
       matchingDynamicLinks: "",
+      isDirector: false,
     };
   },
+  created() {
+    this.generateDynamicLinks();
+  },
   methods: {
-    getUsersRole() {
+    getUsersRoleName() {
       return this.rolProperties.denumire_rol;
     },
     getUsersDepartment() {
       return this.rolProperties.department_id.toString();
     },
-  },
-  created() {
-    const matchingDepID = Object.keys(this.routesByRole).filter(
-      (key) => key === this.getUsersDepartment()
-    )[0];
-    this.matchingDynamicLinks = this.routesByRole[matchingDepID];
+    getUsersRoleID() {
+      return this.rolProperties.role_id;
+    },
+    generateDynamicLinks() {
+      const matchingDepID = Object.keys(this.routesByRole).filter(
+        (key) => key === this.getUsersDepartment()
+      )[0];
+
+      const directorRoles = [2, 3, 4];
+      this.isDirector = directorRoles.includes(this.getUsersRoleID());
+      this.matchingDynamicLinks = this.routesByRole[matchingDepID];
+    },
   },
 };
 </script>
@@ -206,13 +149,19 @@ export default {
 <style scoped>
 .bg-image {
   background-image: url("../../../../public/photos/BgAuth.jpg");
-  height: 100vh;
-  background-size: cover;
+  background-attachment: fixed;
   background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
 }
 
 button {
-    width: 300px;
-    margin-bottom: 20px;
+  width: 300px;
+  margin-bottom: 20px;
+}
+
+.card{
+  margin-top: 3rem;
 }
 </style>

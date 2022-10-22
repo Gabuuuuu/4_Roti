@@ -32,6 +32,7 @@ Route::resource('/roles', App\Http\Controllers\RoleController::class);
 // Employees
 Route::resource('/employees', App\Http\Controllers\EmployeeController::class);
 Route::get('/loadEmployee/{id}', [EmployeeController::class, 'loadEmployee']);
+Route::get('/employeesByDepartment/{id}', [EmployeeController::class, 'employeesByDepartment']);
 
 // Car revisions
 Route::resource('/revisions', App\Http\Controllers\CarRevisionController::class);

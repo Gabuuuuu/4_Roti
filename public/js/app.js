@@ -19682,31 +19682,40 @@ __webpack_require__.r(__webpack_exports__);
           linkText: "Utilizatori",
           linkURL: "/users"
         }, {
-          linkText: "Adauga o masina",
-          linkURL: "/addCar"
-        }, {
           linkText: "Angajati",
           linkURL: "/employees"
+        }, {
+          linkText: "Adauga o masina",
+          linkURL: "/addCar"
         }]
       },
-      matchingDynamicLinks: ""
+      matchingDynamicLinks: "",
+      isDirector: false
     };
   },
+  created: function created() {
+    this.generateDynamicLinks();
+  },
   methods: {
-    getUsersRole: function getUsersRole() {
+    getUsersRoleName: function getUsersRoleName() {
       return this.rolProperties.denumire_rol;
     },
     getUsersDepartment: function getUsersDepartment() {
       return this.rolProperties.department_id.toString();
-    }
-  },
-  created: function created() {
-    var _this = this;
+    },
+    getUsersRoleID: function getUsersRoleID() {
+      return this.rolProperties.role_id;
+    },
+    generateDynamicLinks: function generateDynamicLinks() {
+      var _this = this;
 
-    var matchingDepID = Object.keys(this.routesByRole).filter(function (key) {
-      return key === _this.getUsersDepartment();
-    })[0];
-    this.matchingDynamicLinks = this.routesByRole[matchingDepID];
+      var matchingDepID = Object.keys(this.routesByRole).filter(function (key) {
+        return key === _this.getUsersDepartment();
+      })[0];
+      var directorRoles = [2, 3, 4];
+      this.isDirector = directorRoles.includes(this.getUsersRoleID());
+      this.matchingDynamicLinks = this.routesByRole[matchingDepID];
+    }
   }
 });
 
@@ -20885,6 +20894,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
+      rolProperties: JSON.parse(localStorage.getItem("roleData")),
       employees: []
     };
   },
@@ -20896,14 +20906,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var requestOne, requestTwo;
+        var roleID, requestOne, requestTwo;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                requestOne = axios.get("api/employees");
-                requestTwo = axios.get("api/roles");
-                _context.next = 4;
+                roleID = _this.getUsersRoleID();
+                requestOne = axios.get("/api/employeesByDepartment/" + roleID);
+                requestTwo = axios.get("/api/roles");
+                _context.next = 5;
                 return axios.all([requestOne, requestTwo]).then(axios.spread(function () {
                   for (var _len = arguments.length, responses = new Array(_len), _key = 0; _key < _len; _key++) {
                     responses[_key] = arguments[_key];
@@ -20915,13 +20926,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   console.log(errors);
                 });
 
-              case 4:
+              case 5:
               case "end":
                 return _context.stop();
             }
           }
         }, _callee);
       }))();
+    },
+    getUsersRoleID: function getUsersRoleID() {
+      return this.rolProperties.role_id;
     },
     getUsersRole: function getUsersRole(employee) {
       var filteredRole = this.roles.filter(function (item) {
@@ -21138,21 +21152,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)(["isAuthenticated", "retrieveRoleData"]))
 });
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/teamsec/TeamSect.vue?vue&type=script&lang=js":
-/*!**********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/teamsec/TeamSect.vue?vue&type=script&lang=js ***!
-  \**********************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
 
 /***/ }),
 
@@ -21487,16 +21486,21 @@ var _hoisted_8 = {
 var _hoisted_9 = {
   "class": "fw-bold mb-4"
 };
-
-var _hoisted_10 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-    "class": "text-white-50 mb-4"
-  }, " Alege optiunea preferata de mai jos ! ", -1
-  /* HOISTED */
-  );
-});
-
+var _hoisted_10 = {
+  key: 0,
+  "class": "text-white-50 mb-4"
+};
 var _hoisted_11 = {
+  key: 1,
+  "class": "text-white-50 mb-4"
+};
+var _hoisted_12 = {
+  key: 2
+};
+var _hoisted_13 = {
+  "class": "btn btn-outline-light btn-lg px-6"
+};
+var _hoisted_14 = {
   "class": "btn btn-outline-light btn-lg px-6"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -21517,16 +21521,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_9, " Panou Administrativ - " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.getUsersRole()), 1
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_9, " Panou Administrativ - " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.getUsersRoleName()), 1
   /* TEXT */
-  ), _hoisted_10, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.matchingDynamicLinks, function (link) {
+  ), $data.matchingDynamicLinks.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_10, " Alege optiunea preferata de mai jos ! ")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_11, " Nu s-au putut gasi optiuni. Reveniti mai tarziu. ")), this.isDirector ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.routesByRole[4], function (link) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: link.id
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
       to: link.linkURL
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(link.linkText), 1
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(link.linkText), 1
         /* TEXT */
         )];
       }),
@@ -21538,7 +21542,26 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , ["to"])]);
   }), 128
   /* KEYED_FRAGMENT */
-  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div>\r\n                      <router-link to=\"/users\">\r\n                        <button class=\"btn btn-outline-light btn-lg px-5 mb-1\">\r\n                          Utilizatori\r\n                        </button>\r\n                      </router-link>\r\n                    </div>\r\n                    <br />\r\n                    <div>\r\n                      <router-link to=\"/employees\">\r\n                        <button class=\"btn btn-outline-light btn-lg px-5 mb-1\">\r\n                          Angajati\r\n                        </button>\r\n                      </router-link>\r\n                    </div>\r\n                    <br />\r\n                    <div>\r\n                      <router-link to=\"/addCar\">\r\n                        <button class=\"btn btn-outline-light btn-lg px-5 mb-1\">\r\n                          Achizitioneaza o masina\r\n                        </button>\r\n                      </router-link>\r\n                    </div>\r\n                    <br />\r\n                    <div>\r\n                      <router-link to=\"/carinvoices\">\r\n                        <button class=\"btn btn-outline-light btn-lg px-5 mb-1\">\r\n                          Facturi masini\r\n                        </button>\r\n                      </router-link>\r\n                    </div>\r\n                    <br />\r\n                    <div>\r\n                      <router-link to=\"/addRevision\">\r\n                        <button class=\"btn btn-outline-light btn-lg px-5 mb-1\">\r\n                          Inregistreaza o revizie\r\n                        </button>\r\n                      </router-link>\r\n                    </div>\r\n                    <br />\r\n                    <div>\r\n                      <router-link to=\"/revisions\">\r\n                        <button class=\"btn btn-outline-light btn-lg px-5 mb-1\">\r\n                          Reviziile masinilor\r\n                        </button>\r\n                      </router-link>\r\n                    </div>\r\n                    <br />\r\n                    <div>\r\n                      <router-link to=\"/addrepairnotice\">\r\n                        <button class=\"btn btn-outline-light btn-lg px-5 mb-1\">\r\n                          Trimite o constatare de daune\r\n                        </button>\r\n                      </router-link>\r\n                    </div>\r\n                    <br />\r\n                    <div>\r\n                      <router-link to=\"/repairnotices\">\r\n                        <button class=\"btn btn-outline-light btn-lg px-5 mb-1\">\r\n                          Lista constatari daune\r\n                        </button>\r\n                      </router-link>\r\n                    </div>\r\n                    <br />\r\n                    <div>\r\n                      <router-link to=\"/repairinvoices\">\r\n                        <button class=\"btn btn-outline-light btn-lg px-5 mb-1\">\r\n                          Facturi reparatii\r\n                        </button>\r\n                      </router-link>\r\n                    </div>\r\n                    <br />\r\n                    <div>\r\n                      <router-link to=\"/removecar\">\r\n                        <button class=\"btn btn-outline-light btn-lg px-5 mb-1\">\r\n                          Remove a Car\r\n                        </button>\r\n                      </router-link>\r\n                    </div>\r\n                    <br /> ")])])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TheFooter, {
+  ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.matchingDynamicLinks, function (link) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      key: link.id
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+      to: link.linkURL
+    }, {
+      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(link.linkText), 1
+        /* TEXT */
+        )];
+      }),
+      _: 2
+      /* DYNAMIC */
+
+    }, 1032
+    /* PROPS, DYNAMIC_SLOTS */
+    , ["to"])]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  ))])])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TheFooter, {
     "class": "fixed-bottom"
   })])]);
 }
@@ -24587,7 +24610,7 @@ var _withScopeId = function _withScopeId(n) {
 var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<section id=\"team\" class=\"team section-bg\" data-v-3f2f4a06><div class=\"container\" data-v-3f2f4a06><div class=\"section-title\" data-v-3f2f4a06><h3 data-v-3f2f4a06>Our Hardworking <span data-v-3f2f4a06>Team</span></h3><p data-v-3f2f4a06> Here you can find our talented staff members that made all of this possible </p></div><div class=\"row\" data-v-3f2f4a06><div class=\"col-lg-3 col-md-6 d-flex align-items-stretch\" data-v-3f2f4a06><div class=\"member\" data-v-3f2f4a06><div class=\"member-img\" data-v-3f2f4a06><img src=\"" + _public_images_MoraruG_jpg__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" class=\"img-fluid\" data-v-3f2f4a06><div class=\"social\" data-v-3f2f4a06><a href=\"\" data-v-3f2f4a06><i class=\"bi bi-twitter\" data-v-3f2f4a06></i></a><a href=\"\" data-v-3f2f4a06><i class=\"bi bi-facebook\" data-v-3f2f4a06></i></a><a href=\"\" data-v-3f2f4a06><i class=\"bi bi-instagram\" data-v-3f2f4a06></i></a><a href=\"\" data-v-3f2f4a06><i class=\"bi bi-linkedin\" data-v-3f2f4a06></i></a></div></div><div class=\"member-info\" data-v-3f2f4a06><h4 data-v-3f2f4a06>Moraru Gabriel Danut</h4><span data-v-3f2f4a06>General Manager</span></div></div></div></div></div></section>", 1);
 
 var _hoisted_2 = [_hoisted_1];
-function render(_ctx, _cache, $props, $setup, $data, $options) {
+function render(_ctx, _cache) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, _hoisted_2);
 }
 
@@ -25902,7 +25925,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_public_photos_BgAuth_jpg__WEBPACK_IMPORTED_MODULE_2__["default"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.bg-image[data-v-77828ea0] {\r\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\r\n  height: 100vh;\r\n  background-size: cover;\r\n  background-position: center;\n}\nbutton[data-v-77828ea0] {\r\n    width: 300px;\r\n    margin-bottom: 20px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.bg-image[data-v-77828ea0] {\r\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\r\n  background-attachment: fixed;\r\n  background-position: center;\r\n  background-repeat: no-repeat;\r\n  background-size: cover;\r\n  min-height: 100vh;\n}\nbutton[data-v-77828ea0] {\r\n  width: 300px;\r\n  margin-bottom: 20px;\n}\n.card[data-v-77828ea0]{\r\n  margin-top: 3rem;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -26309,7 +26332,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Roboto&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nsection[data-v-3f2f4a06] {\r\n    padding: 60px 0;\r\n    overflow: hidden;\r\n    background-color: rgba(1, 0, 56, 0.255);\n}\n.section-title[data-v-3f2f4a06] {\r\n    text-align: center;\r\n    padding-bottom: 30px;\n}\n.section-title h2[data-v-3f2f4a06] {\r\n    font-size: 13px;\r\n    letter-spacing: 1px;\r\n    font-weight: 700;\r\n    padding: 8px 20px;\r\n    margin: 0;\r\n    background: #e7f1fd;\r\n    color: #106eea;\r\n    display: inline-block;\r\n    text-transform: uppercase;\r\n    border-radius: 50px;\n}\n.section-title h3[data-v-3f2f4a06] {\r\n    margin: 15px 0 0 0;\r\n    font-size: 32px;\r\n    font-weight: 700;\n}\n.section-title h3 span[data-v-3f2f4a06] {\r\n    color: #ff0000;\n}\n.section-title p[data-v-3f2f4a06] {\r\n    margin: 15px auto 0 auto;\r\n    font-weight: 600;\n}\n.team[data-v-3f2f4a06] {\r\n    padding: 158px 0;\r\n    margin-top: 8vh;\n}\n.team .member[data-v-3f2f4a06] {\r\n    text-align: center;\r\n    margin-bottom: 20px;\r\n    overflow: hidden;\r\n    border-radius: 4px;\r\n    background: #fff;\r\n    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.15);\n}\n.team .member .member-img[data-v-3f2f4a06] {\r\n    position: relative;\r\n    overflow: hidden;\n}\n.team .member .social[data-v-3f2f4a06] {\r\n    position: absolute;\r\n    left: 0;\r\n    bottom: 30px;\r\n    right: 0;\r\n    opacity: 0;\r\n    transition: ease-in-out 0.3s;\r\n    text-align: center;\n}\n.team .member .social a[data-v-3f2f4a06] {\r\n    transition: color 0.3s;\r\n    color: #222222;\r\n    margin: 0 3px;\r\n    padding-top: 7px;\r\n    border-radius: 4px;\r\n    width: 36px;\r\n    height: 36px;\r\n    background: rgba(16, 110, 234, 0.8);\r\n    display: inline-block;\r\n    transition: ease-in-out 0.3s;\r\n    color: #fff;\n}\n.team .member .social a[data-v-3f2f4a06]:hover {\r\n    background: #3b8af2;\n}\n.team .member .social i[data-v-3f2f4a06] {\r\n    font-size: 18px;\n}\n.team .member .member-info[data-v-3f2f4a06] {\r\n    padding: 25px 15px;\n}\n.team .member .member-info h4[data-v-3f2f4a06] {\r\n    font-weight: 700;\r\n    margin-bottom: 5px;\r\n    font-size: 18px;\r\n    color: #222222;\n}\n.team .member .member-info span[data-v-3f2f4a06] {\r\n    display: block;\r\n    font-size: 13px;\r\n    font-weight: 400;\r\n    color: #aaaaaa;\n}\n.team .member .member-info p[data-v-3f2f4a06] {\r\n    font-style: italic;\r\n    font-size: 14px;\r\n    line-height: 26px;\r\n    color: #777777;\n}\n.team .member:hover .social[data-v-3f2f4a06] {\r\n    opacity: 1;\r\n    bottom: 15px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nsection[data-v-3f2f4a06] {\r\n    padding: 60px 0;\r\n    overflow: hidden;\r\n    background-color: rgba(1, 0, 56, 0.255);\n}\n.section-title[data-v-3f2f4a06] {\r\n    text-align: center;\r\n    padding-bottom: 30px;\n}\n.section-title h2[data-v-3f2f4a06] {\r\n    font-size: 13px;\r\n    letter-spacing: 1px;\r\n    font-weight: 700;\r\n    padding: 8px 20px;\r\n    margin: 0;\r\n    background: #e7f1fd;\r\n    color: #106eea;\r\n    display: inline-block;\r\n    text-transform: uppercase;\r\n    border-radius: 50px;\n}\n.section-title h3[data-v-3f2f4a06] {\r\n    margin: 15px 0 0 0;\r\n    font-size: 32px;\r\n    font-weight: 700;\n}\n.section-title h3 span[data-v-3f2f4a06] {\r\n    color: #ff0000;\n}\n.section-title p[data-v-3f2f4a06] {\r\n    margin: 15px auto 0 auto;\r\n    font-weight: 600;\n}\n.team[data-v-3f2f4a06] {\r\n    padding: 158px 0;\n}\n.team .member[data-v-3f2f4a06] {\r\n    text-align: center;\r\n    margin-bottom: 20px;\r\n    overflow: hidden;\r\n    border-radius: 4px;\r\n    background: #fff;\r\n    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.15);\n}\n.team .member .member-img[data-v-3f2f4a06] {\r\n    position: relative;\r\n    overflow: hidden;\n}\n.team .member .social[data-v-3f2f4a06] {\r\n    position: absolute;\r\n    left: 0;\r\n    bottom: 30px;\r\n    right: 0;\r\n    opacity: 0;\r\n    transition: ease-in-out 0.3s;\r\n    text-align: center;\n}\n.team .member .social a[data-v-3f2f4a06] {\r\n    transition: color 0.3s;\r\n    color: #222222;\r\n    margin: 0 3px;\r\n    padding-top: 7px;\r\n    border-radius: 4px;\r\n    width: 36px;\r\n    height: 36px;\r\n    background: rgba(16, 110, 234, 0.8);\r\n    display: inline-block;\r\n    transition: ease-in-out 0.3s;\r\n    color: #fff;\n}\n.team .member .social a[data-v-3f2f4a06]:hover {\r\n    background: #3b8af2;\n}\n.team .member .social i[data-v-3f2f4a06] {\r\n    font-size: 18px;\n}\n.team .member .member-info[data-v-3f2f4a06] {\r\n    padding: 25px 15px;\n}\n.team .member .member-info h4[data-v-3f2f4a06] {\r\n    font-weight: 700;\r\n    margin-bottom: 5px;\r\n    font-size: 18px;\r\n    color: #222222;\n}\n.team .member .member-info span[data-v-3f2f4a06] {\r\n    display: block;\r\n    font-size: 13px;\r\n    font-weight: 400;\r\n    color: #aaaaaa;\n}\n.team .member .member-info p[data-v-3f2f4a06] {\r\n    font-style: italic;\r\n    font-size: 14px;\r\n    line-height: 26px;\r\n    color: #777777;\n}\n.team .member:hover .social[data-v-3f2f4a06] {\r\n    opacity: 1;\r\n    bottom: 15px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -50294,17 +50317,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _TeamSect_vue_vue_type_template_id_3f2f4a06_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TeamSect.vue?vue&type=template&id=3f2f4a06&scoped=true */ "./resources/js/components/teamsec/TeamSect.vue?vue&type=template&id=3f2f4a06&scoped=true");
-/* harmony import */ var _TeamSect_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TeamSect.vue?vue&type=script&lang=js */ "./resources/js/components/teamsec/TeamSect.vue?vue&type=script&lang=js");
-/* harmony import */ var _TeamSect_vue_vue_type_style_index_0_id_3f2f4a06_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TeamSect.vue?vue&type=style&index=0&id=3f2f4a06&scoped=true&lang=css */ "./resources/js/components/teamsec/TeamSect.vue?vue&type=style&index=0&id=3f2f4a06&scoped=true&lang=css");
-/* harmony import */ var C_wamp64_www_4_Roti_main_4_Roti_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var _TeamSect_vue_vue_type_style_index_0_id_3f2f4a06_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TeamSect.vue?vue&type=style&index=0&id=3f2f4a06&scoped=true&lang=css */ "./resources/js/components/teamsec/TeamSect.vue?vue&type=style&index=0&id=3f2f4a06&scoped=true&lang=css");
+/* harmony import */ var C_wamp64_www_4_Roti_main_4_Roti_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
-
-
+const script = {}
 
 ;
 
 
-const __exports__ = /*#__PURE__*/(0,C_wamp64_www_4_Roti_main_4_Roti_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_TeamSect_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_TeamSect_vue_vue_type_template_id_3f2f4a06_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render],['__scopeId',"data-v-3f2f4a06"],['__file',"resources/js/components/teamsec/TeamSect.vue"]])
+const __exports__ = /*#__PURE__*/(0,C_wamp64_www_4_Roti_main_4_Roti_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(script, [['render',_TeamSect_vue_vue_type_template_id_3f2f4a06_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render],['__scopeId',"data-v-3f2f4a06"],['__file',"resources/js/components/teamsec/TeamSect.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -50791,22 +50812,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_TheHeader_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_TheHeader_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./TheHeader.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/layout/TheHeader.vue?vue&type=script&lang=js");
- 
-
-/***/ }),
-
-/***/ "./resources/js/components/teamsec/TeamSect.vue?vue&type=script&lang=js":
-/*!******************************************************************************!*\
-  !*** ./resources/js/components/teamsec/TeamSect.vue?vue&type=script&lang=js ***!
-  \******************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_TeamSect_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_TeamSect_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./TeamSect.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/teamsec/TeamSect.vue?vue&type=script&lang=js");
  
 
 /***/ }),

@@ -10,6 +10,8 @@ use App\Models\Car;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use DB;
+use Illuminate\Support\Str;
+
 class EmployeeController extends Controller
 {
     /**
@@ -94,11 +96,24 @@ class EmployeeController extends Controller
         //
     }
 
-    public function loadEmployee($id) {
+    public function loadEmployee ($id) {
         $employee = Employee::where('employee_id', $id)->first() ?? 'Not found';
 
         return response()->json($employee);
     }
 
+    public function employeesByDepartment ($id) {
+        $userRole = Role::select('department_id')->where('role_id', $id)->first();
+        $roles = Role::select('role_id')->where('department_id', $userRole->department_id)->get();
+
+        $rolesIDs = [];
+        foreach ($roles as $key => $role) {
+            $rolesIDs[$key] = $role->role_id;
+        }
+
+        $employees = Employee::where('role_id', $rolesIDs)->orWhere('role_id', $roles[1]->role_id)->orderBy('employee_id', 'ASC')->get();
+
+        return response()->json($employees);
+    }
 
 }
