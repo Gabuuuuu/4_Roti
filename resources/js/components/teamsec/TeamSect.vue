@@ -39,6 +39,62 @@
                             </div>
                         </div>
                     </div>
+                    <div
+                        class="col-lg-3 col-md-6 d-flex align-items-stretch"
+                    >
+                        <div class="member">
+                            <div class="member-img">
+                                <img
+                                    src="../../../../public/images/MoraruG.jpg"
+                                    class="img-fluid"
+                                />
+                                <div class="social">
+                                    <a href=""><i class="bi bi-twitter"></i></a>
+                                    <a href=""
+                                        ><i class="bi bi-facebook"></i
+                                    ></a>
+                                    <a href=""
+                                        ><i class="bi bi-instagram"></i
+                                    ></a>
+                                    <a href=""
+                                        ><i class="bi bi-linkedin"></i
+                                    ></a>
+                                </div>
+                            </div>
+                            <div class="member-info">
+                                <h4>Vasilescu Stefan Andrei</h4>
+                                <span>General Manager</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="col-lg-3 col-md-6 d-flex align-items-stretch"
+                    >
+                        <div class="member">
+                            <div class="member-img">
+                                <img
+                                    src="../../../../public/images/MoraruG.jpg"
+                                    class="img-fluid"
+                                />
+                                <div class="social">
+                                    <a href=""><i class="bi bi-twitter"></i></a>
+                                    <a href=""
+                                        ><i class="bi bi-facebook"></i
+                                    ></a>
+                                    <a href=""
+                                        ><i class="bi bi-instagram"></i
+                                    ></a>
+                                    <a href=""
+                                        ><i class="bi bi-linkedin"></i
+                                    ></a>
+                                </div>
+                            </div>
+                            <div class="member-info">
+                                <h4>Potoroaca Marian</h4>
+                                <span>General Manager</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

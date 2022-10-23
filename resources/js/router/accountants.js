@@ -4,6 +4,9 @@ import CarInvoiceDetails from "../components/admin/CarPages/CarInvoices/CarInvoi
 import RepairInvoices from "../components/admin/CarPages/RepairInvoice/RepairInvoices";
 import RepairInvoice from "../components/admin/CarPages/RepairInvoice/RepairInvoice";
 
+import FridgeInvoices from "../components/admin/FridgePages/FridgeInvoices/FridgeInvoices";
+import FridgeInvoicesDetails from "../components/admin/FridgePages/FridgeInvoices/FridgeInvoiceDetails";
+
 export default [
     {
         path: "/carinvoices",
@@ -27,6 +30,24 @@ export default [
         path: "/repairinvoice/:id",
         component: RepairInvoice,
         name: "loadRepairNotice",
+        meta: { requiresAuth: true, requiresAdmin: true },
+    },
+    {
+        path: "/repairinvoice/:id",
+        component: RepairInvoice,
+        name: "loadRepairNotice",
+        meta: { requiresAuth: true, requiresAdmin: true },
+    },
+    {
+        path: "/fridgeInvoices",
+        component: FridgeInvoices,
+        name: "fridgeInvoices",
+        meta: { requiresAuth: true, requiresAdmin: true },
+    },
+    {
+        path: "/fridgeInvoices/:id",
+        component: FridgeInvoicesDetails,
+        name: "fridgeInvoicesDetails",
         meta: { requiresAuth: true, requiresAdmin: true },
     },
 ]

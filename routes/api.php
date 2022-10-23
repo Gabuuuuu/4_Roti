@@ -9,6 +9,7 @@ use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\CarRevisionController;
 use App\Http\Controllers\RepairNoticeController;
+use App\Http\Controllers\FridgeInvoiceController;
 
 //ROUTES
 
@@ -19,6 +20,13 @@ Route::post('/login', [AuthController::class, 'login']);
 // Invoices
 Route::resource('/invoices', App\Http\Controllers\InvoiceController::class);
 Route::get('/loadInvoice/{id}', [InvoiceController::class, 'loadInvoice']);
+
+//Fridge Invoices
+Route::resource('/fridgeInvoices', App\Http\Controllers\FridgeInvoiceController::class);
+Route::get('/fridgeSuppliers', [FridgeInvoiceController::class, 'fridgeSuppliers']);
+Route::post('/addNewFridgeModel', [FridgeInvoiceController::class, 'addNewFridgeModel']);
+Route::get('/loadFridges', [FridgeInvoiceController::class, 'loadFridges']);
+Route::get('/loadFridgeInvoice/{id}', [FridgeInvoiceController::class, 'loadFridgeInvoice']);
 
 // Users
 Route::resource('/users', App\Http\Controllers\UserController::class);

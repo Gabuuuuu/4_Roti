@@ -21,7 +21,10 @@
                       {{ getUsersRoleName() }}
                     </h2>
 
-                    <p v-if="matchingDynamicLinks.length" class="text-white-50 mb-4">
+                    <p
+                      v-if="matchingDynamicLinks.length"
+                      class="text-white-50 mb-4"
+                    >
                       Alege optiunea preferata de mai jos !
                     </p>
 
@@ -46,6 +49,15 @@
                         </button>
                       </router-link>
                     </div>
+
+                    <router-link
+                      v-if="this.isDirector && this.getUsersDepartment() === '1' "
+                      to="/addFridge"
+                    >
+                      <button class="btn btn-outline-light btn-lg px-6">
+                        Adauga frigider
+                      </button>
+                    </router-link>
                   </div>
                 </div>
               </div>
@@ -68,7 +80,12 @@ export default {
     return {
       rolProperties: JSON.parse(localStorage.getItem("roleData")),
       routesByRole: {
-        1: [],
+        1: [
+          {
+            linkText: "Frigidere",
+            linkURL: "/fridges",
+          },
+        ],
         2: [
           {
             linkText: "Facturi masini",
@@ -81,6 +98,10 @@ export default {
           {
             linkText: "Lista constatari daune",
             linkURL: "/repairNotices",
+          },
+          {
+            linkText: "Facturi achizitii frigidere",
+            linkURL: "/fridgeInvoices",
           },
         ],
         3: [
@@ -161,7 +182,7 @@ button {
   margin-bottom: 20px;
 }
 
-.card{
+.card {
   margin-top: 3rem;
 }
 </style>

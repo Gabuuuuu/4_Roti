@@ -13,9 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('insurances', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('fridge_models', function (Blueprint $table) {
+            $table->string('image');
         });
     }
 
@@ -26,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('insurances');
+        Schema::table('fridge_models', function (Blueprint $table) {
+            //
+        });
     }
 };

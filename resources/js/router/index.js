@@ -15,9 +15,10 @@ import externalAuth from "./auth";
 import externalMechanics from "./mechanics";
 import externalAccountants from "./accountants";
 import externalDirectors from "./directors";
+import externalSuppliers from "./supplliers";
 
 // Templates:
-// import RentNow from "../components/pricesec/RentNow";
+import RentNow from "../components/pricesec/RentNow";
 // import Details from "../components/pricesec/Details";
 
 const router = createRouter({
@@ -27,16 +28,17 @@ const router = createRouter({
         ...externalMechanics,
         ...externalAccountants,
         ...externalDirectors,
+        ...externalSuppliers,
         // {
         //     path: "/details/:id",
         //     component: Details,
         //     name: "details"
         // },
-        // {
-        // path: "/rentnow/:id",
-        // component: RentNow,
-        // name: "rentnow"
-        // },
+        {
+        path: "/rentnow/:id",
+        component: RentNow,
+        name: "rentnow"
+        },
         {
             path: "/",
             redirect: "/home",
@@ -65,25 +67,25 @@ const router = createRouter({
     ],
 });
 
-router.beforeEach((to, _, next) => {
-    const userRole = store.getters.retrieveRoleData?.length
-        ? JSON.parse(store.getters.retrieveRoleData).role_id
-        : 0;
+// router.beforeEach((to, _, next) => {
+//     const userRole = store.getters.retrieveRoleData?.length
+//         ? JSON.parse(store.getters.retrieveRoleData).role_id
+//         : 0;
 
-    if (
-        to.meta.requiresAuth &&
-        to.meta.requiresAdmin &&
-        store.getters.isAuthenticated &&
-        userRole < 2
-    ) {
-        next("/");
-    } else if (to.meta.requiresAuth && !store.getters.isAuthenticated) {
-        next("/login");
-    } else if (to.meta.guest && store.getters.isAuthenticated) {
-        next("/cars");
-    } else {
-        next();
-    }
-});
+//     if (
+//         to.meta.requiresAuth &&
+//         to.meta.requiresAdmin &&
+//         store.getters.isAuthenticated &&
+//         userRole < 2
+//     ) {
+//         next("/");
+//     } else if (to.meta.requiresAuth && !store.getters.isAuthenticated) {
+//         next("/login");
+//     } else if (to.meta.guest && store.getters.isAuthenticated) {
+//         next("/cars");
+//     } else {
+//         next();
+//     }
+// });
 
 export default router;
