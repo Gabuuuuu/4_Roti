@@ -2,6 +2,11 @@ import Users from "../components/admin/Users";
 import AddCar from "../components/admin/CarPages/AddCar.vue";
 import Employees from "../components/admin/EmployeePages/Employees";
 import EmployeeDetails from "../components/admin/EmployeePages/EmployeeDetails";
+import DrivingLicenses from "../components/admin/EmployeePages/DrivingLicenses";
+import AddDrivingLicense from "../components/admin/EmployeePages/AddDrivingLicense";
+
+// Director aprovizionare
+import addFridge from "../components/admin/FridgePages/addFridge.vue";
 
 // Director aprovizionare
 import addFridge from "../components/admin/FridgePages/addFridge.vue";
@@ -17,6 +22,12 @@ export default [
         path: "/addCar",
         component: AddCar,
         name: "Addcar",
+        meta: { requiresAuth: true, requiresAdmin: true },
+    },
+    {
+        path: "/AddDrivingLicense",
+        component: AddDrivingLicense,
+        name: "AddDrivingLicense",
         meta: { requiresAuth: true, requiresAdmin: true },
     },
     {
@@ -37,4 +48,10 @@ export default [
         name: "addFridge",
         meta: { requiresAuth: true, requiresAdmin: true },
     },
-]
+    {
+        path: "/drivinglicenses",
+        component: DrivingLicenses,
+        name: "drivinglicenses",
+        meta: { requiresAuth: true, requiresAdmin: true },
+    },
+];
