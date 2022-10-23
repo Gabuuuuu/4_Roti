@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 20, 2022 at 08:37 PM
+-- Generation Time: Oct 23, 2022 at 07:17 PM
 -- Server version: 5.7.36
 -- PHP Version: 7.4.26
 
@@ -139,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `car_revisions` (
   `data_emiterii` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`Id_revizie`),
   KEY `car_revisions_car_id_foreign` (`car_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `car_revisions`
@@ -147,7 +147,8 @@ CREATE TABLE IF NOT EXISTS `car_revisions` (
 
 INSERT INTO `car_revisions` (`Id_revizie`, `car_id`, `StareMotor`, `StareLumini`, `StareSuspensii`, `StareAmortizor`, `StareFrana`, `StareSistemElectric`, `StareDotari`, `StareCauciucuri`, `data_emiterii`) VALUES
 (1, 2, 0, 1, 1, 1, 0, 1, 0, 0, '2022-10-19 16:02:55'),
-(2, 2, 0, 0, 1, 1, 0, 1, 0, 1, '2022-10-19 16:07:31');
+(2, 2, 0, 0, 1, 1, 0, 1, 0, 1, '2022-10-19 16:07:31'),
+(3, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-22 19:35:24');
 
 -- --------------------------------------------------------
 
@@ -305,7 +306,7 @@ CREATE TABLE IF NOT EXISTS `employees` (
 --
 
 INSERT INTO `employees` (`employee_id`, `role_id`, `nume_angajat`, `prenume_angajat`, `CNP`, `actDeIdentitate`, `nr`, `dataEliberarii`, `domiciliul`, `strada`, `nrStrada`, `apartament`, `sector`, `data_inceput_ang`, `data_semnare_contract`) VALUES
-(1, 5, 'Gabi', 'Gabitzu', '31231331212', 'buletin', '3212', '2022-10-12', '21312321312', 'GAGA', '3123', '1321', '1', '2022-10-04', '2022-10-19'),
+(1, 7, 'Gabi', 'Gabitzu', '31231331212', 'buletin', '3212', '2022-10-12', '21312321312', 'GAGA', '3123', '1321', '1', '2022-10-04', '2022-10-19'),
 (2, 3, 'Leonte', 'Dalmatianul', '31231331212', 'buletin', '3212', '2022-10-12', '21312321312', 'ADASDADWA', '3123', '1321', '2', '2022-10-04', '2022-10-29');
 
 -- --------------------------------------------------------
@@ -340,7 +341,14 @@ CREATE TABLE IF NOT EXISTS `fridge_invoices` (
   `data_emiterii` date NOT NULL,
   PRIMARY KEY (`fridge_invoice_id`),
   KEY `fridge_invoices_supplier_id_foreign` (`supplier_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `fridge_invoices`
+--
+
+INSERT INTO `fridge_invoices` (`fridge_invoice_id`, `supplier_id`, `denumire_model`, `pret`, `cantitate`, `data_emiterii`) VALUES
+(1, 1, '1234', '1234', '1234', '2022-10-23');
 
 -- --------------------------------------------------------
 
@@ -351,6 +359,7 @@ CREATE TABLE IF NOT EXISTS `fridge_invoices` (
 DROP TABLE IF EXISTS `fridge_models`;
 CREATE TABLE IF NOT EXISTS `fridge_models` (
   `fridge_model_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `supplier_id` int(11) NOT NULL,
   `denumire_model` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `an_fabricatie` date NOT NULL,
   `greutate` varchar(3) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -359,8 +368,17 @@ CREATE TABLE IF NOT EXISTS `fridge_models` (
   `calitate` varchar(2) COLLATE utf8mb4_unicode_ci NOT NULL,
   `volum` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `pret` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`fridge_model_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `image` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`fridge_model_id`),
+  KEY `fridge_models_supplier_id_foreign` (`supplier_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `fridge_models`
+--
+
+INSERT INTO `fridge_models` (`fridge_model_id`, `supplier_id`, `denumire_model`, `an_fabricatie`, `greutate`, `marime`, `consum_energetic`, `calitate`, `volum`, `pret`, `image`) VALUES
+(4, 1, '1234', '2022-09-28', '123', '1234', '1234', 'A', '1234', '1234', '1666549942.png');
 
 -- --------------------------------------------------------
 
@@ -421,7 +439,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -492,7 +510,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (74, '2022_04_04_084544_create_car_controllers_table2', 40),
 (75, '2022_10_18_211412_create_data_emiterii_cars_table', 41),
 (77, '2022_10_19_123318_create_car_revisions_table', 42),
-(78, '2022_10_19_183855_create_repair_notices_table', 43);
+(78, '2022_10_19_183855_create_repair_notices_table', 43),
+(79, '2022_10_22_213527_create_insurances_table', 44),
+(80, '2022_10_23_163620_add_foreign_key_fridge_models', 44),
+(81, '2022_10_23_183014_add_image_fridges', 45);
 
 -- --------------------------------------------------------
 
@@ -514,7 +535,7 @@ CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=187 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `personal_access_tokens`
@@ -608,7 +629,105 @@ INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `n
 (85, 'App\\Models\\User', 2, 'auth_token', 'da6a8f2fe38bfa8190ccca567ded55a9697c6b9c8c80a0c093f8e04e364acb77', '[\"*\"]', NULL, '2022-10-17 14:06:56', '2022-10-17 14:06:56'),
 (86, 'App\\Models\\User', 2, 'auth_token', '2f344c2ba5f1fd5ba15429e569a99e665712befc14fc2610be7eaf33bdad8937', '[\"*\"]', NULL, '2022-10-18 06:31:36', '2022-10-18 06:31:36'),
 (87, 'App\\Models\\User', 2, 'auth_token', '7d9e0013155a7881abef7ab998eb18b4c6fc7616ee1c0a3ed707b9ab1552e15f', '[\"*\"]', NULL, '2022-10-18 10:03:53', '2022-10-18 10:03:53'),
-(88, 'App\\Models\\User', 2, 'auth_token', 'cdb01a8a76788aea730cae588a40986a4a4b6d74f3496961c262e2f9a2809c4f', '[\"*\"]', NULL, '2022-10-19 08:31:06', '2022-10-19 08:31:06');
+(88, 'App\\Models\\User', 2, 'auth_token', 'cdb01a8a76788aea730cae588a40986a4a4b6d74f3496961c262e2f9a2809c4f', '[\"*\"]', NULL, '2022-10-19 08:31:06', '2022-10-19 08:31:06'),
+(89, 'App\\Models\\User', 3, 'auth_token', '9b6bc1443d42fd3cea3d2be12e1e8240888288598afab07e7b4337d92eb59620', '[\"*\"]', NULL, '2022-10-20 17:45:21', '2022-10-20 17:45:21'),
+(90, 'App\\Models\\User', 3, 'auth_token', 'efc542adde45d66471b240ef489398c52179ffdb6c07eb979e49cb8a41d84a65', '[\"*\"]', NULL, '2022-10-20 17:46:04', '2022-10-20 17:46:04'),
+(91, 'App\\Models\\User', 3, 'auth_token', '9b3ae57ef12d09b6809ac1f387ae9b292a3981ff115d0b26a8b92ed158ed40dd', '[\"*\"]', NULL, '2022-10-20 18:11:22', '2022-10-20 18:11:22'),
+(92, 'App\\Models\\User', 3, 'auth_token', 'd19847c9dc289f89a7a88855deb6569e697a5b1a33e72516dca6b7bcd08810fa', '[\"*\"]', NULL, '2022-10-20 18:16:30', '2022-10-20 18:16:30'),
+(93, 'App\\Models\\User', 3, 'auth_token', 'cf30e1235fb0b289e35a7393168d495756119a079ea5b248ddd7db42f3f4b00b', '[\"*\"]', NULL, '2022-10-22 14:49:51', '2022-10-22 14:49:51'),
+(94, 'App\\Models\\User', 3, 'auth_token', 'ab11d2d35b05e7010eb905b740b7489012a7e09ef5e23f8b90a717a8c5656eac', '[\"*\"]', NULL, '2022-10-22 14:50:32', '2022-10-22 14:50:32'),
+(95, 'App\\Models\\User', 3, 'auth_token', '895e9d6a4c799a8040bf6531f8185f65f302847fb3369576322cc91e8f3e2380', '[\"*\"]', NULL, '2022-10-22 14:51:22', '2022-10-22 14:51:22'),
+(96, 'App\\Models\\User', 3, 'auth_token', '1eee83131be0b67e9c283b75dbd33528c2017ed6428bc567333bf4660d87daad', '[\"*\"]', NULL, '2022-10-22 14:52:11', '2022-10-22 14:52:11'),
+(97, 'App\\Models\\User', 3, 'auth_token', '600a06e20911210c7452c7503d0b3fee22efe0501f62d42a788aa4e73f323837', '[\"*\"]', NULL, '2022-10-22 14:57:12', '2022-10-22 14:57:12'),
+(98, 'App\\Models\\User', 3, 'auth_token', 'd47538fdcbe917e9c0d8782118bcc59b9ccfdb6eb5115e075ced90ce9ba0c714', '[\"*\"]', NULL, '2022-10-22 14:59:18', '2022-10-22 14:59:18'),
+(99, 'App\\Models\\User', 3, 'auth_token', '27c7bf5778d27baa9a001c9677b3c039b42b90e9ce449ba20e2f6f93359076c1', '[\"*\"]', NULL, '2022-10-22 15:16:32', '2022-10-22 15:16:32'),
+(100, 'App\\Models\\User', 3, 'auth_token', '08b41f2b29588c2c7943d8a76f8d3038f1d81075f90250bfef94fa6359d35cef', '[\"*\"]', NULL, '2022-10-22 15:32:40', '2022-10-22 15:32:40'),
+(101, 'App\\Models\\User', 3, 'auth_token', '459905bb9126c2046bdc715393c6c51945514ff8db6ae98dc1e06df0542d87d2', '[\"*\"]', NULL, '2022-10-22 15:33:19', '2022-10-22 15:33:19'),
+(102, 'App\\Models\\User', 3, 'auth_token', '289c383200b1dd10ee89ef30e6108cf84cc375e6b535823b8d4ee01cf05bb15c', '[\"*\"]', NULL, '2022-10-22 15:34:09', '2022-10-22 15:34:09'),
+(103, 'App\\Models\\User', 3, 'auth_token', '8ec21cc5f2dafeb134b16407a36b36ad6fa786c8e91fb651a94d758651807917', '[\"*\"]', NULL, '2022-10-22 15:35:17', '2022-10-22 15:35:17'),
+(104, 'App\\Models\\User', 3, 'auth_token', '1954ad26794b3c2704fbe071dd81afb0cb6da99902ca511c8a38010b2f987053', '[\"*\"]', NULL, '2022-10-22 15:35:23', '2022-10-22 15:35:23'),
+(105, 'App\\Models\\User', 3, 'auth_token', 'ad1e71df6c9032b3be82baaf694ad5828729fc6bc33825533d8fe1aed40a4c39', '[\"*\"]', NULL, '2022-10-22 15:37:46', '2022-10-22 15:37:46'),
+(106, 'App\\Models\\User', 3, 'auth_token', '726636abaf648560c05fab428f7bf4748997fd07b309a6607643154d827ac02c', '[\"*\"]', NULL, '2022-10-22 15:38:24', '2022-10-22 15:38:24'),
+(107, 'App\\Models\\User', 3, 'auth_token', '82fb3c785c9285db7bb244981d08925d72c232e028ac110e7798c1ec7f1ec09d', '[\"*\"]', NULL, '2022-10-22 15:39:30', '2022-10-22 15:39:30'),
+(108, 'App\\Models\\User', 3, 'auth_token', '964a282f23acda9ffa76c295510562c18edeb9d84e14b56cb042b9aaa7632926', '[\"*\"]', NULL, '2022-10-22 15:39:43', '2022-10-22 15:39:43'),
+(109, 'App\\Models\\User', 3, 'auth_token', 'a42b33adb789cf70e3faa4ab13a310bf6cfc7c39dc1b7243d0941c21f5694137', '[\"*\"]', NULL, '2022-10-22 15:40:16', '2022-10-22 15:40:16'),
+(110, 'App\\Models\\User', 3, 'auth_token', 'd2835f2a9eeb67023e86dcb21d730d18d2313f193dfdbd89dd0bc36c518219ef', '[\"*\"]', NULL, '2022-10-22 15:40:36', '2022-10-22 15:40:36'),
+(111, 'App\\Models\\User', 3, 'auth_token', '3371a51d321879e12d617830e84f54e154177c2bd73f2c27a7ec2be53079a30c', '[\"*\"]', NULL, '2022-10-22 15:40:46', '2022-10-22 15:40:46'),
+(112, 'App\\Models\\User', 3, 'auth_token', 'be4246fcae6d14e71e18c55fad2ee43c4b1aa6c885b6386c6da270e8c78d491b', '[\"*\"]', NULL, '2022-10-22 15:40:59', '2022-10-22 15:40:59'),
+(113, 'App\\Models\\User', 3, 'auth_token', '71cbac72c1a33f530dcdf1419fa137b17ee946b509488da35c609dc1146c1ba2', '[\"*\"]', NULL, '2022-10-22 15:42:44', '2022-10-22 15:42:44'),
+(114, 'App\\Models\\User', 3, 'auth_token', 'b4eca87c73c6e1b96383b21fbd587d3542ab5960565c6d35b6e76d8d5f61ede8', '[\"*\"]', NULL, '2022-10-22 15:43:58', '2022-10-22 15:43:58'),
+(115, 'App\\Models\\User', 3, 'auth_token', 'bb984969ddafd86bdfa14be2c6023a73f1f231e54646465dec30a5694193c24c', '[\"*\"]', NULL, '2022-10-22 15:45:57', '2022-10-22 15:45:57'),
+(116, 'App\\Models\\User', 3, 'auth_token', '1b24c652c50b1cc68d4bcd441009c1a88c56652478f9fd50db07c03b662d8b02', '[\"*\"]', NULL, '2022-10-22 15:46:03', '2022-10-22 15:46:03'),
+(117, 'App\\Models\\User', 3, 'auth_token', 'cc1efb8d60abf8cd9cd3d9f30829717b4a23726e0880b9c4389a92a91db14698', '[\"*\"]', NULL, '2022-10-22 15:48:35', '2022-10-22 15:48:35'),
+(118, 'App\\Models\\User', 3, 'auth_token', '1565f28a6e3c227ad675478ca62b1789dd81aad8e86f004bfbd68bf81bdd9ec2', '[\"*\"]', NULL, '2022-10-22 16:04:29', '2022-10-22 16:04:29'),
+(119, 'App\\Models\\User', 3, 'auth_token', 'cc313e04e1b05197f93b87bafcda313b756d4acc0925c860cec12db594195567', '[\"*\"]', NULL, '2022-10-22 16:08:46', '2022-10-22 16:08:46'),
+(120, 'App\\Models\\User', 3, 'auth_token', 'df7887bf4e17f442e3be10719663332fdd0861b94d8169d4f460fd36a3bf1d4a', '[\"*\"]', NULL, '2022-10-22 16:13:33', '2022-10-22 16:13:33'),
+(121, 'App\\Models\\User', 3, 'auth_token', 'fb12f59fd3d22f6ae981098cbcb40ce85c5d9d6265de26d3da08dc87237e623b', '[\"*\"]', NULL, '2022-10-22 16:22:36', '2022-10-22 16:22:36'),
+(122, 'App\\Models\\User', 3, 'auth_token', 'd153301cb5d66e1e486c0322041602bb412b44bb2ed3d69116858c91e90b218b', '[\"*\"]', NULL, '2022-10-22 16:33:21', '2022-10-22 16:33:21'),
+(123, 'App\\Models\\User', 3, 'auth_token', '8abff8f4f7602adf946eb0c4c35d94ab302f58d00a16d83ca33922e6c41596f5', '[\"*\"]', NULL, '2022-10-22 16:33:54', '2022-10-22 16:33:54'),
+(124, 'App\\Models\\User', 3, 'auth_token', '94caba6b161c684901e6c75258c426331443f360290e9e43599ed714f4a119e9', '[\"*\"]', NULL, '2022-10-22 16:39:17', '2022-10-22 16:39:17'),
+(125, 'App\\Models\\User', 3, 'auth_token', 'fd95290ce32472645343c5cdb5f7930ffc93e159d98aeb93dc47b1d721714580', '[\"*\"]', NULL, '2022-10-22 16:42:24', '2022-10-22 16:42:24'),
+(126, 'App\\Models\\User', 3, 'auth_token', '7ff962b2b984b21d670ecf5c405583684c9f9735e388477f512664020e99b40c', '[\"*\"]', NULL, '2022-10-22 16:43:30', '2022-10-22 16:43:30'),
+(127, 'App\\Models\\User', 3, 'auth_token', 'ee9f2a5f3774624a8c40185ba1d8c70052577f24c710df9f45db5bd6b36fb9e6', '[\"*\"]', NULL, '2022-10-22 16:49:22', '2022-10-22 16:49:22'),
+(128, 'App\\Models\\User', 3, 'auth_token', '8c37d3077c9386d0197fb8dac324f727885299b7f110831d88b2c5a36802153d', '[\"*\"]', NULL, '2022-10-22 16:52:10', '2022-10-22 16:52:10'),
+(129, 'App\\Models\\User', 3, 'auth_token', '0549e06291c9503cb19cc3d1c815d80ea1a8a277a9fda63168e1b1eba09fad4e', '[\"*\"]', NULL, '2022-10-22 16:53:58', '2022-10-22 16:53:58'),
+(130, 'App\\Models\\User', 3, 'auth_token', '29c54e87e7c2560207a6288a1455d4c5e3287e0d8cce350d019f582dd91f5636', '[\"*\"]', NULL, '2022-10-22 16:59:54', '2022-10-22 16:59:54'),
+(131, 'App\\Models\\User', 3, 'auth_token', 'c315ef283ad22d34d9eee1150e86fd817c37a9e9833657d145638dfcf4166de3', '[\"*\"]', NULL, '2022-10-22 17:00:41', '2022-10-22 17:00:41'),
+(132, 'App\\Models\\User', 3, 'auth_token', '286b14a32e43881c77d030e1cac500b616254164189eca3d4ac699217155a114', '[\"*\"]', NULL, '2022-10-22 17:01:02', '2022-10-22 17:01:02'),
+(133, 'App\\Models\\User', 3, 'auth_token', 'efec152a0c0e13dbacefb9e54014c9eba65de0c17c75996667afa2fe9d023497', '[\"*\"]', NULL, '2022-10-22 17:01:46', '2022-10-22 17:01:46'),
+(134, 'App\\Models\\User', 3, 'auth_token', 'b20c569fe7634a992a50f17fcdc98b0c7403d540c4d392f79a61da237255293f', '[\"*\"]', NULL, '2022-10-22 17:02:20', '2022-10-22 17:02:20'),
+(135, 'App\\Models\\User', 3, 'auth_token', 'c88fc7057a7d4a11c238d73aa49ffdf56ddf621f8d4ec667a6f55d2f637be05b', '[\"*\"]', NULL, '2022-10-22 17:03:04', '2022-10-22 17:03:04'),
+(136, 'App\\Models\\User', 3, 'auth_token', '7a47db6dbd328c3f87788cd2a77a0ce9b58ee236758ae3fee0e8e7a5ccd49402', '[\"*\"]', NULL, '2022-10-22 17:03:24', '2022-10-22 17:03:24'),
+(137, 'App\\Models\\User', 3, 'auth_token', 'f6a2e2a02db0eaa5c824fd99b58fd40626c5462674d355a49273930c5c317ef3', '[\"*\"]', NULL, '2022-10-22 17:04:57', '2022-10-22 17:04:57'),
+(138, 'App\\Models\\User', 3, 'auth_token', 'c20a2e628541cc77ba3513198a2382a6afcad1aae12d72c985260457be22ed34', '[\"*\"]', NULL, '2022-10-22 17:05:27', '2022-10-22 17:05:27'),
+(139, 'App\\Models\\User', 3, 'auth_token', '274aab6ebf806cf7f7a532bd0d8c76653e7c2aafe651bd1f753dfe82601281eb', '[\"*\"]', NULL, '2022-10-22 17:05:44', '2022-10-22 17:05:44'),
+(140, 'App\\Models\\User', 3, 'auth_token', '648b869ad47083d9f5fb32b103eae419328e3fcdffd52697a9ff749ce400afe7', '[\"*\"]', NULL, '2022-10-22 17:06:37', '2022-10-22 17:06:37'),
+(141, 'App\\Models\\User', 3, 'auth_token', '7684eabe6a49c421623b830040529755001999c387feafc17cd00f0c6e61fb5e', '[\"*\"]', NULL, '2022-10-22 17:07:32', '2022-10-22 17:07:32'),
+(142, 'App\\Models\\User', 3, 'auth_token', '10489c4e9cc52eab929cd36c640f0b8834e2cd52533f8a4ce3d365b19a35a360', '[\"*\"]', NULL, '2022-10-22 17:08:10', '2022-10-22 17:08:10'),
+(143, 'App\\Models\\User', 3, 'auth_token', '250d54e8bc490962bb25bb873454bb54a7c82f36d001a974dcda710bb8e81b7a', '[\"*\"]', NULL, '2022-10-22 17:08:22', '2022-10-22 17:08:22'),
+(144, 'App\\Models\\User', 3, 'auth_token', 'ef1c098d92b27246bc18cf68ddda4eef0dd7a8bdf5e25616f3d55a1611771268', '[\"*\"]', NULL, '2022-10-22 17:08:35', '2022-10-22 17:08:35'),
+(145, 'App\\Models\\User', 3, 'auth_token', '71d22ace49bdcd68f57c5a57bbb111b9f525d7ff712725cf15ed64e3608b66e4', '[\"*\"]', NULL, '2022-10-22 17:09:08', '2022-10-22 17:09:08'),
+(146, 'App\\Models\\User', 3, 'auth_token', '27684da7b2a5a702c0eaada8c81497081b2c52da376ea8f7b02b8fe99ff1f24b', '[\"*\"]', NULL, '2022-10-22 17:11:07', '2022-10-22 17:11:07'),
+(147, 'App\\Models\\User', 3, 'auth_token', 'c80d192e75905672c9dc431b9f8cb8c282bdd5c926893a817732be0614d44709', '[\"*\"]', NULL, '2022-10-22 17:11:31', '2022-10-22 17:11:31'),
+(148, 'App\\Models\\User', 3, 'auth_token', '0170c7b708c2c49600a6c93676bd682931b9abcd7066f36f85dd7a5beb0e5ecd', '[\"*\"]', NULL, '2022-10-22 17:12:31', '2022-10-22 17:12:31'),
+(149, 'App\\Models\\User', 3, 'auth_token', '8cb263286dced73da10068e8ad9276337447aa6af665267f7623af6385adeef4', '[\"*\"]', NULL, '2022-10-22 17:13:05', '2022-10-22 17:13:05'),
+(150, 'App\\Models\\User', 3, 'auth_token', 'ca117d3bcd9d8ede39c63aa051e56a58a8fa72ec48435440f2ae05bae5362dbe', '[\"*\"]', NULL, '2022-10-22 17:13:46', '2022-10-22 17:13:46'),
+(151, 'App\\Models\\User', 3, 'auth_token', 'ea3629b5fff9d07baf41461219e8125a406a86dc80424fbe2f52ef87ecd1dd65', '[\"*\"]', NULL, '2022-10-22 17:14:14', '2022-10-22 17:14:14'),
+(152, 'App\\Models\\User', 3, 'auth_token', '5257a8827b2d30ea88245e88cf6b444c1b2371c2cd14a4ea545f9a6791ef12a9', '[\"*\"]', NULL, '2022-10-22 17:19:33', '2022-10-22 17:19:33'),
+(153, 'App\\Models\\User', 3, 'auth_token', '9c076440b5084c60ffdb1db77e321291de252ee613e4959581ed937f69c0e53b', '[\"*\"]', NULL, '2022-10-22 17:21:33', '2022-10-22 17:21:33'),
+(154, 'App\\Models\\User', 3, 'auth_token', '428c24e53c4df5c520fe2e630949445008ba880532f7de470c6abc155ba77f4a', '[\"*\"]', NULL, '2022-10-22 17:26:47', '2022-10-22 17:26:47'),
+(155, 'App\\Models\\User', 3, 'auth_token', 'e16876f51ec97ce8c9290eef23c3d86143bbe8c914917ee4ddda2ab8efa1a6c6', '[\"*\"]', NULL, '2022-10-22 17:28:54', '2022-10-22 17:28:54'),
+(156, 'App\\Models\\User', 3, 'auth_token', 'ec71b3ab86418a9044a0b76dfec791ab520939777e84658b11a4b59a3cf92a9a', '[\"*\"]', NULL, '2022-10-22 17:30:13', '2022-10-22 17:30:13'),
+(157, 'App\\Models\\User', 3, 'auth_token', '48bdaf16ada8ed42191873715d5197f0dd9f18ee50d08f2fd9f1289fad591d8b', '[\"*\"]', NULL, '2022-10-22 17:31:18', '2022-10-22 17:31:18'),
+(158, 'App\\Models\\User', 3, 'auth_token', '8852affb7610825abb2b6e91a1179ad84a2c444b47f45b8e438247f966bb7e95', '[\"*\"]', NULL, '2022-10-22 17:31:33', '2022-10-22 17:31:33'),
+(159, 'App\\Models\\User', 3, 'auth_token', '365e78936d78c7b9e323e97f0030565d835ec397c5d9502964b8e89f2178278b', '[\"*\"]', NULL, '2022-10-22 17:32:02', '2022-10-22 17:32:02'),
+(160, 'App\\Models\\User', 3, 'auth_token', 'b4d465d925124d91634a596f2d70eb1b8ab7b6e66829b47b88a8ff70bc81d526', '[\"*\"]', NULL, '2022-10-22 17:43:55', '2022-10-22 17:43:55'),
+(161, 'App\\Models\\User', 3, 'auth_token', 'f20b55e50172979e61d45982804fc8ccd8906bcd221e355bdd3d0541fee75a80', '[\"*\"]', NULL, '2022-10-22 17:50:54', '2022-10-22 17:50:54'),
+(162, 'App\\Models\\User', 3, 'auth_token', '506de1dcad4c64ea6dff6a5dfc9651e037c2d8ed5d8435060c5f702c2f4e19f9', '[\"*\"]', NULL, '2022-10-22 17:57:26', '2022-10-22 17:57:26'),
+(163, 'App\\Models\\User', 3, 'auth_token', 'c058de7c8af0326870fbace8111ececc0e178bc9bfb2d11179c63f53ebdf396b', '[\"*\"]', NULL, '2022-10-22 17:59:20', '2022-10-22 17:59:20'),
+(164, 'App\\Models\\User', 3, 'auth_token', '3c5a91d80cd29279cb4dca5c07611bb253d6ed2d75e7288b15b28d8db9e05fbc', '[\"*\"]', NULL, '2022-10-22 18:08:28', '2022-10-22 18:08:28'),
+(165, 'App\\Models\\User', 3, 'auth_token', 'aa05a6aeed75b1082cdc59aca089f89fd129c9c67f13a6b50478bd6eb6d1cf08', '[\"*\"]', NULL, '2022-10-22 18:09:53', '2022-10-22 18:09:53'),
+(166, 'App\\Models\\User', 3, 'auth_token', 'f13ea2a32c74308195d4f0746f6d1bd3fd5c063faab21e1dbfba5953c4fd9f6a', '[\"*\"]', NULL, '2022-10-22 18:10:23', '2022-10-22 18:10:23'),
+(167, 'App\\Models\\User', 3, 'auth_token', '134d1c9d1a73335f37c4a1f9b31a8586b500438adc77bd37993cb4a851f6363f', '[\"*\"]', NULL, '2022-10-22 18:11:01', '2022-10-22 18:11:01'),
+(168, 'App\\Models\\User', 3, 'auth_token', '5c5e84ae6cc770ccf874ff519840adcbd4d67409a8859640f93537bd833680db', '[\"*\"]', NULL, '2022-10-22 18:15:19', '2022-10-22 18:15:19'),
+(169, 'App\\Models\\User', 3, 'auth_token', 'a4e19cbc88e952cda679fa760b2be0c35c43085f0f8392b6f7483b725794f392', '[\"*\"]', NULL, '2022-10-22 18:19:29', '2022-10-22 18:19:29'),
+(170, 'App\\Models\\User', 3, 'auth_token', '820db4e7266e53e22519f76cbe5cfe976b7e26244e7a9bc4eec4621a40a6a83b', '[\"*\"]', NULL, '2022-10-22 18:20:10', '2022-10-22 18:20:10'),
+(171, 'App\\Models\\User', 3, 'auth_token', '2f66f33037a2a14d0d015f964159ec698f5250478466f6a369358f15d580fef8', '[\"*\"]', NULL, '2022-10-22 18:26:09', '2022-10-22 18:26:09'),
+(172, 'App\\Models\\User', 3, 'auth_token', 'd15110b0647af45507f09778361bb2c0e19be65d4fb4569a380eb5ac28c96417', '[\"*\"]', NULL, '2022-10-22 18:27:31', '2022-10-22 18:27:31'),
+(173, 'App\\Models\\User', 3, 'auth_token', '53b9c9485cd6325d415f581e67b7dea9882c9cfaba4f2eb4c805b37c674a0b85', '[\"*\"]', NULL, '2022-10-22 18:28:19', '2022-10-22 18:28:19'),
+(174, 'App\\Models\\User', 3, 'auth_token', '3008e70c6868827cdd9c8d5b8a4df02240708ebe73b93e40d5f2d1769241e2c6', '[\"*\"]', NULL, '2022-10-22 18:29:04', '2022-10-22 18:29:04'),
+(175, 'App\\Models\\User', 3, 'auth_token', '8e24ebb3f3cdd84b9e7c99a49707a1dc4e14893e036d3d9cf9da64e162d9ede3', '[\"*\"]', NULL, '2022-10-22 18:29:22', '2022-10-22 18:29:22'),
+(176, 'App\\Models\\User', 3, 'auth_token', 'e812eef0bacc6d172bda532e6311dc2d0db832c8256319d9d86a1cc2795efbaf', '[\"*\"]', NULL, '2022-10-22 18:30:12', '2022-10-22 18:30:12'),
+(177, 'App\\Models\\User', 3, 'auth_token', '49414646df60e0e5dac77e146560515a08463898e01e7b5266b8dbe47eddc665', '[\"*\"]', NULL, '2022-10-23 11:17:19', '2022-10-23 11:17:19'),
+(178, 'App\\Models\\User', 3, 'auth_token', '26eadf51d2ec5cce8fe108be0c6b3482b525dcec43fd4db8bf459e85f3a5d43b', '[\"*\"]', NULL, '2022-10-23 11:17:56', '2022-10-23 11:17:56'),
+(179, 'App\\Models\\User', 3, 'auth_token', '5a87722d6257370abdc455d0b394ab236a4ed62e2b13b26b74208ca63a1d93ea', '[\"*\"]', NULL, '2022-10-23 11:48:50', '2022-10-23 11:48:50'),
+(180, 'App\\Models\\User', 3, 'auth_token', '2ab22fc67c9cd9be7f92ead045217e6de96e0436d69a665e4367031824c77a03', '[\"*\"]', NULL, '2022-10-23 11:49:58', '2022-10-23 11:49:58'),
+(181, 'App\\Models\\User', 3, 'auth_token', 'fec785857e81e47df55dfa2dfe179c398914714143848febce9892f48c014735', '[\"*\"]', NULL, '2022-10-23 13:52:54', '2022-10-23 13:52:54'),
+(182, 'App\\Models\\User', 3, 'auth_token', '5ba779a9e06ff601ef803ebf076f4d2c20f835c874312354dbe7ab75f0b74b2e', '[\"*\"]', NULL, '2022-10-23 13:53:05', '2022-10-23 13:53:05'),
+(183, 'App\\Models\\User', 3, 'auth_token', 'de54c27dfcbab6a2c1012e676ef076eb687fb4a99b13530d5fb78348ae2ff686', '[\"*\"]', NULL, '2022-10-23 13:53:19', '2022-10-23 13:53:19'),
+(184, 'App\\Models\\User', 3, 'auth_token', '992e36ea4d16f0d3711ca0903d77f12cf65426cdf1e1d3ab2cd024edac5c8807', '[\"*\"]', NULL, '2022-10-23 14:47:27', '2022-10-23 14:47:27'),
+(185, 'App\\Models\\User', 3, 'auth_token', '48a300b3fbc293e6548c91fae65e93020e1486455ae880cc0c1b5bcd9517d0dd', '[\"*\"]', NULL, '2022-10-23 14:49:31', '2022-10-23 14:49:31'),
+(186, 'App\\Models\\User', 3, 'auth_token', '9d8aee17c3067d5b55451eecb43892c0ca7ed133915d5cb0ac43c755d4699123', '[\"*\"]', NULL, '2022-10-23 15:42:01', '2022-10-23 15:42:01');
 
 -- --------------------------------------------------------
 
@@ -700,7 +819,23 @@ CREATE TABLE IF NOT EXISTS `suppliers` (
   `supplier_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `denumire_furnizor` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`supplier_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `suppliers`
+--
+
+INSERT INTO `suppliers` (`supplier_id`, `denumire_furnizor`) VALUES
+(1, 'LG'),
+(2, 'Samsung'),
+(3, 'Frigidaire'),
+(4, 'Hisense'),
+(5, 'Arctic'),
+(6, 'Beko'),
+(7, 'Boreal'),
+(8, 'LDK'),
+(9, 'Retro'),
+(10, 'Star-Light');
 
 -- --------------------------------------------------------
 
@@ -743,7 +878,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `users_email_unique` (`email`),
   KEY `users_employee_id_foreign` (`employee_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
@@ -751,7 +886,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`user_id`, `employee_id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Gabi123', 'gamingro99@yahoo.com', NULL, '$2y$10$R6GkTI.6ow7Ae8h6lDs4KeIwWGMwS92s8WREiED2kA/RN8JQublCC', NULL, '2022-10-16 12:48:55', '2022-10-16 12:48:55'),
-(2, 1, 'Moraru Gabriel Danut', 'moraru.gabriel00@gmail.com', NULL, '$2y$10$TeMvc9wFwZdxsp2NUx/5o.iBClEIGJ4lXsiOA4vivXDCZCZQn0Fj6', NULL, '2022-10-16 13:56:29', '2022-10-16 13:56:29');
+(2, 1, 'Moraru Gabriel Danut', 'moraru.gabriel00@gmail.com', NULL, '$2y$10$TeMvc9wFwZdxsp2NUx/5o.iBClEIGJ4lXsiOA4vivXDCZCZQn0Fj6', NULL, '2022-10-16 13:56:29', '2022-10-16 13:56:29'),
+(3, 2, 'Goose99', 'marianpoto@yahoo.com', NULL, '$2y$10$U6U5RN6s308jNutaDuvoaOjZfZmZ7Hl5CMuOYkGnNhI6kJmWEUTza', NULL, '2022-10-20 17:45:21', '2022-10-20 17:45:21');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
