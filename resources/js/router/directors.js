@@ -8,9 +8,6 @@ import AddDrivingLicense from "../components/admin/EmployeePages/AddDrivingLicen
 // Director aprovizionare
 import addFridge from "../components/admin/FridgePages/addFridge.vue";
 
-// Director aprovizionare
-import addFridge from "../components/admin/FridgePages/addFridge.vue";
-
 export default [
     {
         path: "/users",

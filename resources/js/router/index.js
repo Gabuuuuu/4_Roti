@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from "vue-router";
-import store from "../store/index";
 
 // Universal
 import NotFound from "../pages/notFound.vue";

@@ -21,7 +21,7 @@
                                 >Preturi
                             </router-link>
                         </li>
-                        <li v-if="departmentIDs.includes(returnDepRoleProperty('dep'))">
+                        <li>
                             <router-link class="nav-link" to="/cars"
                                 >Masini
                             </router-link>

@@ -54,6 +54,7 @@ class CarController extends Controller
             'culoare' => $request->culoare,
             'vin' => $request->vin,
             'oferit_de' => $request->oferit_de,
+            'pret_curent' => $request->pret_achizitie,
             'pret_achizitie' => $request->pret_achizitie,
             'culoare' => $request->culoare,
             'daune' => $request->daune,
@@ -115,7 +116,7 @@ class CarController extends Controller
 
     public function carsDetails() {
         $carsDetails = [];
-        $carsDetails[0] = Car::where('daune', '>', 0)->get();
+        $carsDetails[0] = Car::where('daune', '<', 2)->get();
         $carsDetails[1] = Department::all();
         $carsDetails[2] = DB::select('SELECT * FROM car_Type');
 

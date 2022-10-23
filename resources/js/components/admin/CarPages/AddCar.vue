@@ -373,7 +373,7 @@ export default {
                     title: "Car added successfully",
                 });
 
-                this.$router.push({ path: "/carsinvoices" });
+                this.$router.push({ path: "/carinvoices" });
                 this.loadData();
             });
         },
