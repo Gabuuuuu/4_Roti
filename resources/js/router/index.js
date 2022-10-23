@@ -65,25 +65,25 @@ const router = createRouter({
     ],
 });
 
-router.beforeEach((to, _, next) => {
-    const userRole = store.getters.retrieveRoleData?.length
-        ? JSON.parse(store.getters.retrieveRoleData).role_id
-        : 0;
+// router.beforeEach((to, _, next) => {
+//     const userRole = store.getters.retrieveRoleData?.length
+//         ? JSON.parse(store.getters.retrieveRoleData).role_id
+//         : 0;
 
-    if (
-        to.meta.requiresAuth &&
-        to.meta.requiresAdmin &&
-        store.getters.isAuthenticated &&
-        userRole < 2
-    ) {
-        next("/");
-    } else if (to.meta.requiresAuth && !store.getters.isAuthenticated) {
-        next("/login");
-    } else if (to.meta.guest && store.getters.isAuthenticated) {
-        next("/cars");
-    } else {
-        next();
-    }
-});
+//     if (
+//         to.meta.requiresAuth &&
+//         to.meta.requiresAdmin &&
+//         store.getters.isAuthenticated &&
+//         userRole < 2
+//     ) {
+//         next("/");
+//     } else if (to.meta.requiresAuth && !store.getters.isAuthenticated) {
+//         next("/login");
+//     } else if (to.meta.guest && store.getters.isAuthenticated) {
+//         next("/cars");
+//     } else {
+//         next();
+//     }
+// });
 
 export default router;

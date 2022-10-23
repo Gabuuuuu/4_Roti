@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 20, 2022 at 08:37 PM
+-- Generation Time: Oct 23, 2022 at 07:30 PM
 -- Server version: 5.7.36
 -- PHP Version: 7.4.26
 
@@ -257,7 +257,7 @@ DROP TABLE IF EXISTS `driving_licenses`;
 CREATE TABLE IF NOT EXISTS `driving_licenses` (
   `driving_license_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `employee_id` int(11) NOT NULL,
-  `license_type_id` int(11) NOT NULL,
+  `license_type_id` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nume_angajat` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `prenume_angajat` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `data_nasterii` date NOT NULL,
@@ -269,9 +269,15 @@ CREATE TABLE IF NOT EXISTS `driving_licenses` (
   `Nr_permis` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `permis_suspendat` tinyint(1) NOT NULL,
   PRIMARY KEY (`driving_license_id`),
-  KEY `driving_licenses_employee_id_foreign` (`employee_id`),
-  KEY `driving_licenses_license_type_id_foreign` (`license_type_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  KEY `driving_licenses_employee_id_foreign` (`employee_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `driving_licenses`
+--
+
+INSERT INTO `driving_licenses` (`driving_license_id`, `employee_id`, `license_type_id`, `nume_angajat`, `prenume_angajat`, `data_nasterii`, `locul_nasterii`, `data_emiterii`, `data_expirarii`, `autoritatea_emiterii`, `CNP`, `Nr_permis`, `permis_suspendat`) VALUES
+(1, 1, 'C+E', 'Moraru', 'Gabriel', '2022-10-05', 'assfaaf', '2022-10-04', '2022-10-05', 'SDCRAPSSAF SDAA', '1231231231231', '1234567890', 0);
 
 -- --------------------------------------------------------
 
@@ -305,7 +311,7 @@ CREATE TABLE IF NOT EXISTS `employees` (
 --
 
 INSERT INTO `employees` (`employee_id`, `role_id`, `nume_angajat`, `prenume_angajat`, `CNP`, `actDeIdentitate`, `nr`, `dataEliberarii`, `domiciliul`, `strada`, `nrStrada`, `apartament`, `sector`, `data_inceput_ang`, `data_semnare_contract`) VALUES
-(1, 5, 'Gabi', 'Gabitzu', '31231331212', 'buletin', '3212', '2022-10-12', '21312321312', 'GAGA', '3123', '1321', '1', '2022-10-04', '2022-10-19'),
+(1, 2, 'Gabi', 'Gabitzu', '31231331212', 'buletin', '3212', '2022-10-12', '21312321312', 'GAGA', '3123', '1321', '1', '2022-10-04', '2022-10-19'),
 (2, 3, 'Leonte', 'Dalmatianul', '31231331212', 'buletin', '3212', '2022-10-12', '21312321312', 'ADASDADWA', '3123', '1321', '2', '2022-10-04', '2022-10-29');
 
 -- --------------------------------------------------------
@@ -514,7 +520,7 @@ CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `personal_access_tokens`
@@ -608,7 +614,11 @@ INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `n
 (85, 'App\\Models\\User', 2, 'auth_token', 'da6a8f2fe38bfa8190ccca567ded55a9697c6b9c8c80a0c093f8e04e364acb77', '[\"*\"]', NULL, '2022-10-17 14:06:56', '2022-10-17 14:06:56'),
 (86, 'App\\Models\\User', 2, 'auth_token', '2f344c2ba5f1fd5ba15429e569a99e665712befc14fc2610be7eaf33bdad8937', '[\"*\"]', NULL, '2022-10-18 06:31:36', '2022-10-18 06:31:36'),
 (87, 'App\\Models\\User', 2, 'auth_token', '7d9e0013155a7881abef7ab998eb18b4c6fc7616ee1c0a3ed707b9ab1552e15f', '[\"*\"]', NULL, '2022-10-18 10:03:53', '2022-10-18 10:03:53'),
-(88, 'App\\Models\\User', 2, 'auth_token', 'cdb01a8a76788aea730cae588a40986a4a4b6d74f3496961c262e2f9a2809c4f', '[\"*\"]', NULL, '2022-10-19 08:31:06', '2022-10-19 08:31:06');
+(88, 'App\\Models\\User', 2, 'auth_token', 'cdb01a8a76788aea730cae588a40986a4a4b6d74f3496961c262e2f9a2809c4f', '[\"*\"]', NULL, '2022-10-19 08:31:06', '2022-10-19 08:31:06'),
+(89, 'App\\Models\\User', 2, 'auth_token', '45f570820c49995c77206153b17ce4214247b9e2eecb979bbc37f6c9790c2210', '[\"*\"]', NULL, '2022-10-23 13:47:15', '2022-10-23 13:47:15'),
+(90, 'App\\Models\\User', 2, 'auth_token', '4925812ac2c701404524a72ca566769d8a4c4d32aa283b08d3d4e1a1cd3b267f', '[\"*\"]', NULL, '2022-10-23 14:02:04', '2022-10-23 14:02:04'),
+(91, 'App\\Models\\User', 2, 'auth_token', '483b2d842d776d5005fedf8ce18bc09de5ebbfff63c8e310bd2672e90f3ce254', '[\"*\"]', NULL, '2022-10-23 14:04:48', '2022-10-23 14:04:48'),
+(92, 'App\\Models\\User', 2, 'auth_token', '60299095b124fda16cfa4e669deeadcf9e3216d41e41d86c4e93f4253bc78f0b', '[\"*\"]', NULL, '2022-10-23 14:06:38', '2022-10-23 14:06:38');
 
 -- --------------------------------------------------------
 

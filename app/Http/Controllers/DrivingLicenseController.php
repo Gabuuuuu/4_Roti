@@ -12,11 +12,58 @@ class DrivingLicenseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+     public function index()
     {
-        //
+        $drivinglicenses = DrivingLicense::all();
+
+        return response()->json($drivinglicenses);
     }
 
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+        public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'employee_id' => 'required|string|max:255',
+            'license_type_id' => 'required|string|max:255',
+            'nume_angajat' => 'required|string|max:255',
+            'prenume_angajat' => 'required|string|max:255',
+            'data_nasterii' => 'required|date|max:255',
+            'locul_nasterii' => 'required|string|max:255',
+            'data_emiterii' => 'required|date|max:255',
+            'data_expirarii	' => 'required|date|max:255',
+            'autoritatea_emiterii' => 'required|string|max:255',
+            'CNP' => 'required|string|max:255',
+            'Nr_permis' => 'required|string|max:255',
+            'permis_suspendat' => 'required|string|max:255',
+        ]);
+
+        // if($request->hasfile('file')) {
+            $drivinglicense = new DrivingLicense([
+                'employee_id' => $request->employee_id,
+                'license_type_id' => $request->license_type_id,
+                'nume_angajat' => $request->nume_angajat,
+                'prenume_angajat' => $request->prenume_angajat,
+                'data_nasterii'=> $request->data_nasterii,
+                'locul_nasterii' => $request->locul_nasterii,
+                'data_emiterii' => $request->data_emiterii,
+                'data_expirarii' => $request->data_expirarii,
+                'autoritatea_emiterii' => $request->autoritatea_emiterii,
+                'CNP' => $request->CNP,
+                'Nr_permis' => $request->Nr_permis,
+                'permis_suspendat' => $request->permis_suspendat,
+            ]);
+
+            $drivinglicense->save();
+        // }
+
+        return response()->json('Driving License successfully added');
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -27,16 +74,6 @@ class DrivingLicenseController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
