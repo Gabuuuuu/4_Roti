@@ -364,11 +364,16 @@ export default {
             data.append("culoare", this.form.color);
             data.append("vin", this.form.vin);
             data.append("oferit_de", this.form.seller);
-            data.append("pret_curent", this.form.price);
+            data.append("pret_achizitie", this.form.price);
             data.append("daune", 0);
 
             axios.post("/api/cars", data).then(() => {
-                this.$router.push({ path: "/cars" });
+                Toast.fire({
+                    icon: "success",
+                    title: "Car added successfully",
+                });
+
+                this.$router.push({ path: "/carsinvoices" });
                 this.loadData();
             });
         },

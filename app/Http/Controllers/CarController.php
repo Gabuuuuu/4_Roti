@@ -36,32 +36,30 @@ class CarController extends Controller
             'culoare' => 'required|string|max:255',
             'vin' => 'required|string|max:255',
             'oferit_de' => 'required|string|max:255',
-            'pret_curent' => 'required|string|max:255',
+            'pret_achizitie' => 'required|string|max:255',
             'daune' => 'required|string|max:255',
         ]);
 
-        // if($request->hasfile('file')) {
-            $car = new Car([
-                'department_id' => $request->department_id,
-                'car_type_id' => $request->car_type_id,
-                'marca' => $request->marca,
-                'model' => $request->model,
-                'an'=> $request->an,
-                'km' => $request->km,
-                'combustibil' => $request->combustibil,
-                'putere' => $request->putere,
-                'transmisie' => $request->transmisie,
-                'nr_portiere' => $request->nr_portiere,
-                'culoare' => $request->culoare,
-                'vin' => $request->vin,
-                'oferit_de' => $request->oferit_de,
-                'pret_curent' => $request->pret_curent,
-                'culoare' => $request->culoare,
-                'daune' => $request->daune,
-            ]);
+        $car = new Car([
+            'department_id' => $request->department_id,
+            'car_type_id' => $request->car_type_id,
+            'marca' => $request->marca,
+            'model' => $request->model,
+            'an'=> $request->an,
+            'km' => $request->km,
+            'combustibil' => $request->combustibil,
+            'putere' => $request->putere,
+            'transmisie' => $request->transmisie,
+            'nr_portiere' => $request->nr_portiere,
+            'culoare' => $request->culoare,
+            'vin' => $request->vin,
+            'oferit_de' => $request->oferit_de,
+            'pret_achizitie' => $request->pret_achizitie,
+            'culoare' => $request->culoare,
+            'daune' => $request->daune,
+        ]);
 
-            $car->save();
-        // }
+        $car->save();
 
         return response()->json('Car successfully added');
     }

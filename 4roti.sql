@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 23, 2022 at 07:17 PM
+-- Generation Time: Oct 23, 2022 at 07:44 PM
 -- Server version: 5.7.36
 -- PHP Version: 7.4.26
 
@@ -91,7 +91,8 @@ CREATE TABLE IF NOT EXISTS `cars` (
   `car_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `car_type_id` int(11) NOT NULL,
   `department_id` int(11) NOT NULL,
-  `pret_curent` int(11) NOT NULL,
+  `pret_curent` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pret_achizitie` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `oferit_De` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `marca` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `model` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -108,15 +109,14 @@ CREATE TABLE IF NOT EXISTS `cars` (
   PRIMARY KEY (`car_id`),
   KEY `cars_department_id_foreign` (`department_id`),
   KEY `cars_car_type_id_foreign` (`car_type_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `cars`
 --
 
-INSERT INTO `cars` (`car_id`, `car_type_id`, `department_id`, `pret_curent`, `oferit_De`, `marca`, `model`, `km`, `an`, `combustibil`, `putere`, `transmisie`, `VIN`, `nr_portiere`, `culoare`, `daune`, `data_emiterii`) VALUES
-(1, 1, 1, 1000, 'Gabi srl', 'BMW', 'X5', '14232', '2000', 'Diesel', '260', 'manual', '6636326326325', 3, 'rosie', 1, '2022-10-18 21:19:27'),
-(2, 1, 1, 213, '321', 'BMW', '312', '213', '132', 'Diesel', '312', 'Automatic', '321', 2, 'alb', 0, '2022-10-18 21:20:19');
+INSERT INTO `cars` (`car_id`, `car_type_id`, `department_id`, `pret_curent`, `pret_achizitie`, `oferit_De`, `marca`, `model`, `km`, `an`, `combustibil`, `putere`, `transmisie`, `VIN`, `nr_portiere`, `culoare`, `daune`, `data_emiterii`) VALUES
+(9, 1, 1, NULL, '1234', '1234', 'BMW', '1234', '1234', '1234', 'Diesel', '1234', 'Automatic', '1234', 2, 'alb', 0, '2022-10-23 19:43:27');
 
 -- --------------------------------------------------------
 

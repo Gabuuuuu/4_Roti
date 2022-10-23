@@ -27,6 +27,7 @@ class Car extends Model
         'vin',
         'culoare',
         'pret_curent',
+        'pret_achizitie',
         'oferit_de',
         'daune',
     ];
