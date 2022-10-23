@@ -115,5 +115,12 @@ class CarController extends Controller
         return response()->json($carParts);
     }
 
+    public function carsDetails() {
+        $carsDetails = [];
+        $carsDetails[0] = Car::where('daune', '>', 0)->get();
+        $carsDetails[1] = Department::all();
+        $carsDetails[2] = DB::select('SELECT * FROM car_Type');
 
+        return response()->json($carsDetails);
+    }
 }

@@ -20025,7 +20025,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      cars: []
+      cars: [],
+      deparments: [],
+      carTypes: []
     };
   },
   created: function created() {
@@ -20042,19 +20044,37 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.get("api/cars");
+                return axios.get("/api/carsDetails");
 
               case 2:
                 response = _context.sent;
-                _this.cars = response.data;
+                _this.cars = response.data[0];
+                _this.deparments = response.data[1];
+                _this.carTypes = response.data[2];
 
-              case 4:
+              case 6:
               case "end":
                 return _context.stop();
             }
           }
         }, _callee);
       }))();
+    },
+    idToCarName: function idToCarName(id) {
+      var carDetails = this.cars.filter(function (item) {
+        return item.car_id === id;
+      })[0];
+      return "".concat(carDetails.car_id, ". ").concat(carDetails.marca, " ").concat(carDetails.model);
+    },
+    carDepartment: function carDepartment(id) {
+      return this.deparments.filter(function (item) {
+        return item.department_id === id;
+      })[0].denumire_departament;
+    },
+    carTypeName: function carTypeName(id) {
+      return this.carTypes.filter(function (item) {
+        return item.car_type_id === id;
+      })[0].denumire_tip_masina;
     }
   }
 });
@@ -22436,11 +22456,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       "class": "col-xs-12 col-sm-4",
       key: car.index
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(car.marca) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(car.model), 1
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.idToCarName(car.car_id)), 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(car.car_type_id) + " (Denumirea tipului de masina) ", 1
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_9, " Tip vehicul: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.carTypeName(car.car_type_id)), 1
     /* TEXT */
-    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_11, " Folosit de: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(car.department_id) + "(Denumirea departamentului) ", 1
+    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_11, " Folosit de: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.carDepartment(car.department_id)), 1
     /* TEXT */
     )])])]);
   }), 128

@@ -18,7 +18,7 @@ Route::post('/login', [AuthController::class, 'login']);
 
 // Invoices
 Route::resource('/invoices', App\Http\Controllers\InvoiceController::class);
-Route::get('/loadInvoice/{id}',[InvoiceController::class, 'loadInvoice']);
+Route::get('/loadInvoice/{id}', [InvoiceController::class, 'loadInvoice']);
 
 // Users
 Route::resource('/users', App\Http\Controllers\UserController::class);
@@ -41,13 +41,14 @@ Route::get('/loadRevision/{id}',[CarRevisionController::class, 'loadRevision']);
 // Repair notice
 Route::resource('/repairnotices', App\Http\Controllers\RepairNoticeController::class);
 Route::get('/LoadRepairNoticeData', [RepairNoticeController::class, 'repairNotice']);
+Route::get('/loadRepairNotice/{id}',[RepairNoticeController::class, 'loadRepairNotice']);
 
 // Car
 Route::resource('/cars', App\Http\Controllers\CarController::class);
 Route::get('/loadCarParts', [CarController::class, 'loadCarParts']);
 Route::get('/loadCar/{id}', [CarController::class, 'loadCar']);
 Route::get('/loadCarTypes', [CarController::class, 'loadCarTypes']);
-Route::get('/loadRepairNotice/{id}',[RepairNoticeController::class, 'loadRepairNotice']);
+Route::get('/carsDetails',[CarController::class, 'carsDetails']);
 
 
 

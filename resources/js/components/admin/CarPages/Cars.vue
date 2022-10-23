@@ -15,18 +15,16 @@
                                 <div class="card">
                                     <div class="card-content">
                                         <h4 class="card-title text-center">
-                                            {{ car.marca }} {{ car.model }}
+                                            {{ idToCarName(car.car_id) }}
                                         </h4>
                                         <h3 class="text-center card-title">
-                                            {{ car.car_type_id }} (Denumirea
-                                            tipului de masina)
+                                            Tip vehicul: {{ carTypeName(car.car_type_id) }}
                                         </h3>
                                     </div>
                                     <div class="card-content">
                                         <h3 class="text-center">
                                             Folosit de:
-                                            {{ car.department_id }}(Denumirea
-                                            departamentului)
+                                            {{ carDepartment(car.department_id) }}
                                         </h3>
                                     </div>
                                 </div>
@@ -53,6 +51,8 @@ export default {
     data() {
         return {
             cars: [],
+            deparments: [],
+            carTypes: [],
         };
     },
     created() {
@@ -60,9 +60,21 @@ export default {
     },
     methods: {
         async loadData() {
-            const response = await axios.get("api/cars");
-            this.cars = response.data;
+            const response = await axios.get("/api/carsDetails");
+            this.cars = response.data[0];
+            this.deparments = response.data[1];
+            this.carTypes = response.data[2];
         },
+        idToCarName(id) {
+            const carDetails = this.cars.filter((item) => item.car_id === id)[0];
+            return `${carDetails.car_id}. ${carDetails.marca} ${carDetails.model}`;
+        },
+        carDepartment (id) {
+            return this.deparments.filter((item) => item.department_id === id)[0].denumire_departament;
+        },
+        carTypeName (id) {
+            return this.carTypes.filter((item) => item.car_type_id === id)[0].denumire_tip_masina;
+        }
     },
 };
 </script>
