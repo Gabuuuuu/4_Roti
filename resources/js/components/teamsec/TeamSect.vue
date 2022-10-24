@@ -3,21 +3,19 @@
         <section id="team" class="team section-bg">
             <div class="container">
                 <div class="section-title">
-                    <h3>Our Hardworking <span>Team</span></h3>
+                    <h3>Echipa de<span> programatori</span></h3>
                     <p>
-                        Here you can find our talented staff members that made
-                        all of this possible
+                        Aici sunt programatorii nostri talentati care au facut
+                        acest proiect posibil
                     </p>
                 </div>
 
                 <div class="row">
-                    <div
-                        class="col-lg-3 col-md-6 d-flex align-items-stretch"
-                    >
+                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
                         <div class="member">
                             <div class="member-img">
                                 <img
-                                    src="../../../../public/images/MoraruG.jpg"
+                                    src="../../../../public/images/MoraruG.jpeg"
                                     class="img-fluid"
                                 />
                                 <div class="social">
@@ -35,17 +33,15 @@
                             </div>
                             <div class="member-info">
                                 <h4>Moraru Gabriel Danut</h4>
-                                <span>General Manager</span>
+                                <span>Designer/Front-End Developer</span>
                             </div>
                         </div>
                     </div>
-                    <div
-                        class="col-lg-3 col-md-6 d-flex align-items-stretch"
-                    >
+                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
                         <div class="member">
                             <div class="member-img">
                                 <img
-                                    src="../../../../public/images/MoraruG.jpg"
+                                    src="../../../../public/images/AndreiV.jpeg"
                                     class="img-fluid"
                                 />
                                 <div class="social">
@@ -62,18 +58,19 @@
                                 </div>
                             </div>
                             <div class="member-info">
-                                <h4>Vasilescu Stefan Andrei</h4>
-                                <span>General Manager</span>
+                                <h4>Vasilescu Andrei Cosmin</h4>
+                                <span
+                                    >Front-End Developer/Documentation
+                                    Writer</span
+                                >
                             </div>
                         </div>
                     </div>
-                    <div
-                        class="col-lg-3 col-md-6 d-flex align-items-stretch"
-                    >
+                    <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
                         <div class="member">
                             <div class="member-img">
                                 <img
-                                    src="../../../../public/images/MoraruG.jpg"
+                                    src="../../../../public/images/MarianP.png"
                                     class="img-fluid"
                                 />
                                 <div class="social">
@@ -91,7 +88,7 @@
                             </div>
                             <div class="member-info">
                                 <h4>Potoroaca Marian</h4>
-                                <span>General Manager</span>
+                                <span>Back-End/Front-End developer</span>
                             </div>
                         </div>
                     </div>
@@ -153,6 +150,7 @@ section {
 .team .member .member-img {
     position: relative;
     overflow: hidden;
+    background-size: cover;
 }
 .team .member .social {
     position: absolute;

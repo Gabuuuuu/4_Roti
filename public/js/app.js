@@ -28380,7 +28380,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* binding */ render)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var _public_images_MoraruG_jpg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../public/images/MoraruG.jpg */ "./public/images/MoraruG.jpg");
+/* harmony import */ var _public_images_MoraruG_jpeg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../public/images/MoraruG.jpeg */ "./public/images/MoraruG.jpeg");
+/* harmony import */ var _public_images_AndreiV_jpeg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../public/images/AndreiV.jpeg */ "./public/images/AndreiV.jpeg");
+/* harmony import */ var _public_images_MarianP_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../public/images/MarianP.png */ "./public/images/MarianP.png");
+
+
 
 
 
@@ -28388,7 +28392,7 @@ var _withScopeId = function _withScopeId(n) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-3f2f4a06"), n = n(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)(), n;
 };
 
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<section id=\"team\" class=\"team section-bg\" data-v-3f2f4a06><div class=\"container\" data-v-3f2f4a06><div class=\"section-title\" data-v-3f2f4a06><h3 data-v-3f2f4a06>Our Hardworking <span data-v-3f2f4a06>Team</span></h3><p data-v-3f2f4a06> Here you can find our talented staff members that made all of this possible </p></div><div class=\"row\" data-v-3f2f4a06><div class=\"col-lg-3 col-md-6 d-flex align-items-stretch\" data-v-3f2f4a06><div class=\"member\" data-v-3f2f4a06><div class=\"member-img\" data-v-3f2f4a06><img src=\"" + _public_images_MoraruG_jpg__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" class=\"img-fluid\" data-v-3f2f4a06><div class=\"social\" data-v-3f2f4a06><a href=\"\" data-v-3f2f4a06><i class=\"bi bi-twitter\" data-v-3f2f4a06></i></a><a href=\"\" data-v-3f2f4a06><i class=\"bi bi-facebook\" data-v-3f2f4a06></i></a><a href=\"\" data-v-3f2f4a06><i class=\"bi bi-instagram\" data-v-3f2f4a06></i></a><a href=\"\" data-v-3f2f4a06><i class=\"bi bi-linkedin\" data-v-3f2f4a06></i></a></div></div><div class=\"member-info\" data-v-3f2f4a06><h4 data-v-3f2f4a06>Moraru Gabriel Danut</h4><span data-v-3f2f4a06>General Manager</span></div></div></div><div class=\"col-lg-3 col-md-6 d-flex align-items-stretch\" data-v-3f2f4a06><div class=\"member\" data-v-3f2f4a06><div class=\"member-img\" data-v-3f2f4a06><img src=\"" + _public_images_MoraruG_jpg__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" class=\"img-fluid\" data-v-3f2f4a06><div class=\"social\" data-v-3f2f4a06><a href=\"\" data-v-3f2f4a06><i class=\"bi bi-twitter\" data-v-3f2f4a06></i></a><a href=\"\" data-v-3f2f4a06><i class=\"bi bi-facebook\" data-v-3f2f4a06></i></a><a href=\"\" data-v-3f2f4a06><i class=\"bi bi-instagram\" data-v-3f2f4a06></i></a><a href=\"\" data-v-3f2f4a06><i class=\"bi bi-linkedin\" data-v-3f2f4a06></i></a></div></div><div class=\"member-info\" data-v-3f2f4a06><h4 data-v-3f2f4a06>Vasilescu Stefan Andrei</h4><span data-v-3f2f4a06>General Manager</span></div></div></div><div class=\"col-lg-3 col-md-6 d-flex align-items-stretch\" data-v-3f2f4a06><div class=\"member\" data-v-3f2f4a06><div class=\"member-img\" data-v-3f2f4a06><img src=\"" + _public_images_MoraruG_jpg__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" class=\"img-fluid\" data-v-3f2f4a06><div class=\"social\" data-v-3f2f4a06><a href=\"\" data-v-3f2f4a06><i class=\"bi bi-twitter\" data-v-3f2f4a06></i></a><a href=\"\" data-v-3f2f4a06><i class=\"bi bi-facebook\" data-v-3f2f4a06></i></a><a href=\"\" data-v-3f2f4a06><i class=\"bi bi-instagram\" data-v-3f2f4a06></i></a><a href=\"\" data-v-3f2f4a06><i class=\"bi bi-linkedin\" data-v-3f2f4a06></i></a></div></div><div class=\"member-info\" data-v-3f2f4a06><h4 data-v-3f2f4a06>Potoroaca Marian</h4><span data-v-3f2f4a06>General Manager</span></div></div></div></div></div></section>", 1);
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<section id=\"team\" class=\"team section-bg\" data-v-3f2f4a06><div class=\"container\" data-v-3f2f4a06><div class=\"section-title\" data-v-3f2f4a06><h3 data-v-3f2f4a06>Echipa de<span data-v-3f2f4a06> programatori</span></h3><p data-v-3f2f4a06> Aici sunt programatorii nostri talentati care au facut acest proiect posibil </p></div><div class=\"row\" data-v-3f2f4a06><div class=\"col-lg-3 col-md-6 d-flex align-items-stretch\" data-v-3f2f4a06><div class=\"member\" data-v-3f2f4a06><div class=\"member-img\" data-v-3f2f4a06><img src=\"" + _public_images_MoraruG_jpeg__WEBPACK_IMPORTED_MODULE_1__["default"] + "\" class=\"img-fluid\" data-v-3f2f4a06><div class=\"social\" data-v-3f2f4a06><a href=\"\" data-v-3f2f4a06><i class=\"bi bi-twitter\" data-v-3f2f4a06></i></a><a href=\"\" data-v-3f2f4a06><i class=\"bi bi-facebook\" data-v-3f2f4a06></i></a><a href=\"\" data-v-3f2f4a06><i class=\"bi bi-instagram\" data-v-3f2f4a06></i></a><a href=\"\" data-v-3f2f4a06><i class=\"bi bi-linkedin\" data-v-3f2f4a06></i></a></div></div><div class=\"member-info\" data-v-3f2f4a06><h4 data-v-3f2f4a06>Moraru Gabriel Danut</h4><span data-v-3f2f4a06>Designer/Front-End Developer</span></div></div></div><div class=\"col-lg-3 col-md-6 d-flex align-items-stretch\" data-v-3f2f4a06><div class=\"member\" data-v-3f2f4a06><div class=\"member-img\" data-v-3f2f4a06><img src=\"" + _public_images_AndreiV_jpeg__WEBPACK_IMPORTED_MODULE_2__["default"] + "\" class=\"img-fluid\" data-v-3f2f4a06><div class=\"social\" data-v-3f2f4a06><a href=\"\" data-v-3f2f4a06><i class=\"bi bi-twitter\" data-v-3f2f4a06></i></a><a href=\"\" data-v-3f2f4a06><i class=\"bi bi-facebook\" data-v-3f2f4a06></i></a><a href=\"\" data-v-3f2f4a06><i class=\"bi bi-instagram\" data-v-3f2f4a06></i></a><a href=\"\" data-v-3f2f4a06><i class=\"bi bi-linkedin\" data-v-3f2f4a06></i></a></div></div><div class=\"member-info\" data-v-3f2f4a06><h4 data-v-3f2f4a06>Vasilescu Andrei Cosmin</h4><span data-v-3f2f4a06>Front-End Developer/Documentation Writer</span></div></div></div><div class=\"col-lg-3 col-md-6 d-flex align-items-stretch\" data-v-3f2f4a06><div class=\"member\" data-v-3f2f4a06><div class=\"member-img\" data-v-3f2f4a06><img src=\"" + _public_images_MarianP_png__WEBPACK_IMPORTED_MODULE_3__["default"] + "\" class=\"img-fluid\" data-v-3f2f4a06><div class=\"social\" data-v-3f2f4a06><a href=\"\" data-v-3f2f4a06><i class=\"bi bi-twitter\" data-v-3f2f4a06></i></a><a href=\"\" data-v-3f2f4a06><i class=\"bi bi-facebook\" data-v-3f2f4a06></i></a><a href=\"\" data-v-3f2f4a06><i class=\"bi bi-instagram\" data-v-3f2f4a06></i></a><a href=\"\" data-v-3f2f4a06><i class=\"bi bi-linkedin\" data-v-3f2f4a06></i></a></div></div><div class=\"member-info\" data-v-3f2f4a06><h4 data-v-3f2f4a06>Potoroaca Marian</h4><span data-v-3f2f4a06>Back-End/Front-End developer</span></div></div></div></div></div></section>", 1);
 
 var _hoisted_2 = [_hoisted_1];
 function render(_ctx, _cache) {
@@ -30420,7 +30424,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Roboto&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nsection[data-v-3f2f4a06] {\r\n    padding: 60px 0;\r\n    overflow: hidden;\r\n    background-color: rgba(1, 0, 56, 0.255);\n}\n.section-title[data-v-3f2f4a06] {\r\n    text-align: center;\r\n    padding-bottom: 30px;\n}\n.section-title h2[data-v-3f2f4a06] {\r\n    font-size: 13px;\r\n    letter-spacing: 1px;\r\n    font-weight: 700;\r\n    padding: 8px 20px;\r\n    margin: 0;\r\n    background: #e7f1fd;\r\n    color: #106eea;\r\n    display: inline-block;\r\n    text-transform: uppercase;\r\n    border-radius: 50px;\n}\n.section-title h3[data-v-3f2f4a06] {\r\n    margin: 15px 0 0 0;\r\n    font-size: 32px;\r\n    font-weight: 700;\n}\n.section-title h3 span[data-v-3f2f4a06] {\r\n    color: #ff0000;\n}\n.section-title p[data-v-3f2f4a06] {\r\n    margin: 15px auto 0 auto;\r\n    font-weight: 600;\n}\n.team[data-v-3f2f4a06] {\r\n    padding: 158px 0;\n}\n.team .member[data-v-3f2f4a06] {\r\n    text-align: center;\r\n    margin-bottom: 20px;\r\n    overflow: hidden;\r\n    border-radius: 4px;\r\n    background: #fff;\r\n    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.15);\n}\n.team .member .member-img[data-v-3f2f4a06] {\r\n    position: relative;\r\n    overflow: hidden;\n}\n.team .member .social[data-v-3f2f4a06] {\r\n    position: absolute;\r\n    left: 0;\r\n    bottom: 30px;\r\n    right: 0;\r\n    opacity: 0;\r\n    transition: ease-in-out 0.3s;\r\n    text-align: center;\n}\n.team .member .social a[data-v-3f2f4a06] {\r\n    transition: color 0.3s;\r\n    color: #222222;\r\n    margin: 0 3px;\r\n    padding-top: 7px;\r\n    border-radius: 4px;\r\n    width: 36px;\r\n    height: 36px;\r\n    background: rgba(16, 110, 234, 0.8);\r\n    display: inline-block;\r\n    transition: ease-in-out 0.3s;\r\n    color: #fff;\n}\n.team .member .social a[data-v-3f2f4a06]:hover {\r\n    background: #3b8af2;\n}\n.team .member .social i[data-v-3f2f4a06] {\r\n    font-size: 18px;\n}\n.team .member .member-info[data-v-3f2f4a06] {\r\n    padding: 25px 15px;\n}\n.team .member .member-info h4[data-v-3f2f4a06] {\r\n    font-weight: 700;\r\n    margin-bottom: 5px;\r\n    font-size: 18px;\r\n    color: #222222;\n}\n.team .member .member-info span[data-v-3f2f4a06] {\r\n    display: block;\r\n    font-size: 13px;\r\n    font-weight: 400;\r\n    color: #aaaaaa;\n}\n.team .member .member-info p[data-v-3f2f4a06] {\r\n    font-style: italic;\r\n    font-size: 14px;\r\n    line-height: 26px;\r\n    color: #777777;\n}\n.team .member:hover .social[data-v-3f2f4a06] {\r\n    opacity: 1;\r\n    bottom: 15px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nsection[data-v-3f2f4a06] {\r\n    padding: 60px 0;\r\n    overflow: hidden;\r\n    background-color: rgba(1, 0, 56, 0.255);\n}\n.section-title[data-v-3f2f4a06] {\r\n    text-align: center;\r\n    padding-bottom: 30px;\n}\n.section-title h2[data-v-3f2f4a06] {\r\n    font-size: 13px;\r\n    letter-spacing: 1px;\r\n    font-weight: 700;\r\n    padding: 8px 20px;\r\n    margin: 0;\r\n    background: #e7f1fd;\r\n    color: #106eea;\r\n    display: inline-block;\r\n    text-transform: uppercase;\r\n    border-radius: 50px;\n}\n.section-title h3[data-v-3f2f4a06] {\r\n    margin: 15px 0 0 0;\r\n    font-size: 32px;\r\n    font-weight: 700;\n}\n.section-title h3 span[data-v-3f2f4a06] {\r\n    color: #ff0000;\n}\n.section-title p[data-v-3f2f4a06] {\r\n    margin: 15px auto 0 auto;\r\n    font-weight: 600;\n}\n.team[data-v-3f2f4a06] {\r\n    padding: 158px 0;\n}\n.team .member[data-v-3f2f4a06] {\r\n    text-align: center;\r\n    margin-bottom: 20px;\r\n    overflow: hidden;\r\n    border-radius: 4px;\r\n    background: #fff;\r\n    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.15);\n}\n.team .member .member-img[data-v-3f2f4a06] {\r\n    position: relative;\r\n    overflow: hidden;\r\n    background-size: cover;\n}\n.team .member .social[data-v-3f2f4a06] {\r\n    position: absolute;\r\n    left: 0;\r\n    bottom: 30px;\r\n    right: 0;\r\n    opacity: 0;\r\n    transition: ease-in-out 0.3s;\r\n    text-align: center;\n}\n.team .member .social a[data-v-3f2f4a06] {\r\n    transition: color 0.3s;\r\n    color: #222222;\r\n    margin: 0 3px;\r\n    padding-top: 7px;\r\n    border-radius: 4px;\r\n    width: 36px;\r\n    height: 36px;\r\n    background: rgba(16, 110, 234, 0.8);\r\n    display: inline-block;\r\n    transition: ease-in-out 0.3s;\r\n    color: #fff;\n}\n.team .member .social a[data-v-3f2f4a06]:hover {\r\n    background: #3b8af2;\n}\n.team .member .social i[data-v-3f2f4a06] {\r\n    font-size: 18px;\n}\n.team .member .member-info[data-v-3f2f4a06] {\r\n    padding: 25px 15px;\n}\n.team .member .member-info h4[data-v-3f2f4a06] {\r\n    font-weight: 700;\r\n    margin-bottom: 5px;\r\n    font-size: 18px;\r\n    color: #222222;\n}\n.team .member .member-info span[data-v-3f2f4a06] {\r\n    display: block;\r\n    font-size: 13px;\r\n    font-weight: 400;\r\n    color: #aaaaaa;\n}\n.team .member .member-info p[data-v-3f2f4a06] {\r\n    font-style: italic;\r\n    font-size: 14px;\r\n    line-height: 26px;\r\n    color: #777777;\n}\n.team .member:hover .social[data-v-3f2f4a06] {\r\n    opacity: 1;\r\n    bottom: 15px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -30661,6 +30665,21 @@ module.exports = function (url, options) {
 
 /***/ }),
 
+/***/ "./public/images/AndreiV.jpeg":
+/*!************************************!*\
+  !*** ./public/images/AndreiV.jpeg ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/AndreiV.jpeg?27c5e87798589a9dcc6be122eff2dbee");
+
+/***/ }),
+
 /***/ "./public/images/BgAuth.jpg":
 /*!**********************************!*\
   !*** ./public/images/BgAuth.jpg ***!
@@ -30676,9 +30695,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./public/images/MoraruG.jpg":
+/***/ "./public/images/MarianP.png":
 /*!***********************************!*\
-  !*** ./public/images/MoraruG.jpg ***!
+  !*** ./public/images/MarianP.png ***!
   \***********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -30687,7 +30706,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/MoraruG.jpg?bb70c0e6393aad9b3cbf5a8a77103cac");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/MarianP.png?503262c0d5cf17dccf7adb53b502bef7");
+
+/***/ }),
+
+/***/ "./public/images/MoraruG.jpeg":
+/*!************************************!*\
+  !*** ./public/images/MoraruG.jpeg ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/MoraruG.jpeg?e41d7e421908386faa72f18f698160f3");
 
 /***/ }),
 
