@@ -7,15 +7,36 @@ use Illuminate\Http\Request;
 
 class FineController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    // all cars
     public function index()
     {
-        //
+        $fines = Fine::all();
+
+        return response()->json($fines);
     }
+
+    // add car
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'employee_id' => 'required|string|max:255',
+            'data_emiterii' => 'required|string|max:255',
+            'pret_daune' => 'required|string|max:255',
+
+        ]);
+
+        $fine = new Fine([
+            'employee_id' => $request->employee_id,
+            'data_emiterii' => $request->data_emiterii,
+            'pret_daune' => $request->pret_daune,
+
+        ]);
+
+        $fine->save();
+
+        return response()->json('Fine successfully added');
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -27,16 +48,6 @@ class FineController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.

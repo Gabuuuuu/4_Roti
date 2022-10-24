@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 23, 2022 at 07:47 PM
+-- Generation Time: Oct 24, 2022 at 12:32 PM
 -- Server version: 5.7.36
 -- PHP Version: 7.4.26
 
@@ -312,7 +312,7 @@ CREATE TABLE IF NOT EXISTS `employees` (
 --
 
 INSERT INTO `employees` (`employee_id`, `role_id`, `nume_angajat`, `prenume_angajat`, `CNP`, `actDeIdentitate`, `nr`, `dataEliberarii`, `domiciliul`, `strada`, `nrStrada`, `apartament`, `sector`, `data_inceput_ang`, `data_semnare_contract`) VALUES
-(1, 2, 'Gabi', 'Gabitzu', '31231331212', 'buletin', '3212', '2022-10-12', '21312321312', 'GAGA', '3123', '1321', '1', '2022-10-04', '2022-10-19'),
+(1, 3, 'Gabi', 'Gabitzu', '31231331212', 'buletin', '3212', '2022-10-12', '21312321312', 'GAGA', '3123', '1321', '1', '2022-10-04', '2022-10-19'),
 (2, 3, 'Leonte', 'Dalmatianul', '31231331212', 'buletin', '3212', '2022-10-12', '21312321312', 'ADASDADWA', '3123', '1321', '2', '2022-10-04', '2022-10-29');
 
 -- --------------------------------------------------------
@@ -329,7 +329,14 @@ CREATE TABLE IF NOT EXISTS `fines` (
   `pret_daune` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`fine_id`),
   KEY `fines_employee_id_foreign` (`employee_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `fines`
+--
+
+INSERT INTO `fines` (`fine_id`, `employee_id`, `data_emiterii`, `pret_daune`) VALUES
+(1, 1, '2022-10-06', '3000');
 
 -- --------------------------------------------------------
 
@@ -541,7 +548,7 @@ CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=190 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `personal_access_tokens`
@@ -733,7 +740,10 @@ INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `n
 (183, 'App\\Models\\User', 3, 'auth_token', 'de54c27dfcbab6a2c1012e676ef076eb687fb4a99b13530d5fb78348ae2ff686', '[\"*\"]', NULL, '2022-10-23 13:53:19', '2022-10-23 13:53:19'),
 (184, 'App\\Models\\User', 3, 'auth_token', '992e36ea4d16f0d3711ca0903d77f12cf65426cdf1e1d3ab2cd024edac5c8807', '[\"*\"]', NULL, '2022-10-23 14:47:27', '2022-10-23 14:47:27'),
 (185, 'App\\Models\\User', 3, 'auth_token', '48a300b3fbc293e6548c91fae65e93020e1486455ae880cc0c1b5bcd9517d0dd', '[\"*\"]', NULL, '2022-10-23 14:49:31', '2022-10-23 14:49:31'),
-(186, 'App\\Models\\User', 3, 'auth_token', '9d8aee17c3067d5b55451eecb43892c0ca7ed133915d5cb0ac43c755d4699123', '[\"*\"]', NULL, '2022-10-23 15:42:01', '2022-10-23 15:42:01');
+(186, 'App\\Models\\User', 3, 'auth_token', '9d8aee17c3067d5b55451eecb43892c0ca7ed133915d5cb0ac43c755d4699123', '[\"*\"]', NULL, '2022-10-23 15:42:01', '2022-10-23 15:42:01'),
+(187, 'App\\Models\\User', 2, 'auth_token', 'b3b3b60a6920988e1eb1be73e1f492d6e781c3736b17b857c9ae9c896ed19090', '[\"*\"]', NULL, '2022-10-24 07:44:09', '2022-10-24 07:44:09'),
+(188, 'App\\Models\\User', 2, 'auth_token', '2cfe40e97ba7a43c48896b5e9836ecc009462fffc04613834c36c871cadcfe14', '[\"*\"]', NULL, '2022-10-24 07:53:12', '2022-10-24 07:53:12'),
+(189, 'App\\Models\\User', 2, 'auth_token', '0e616c1c3cb9181ee8d0b127ced69ba3d70ae649b2a0f6d7f4c7421726f3c39b', '[\"*\"]', NULL, '2022-10-24 07:55:25', '2022-10-24 07:55:25');
 
 -- --------------------------------------------------------
 

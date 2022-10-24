@@ -11,6 +11,8 @@ use App\Http\Controllers\CarRevisionController;
 use App\Http\Controllers\RepairNoticeController;
 use App\Http\Controllers\FridgeInvoiceController;
 use App\Http\Controllers\DrivingLicenseController;
+use App\Http\Controllers\FineController;
+
 
 //ROUTES
 
@@ -43,6 +45,8 @@ Route::resource('/employees', App\Http\Controllers\EmployeeController::class);
 Route::get('/loadEmployee/{id}', [EmployeeController::class, 'loadEmployee']);
 Route::get('/employeesByDepartment/{id}', [EmployeeController::class, 'employeesByDepartment']);
 Route::resource('/drivinglicenses', App\Http\Controllers\DrivingLicenseController::class);
+Route::resource('/fines', App\Http\Controllers\FineController::class);
+
 
 // Car revisions
 Route::resource('/revisions', App\Http\Controllers\CarRevisionController::class);
