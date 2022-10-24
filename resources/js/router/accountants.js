@@ -7,11 +7,26 @@ import RepairInvoice from "../components/admin/CarPages/RepairInvoice/RepairInvo
 import FridgeInvoices from "../components/admin/FridgePages/FridgeInvoices/FridgeInvoices";
 import FridgeInvoicesDetails from "../components/admin/FridgePages/FridgeInvoices/FridgeInvoiceDetails";
 
+import Insurances from "../components/admin/CarPages/CarInvoices/Insurances";
+import AddInsurance from "../components/admin/CarPages/CarInvoices/AddInsurance";
+
 export default [
     {
         path: "/carinvoices",
         component: CarInvoices,
         name: "carinvoices",
+        meta: { requiresAuth: true, requiresAdmin: true },
+    },
+    {
+        path: "/insurances",
+        component: Insurances,
+        name: "insurances",
+        meta: { requiresAuth: true, requiresAdmin: true },
+    },
+    {
+        path: "/addinsurance",
+        component: AddInsurance,
+        name: "addinsurance",
         meta: { requiresAuth: true, requiresAdmin: true },
     },
     {
@@ -50,4 +65,4 @@ export default [
         name: "fridgeInvoicesDetails",
         meta: { requiresAuth: true, requiresAdmin: true },
     },
-]
+];

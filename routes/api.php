@@ -12,6 +12,7 @@ use App\Http\Controllers\RepairNoticeController;
 use App\Http\Controllers\FridgeInvoiceController;
 use App\Http\Controllers\DrivingLicenseController;
 use App\Http\Controllers\FineController;
+use App\Http\Controllers\InsuranceInvoiceController;
 
 
 //ROUTES
@@ -63,6 +64,11 @@ Route::get('/loadCarParts', [CarController::class, 'loadCarParts']);
 Route::get('/loadCar/{id}', [CarController::class, 'loadCar']);
 Route::get('/loadCarTypes', [CarController::class, 'loadCarTypes']);
 Route::get('/carsDetails',[CarController::class, 'carsDetails']);
+
+// Insurance
+Route::get('/company', [InsuranceInvoiceController::class, 'getCompanyId']);
+Route::get('/insurance', [InsuranceInvoiceController::class, 'getInsuranceType']);
+Route::resource('/insurances', App\Http\Controllers\InsuranceInvoiceController::class);
 
 
 

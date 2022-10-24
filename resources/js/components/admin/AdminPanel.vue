@@ -128,6 +128,14 @@ export default {
                         linkURL: "/fines",
                     },
                     {
+                        linkText: "Inregistreaza o asigurare",
+                        linkURL: "/addinsurance",
+                    },
+                    {
+                        linkText: "Asigurarile masinilor actuale",
+                        linkURL: "/insurances",
+                    },
+                    {
                         linkText: "Facturi masini",
                         linkURL: "/carinvoices",
                     },

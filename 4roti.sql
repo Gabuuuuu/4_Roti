@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 24, 2022 at 12:32 PM
+-- Generation Time: Oct 24, 2022 at 03:38 PM
 -- Server version: 5.7.36
 -- PHP Version: 7.4.26
 
@@ -425,7 +425,49 @@ CREATE TABLE IF NOT EXISTS `insurance_companies` (
   `insurance_company_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `denumire_companie_asigurari` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`insurance_company_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `insurance_companies`
+--
+
+INSERT INTO `insurance_companies` (`insurance_company_id`, `denumire_companie_asigurari`) VALUES
+(1, 'Alianz Tiriac'),
+(2, 'Asirom'),
+(3, 'City Insurance'),
+(4, 'Euroins'),
+(5, 'Generali Romania'),
+(6, 'Grawe Romania'),
+(7, 'Groupama'),
+(8, 'Omniasig'),
+(9, 'Uniqa Asigurari');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `insurance_invoices`
+--
+
+DROP TABLE IF EXISTS `insurance_invoices`;
+CREATE TABLE IF NOT EXISTS `insurance_invoices` (
+  `insurance_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `car_id` int(11) NOT NULL,
+  `insurance_company_id` int(11) NOT NULL,
+  `insurance_type_id` int(11) NOT NULL,
+  `Data_emiterii` date NOT NULL,
+  `Pret_asigurare` int(11) NOT NULL,
+  PRIMARY KEY (`insurance_id`),
+  KEY `insurance_invoices_car_id_foreign` (`car_id`),
+  KEY `insurance_invoices_insurance_company_id_foreign` (`insurance_company_id`),
+  KEY `insurance_invoices_insurance_type_id_foreign` (`insurance_type_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `insurance_invoices`
+--
+
+INSERT INTO `insurance_invoices` (`insurance_id`, `car_id`, `insurance_company_id`, `insurance_type_id`, `Data_emiterii`, `Pret_asigurare`) VALUES
+(1, 9, 3, 2, '2022-06-07', 1500);
 
 -- --------------------------------------------------------
 
@@ -438,7 +480,15 @@ CREATE TABLE IF NOT EXISTS `insurance_types` (
   `insurance_type_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `tip_asigurare` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`insurance_type_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `insurance_types`
+--
+
+INSERT INTO `insurance_types` (`insurance_type_id`, `tip_asigurare`) VALUES
+(1, 'Partiala'),
+(2, 'Completa');
 
 -- --------------------------------------------------------
 
@@ -452,7 +502,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -526,7 +576,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (78, '2022_10_19_183855_create_repair_notices_table', 43),
 (79, '2022_10_22_213527_create_insurances_table', 44),
 (80, '2022_10_23_163620_add_foreign_key_fridge_models', 44),
-(81, '2022_10_23_183014_add_image_fridges', 45);
+(81, '2022_10_23_183014_add_image_fridges', 45),
+(83, '2022_10_24_125136_create_insurance_invoices_table', 46);
 
 -- --------------------------------------------------------
 
