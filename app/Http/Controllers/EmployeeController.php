@@ -14,11 +14,7 @@ use Illuminate\Support\Str;
 
 class EmployeeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+      // all cars
     public function index()
     {
         $employees = Employee::all();
@@ -26,6 +22,48 @@ class EmployeeController extends Controller
         return response()->json($employees);
     }
 
+    // add car
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'role_id' => 'required|integer|max:255',
+            'nume_angajat' => 'required|string|max:255',
+            'prenume_angajat' => 'required|string|max:255',
+            'CNP' => 'required|string|max:255',
+            'actDeIdentitate' => 'required|string|max:255',
+            'nr' => 'required|string|max:255',
+            'dataEliberarii' => 'required|string|max:255',
+            'domiciliul' => 'required|string|max:255',
+            'strada' => 'required|string|max:255',
+            'nrStrada' => 'required|string|max:255',
+            'apartament' => 'required|string|max:255',
+            'sector' => 'required|string|max:255',
+            'data_inceput_ang' => 'required|string|max:255',
+            'data_semnare_contract' => 'required|string|max:255',
+        ]);
+
+        $employee = new Employee([
+            'role_id' => $request->role_id,
+            'nume_angajat' => $request->nume_angajat,
+            'prenume_angajat' => $request->prenume_angajat,
+            'CNP' => $request->CNP,
+            'actDeIdentitate'=> $request->actDeIdentitate,
+            'nr' => $request->nr,
+            'dataEliberarii' => $request->dataEliberarii,
+            'domiciliul' => $request->domiciliul,
+            'strada' => $request->strada,
+            'nrStrada' => $request->nrStrada,
+            'apartament' => $request->apartament,
+            'sector' => $request->sector,
+            'data_inceput_ang' => $request->data_inceput_ang,
+            'data_semnare_contract' => $request->data_semnare_contract,
+
+        ]);
+
+        $employee->save();
+
+        return response()->json('Employee successfully added');
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -36,16 +74,6 @@ class EmployeeController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreEmployeeRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreEmployeeRequest $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
