@@ -41,7 +41,7 @@
                         <div class="member">
                             <div class="member-img">
                                 <img
-                                    src="../../../../public/images/AndreiV.jpeg"
+                                    src="../../../../public/images/AndreiV.png"
                                     class="img-fluid"
                                 />
                                 <div class="social">
@@ -150,7 +150,6 @@ section {
 .team .member .member-img {
     position: relative;
     overflow: hidden;
-    background-size: cover;
 }
 .team .member .social {
     position: absolute;

@@ -13,6 +13,7 @@ use App\Http\Controllers\FridgeInvoiceController;
 use App\Http\Controllers\DrivingLicenseController;
 use App\Http\Controllers\FineController;
 use App\Http\Controllers\InsuranceInvoiceController;
+use App\Http\Controllers\RoleController;
 
 
 //ROUTES
