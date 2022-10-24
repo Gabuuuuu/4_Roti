@@ -45,9 +45,10 @@ Route::resource('/roles', App\Http\Controllers\RoleController::class);
 Route::resource('/employees', App\Http\Controllers\EmployeeController::class);
 Route::get('/loadEmployee/{id}', [EmployeeController::class, 'loadEmployee']);
 Route::get('/employeesByDepartment/{id}', [EmployeeController::class, 'employeesByDepartment']);
-Route::resource('/drivinglicenses', App\Http\Controllers\DrivingLicenseController::class);
-Route::resource('/fines', App\Http\Controllers\FineController::class);
 
+Route::resource('/drivinglicenses', App\Http\Controllers\DrivingLicenseController::class);
+
+Route::resource('/fines', App\Http\Controllers\FineController::class);
 
 // Car revisions
 Route::resource('/revisions', App\Http\Controllers\CarRevisionController::class);
@@ -64,6 +65,8 @@ Route::get('/loadCarParts', [CarController::class, 'loadCarParts']);
 Route::get('/loadCar/{id}', [CarController::class, 'loadCar']);
 Route::get('/loadCarTypes', [CarController::class, 'loadCarTypes']);
 Route::get('/carsDetails',[CarController::class, 'carsDetails']);
+Route::post('/addRide',[CarController::class, 'addRide']);
+Route::post('/getLicenseTypes',[CarController::class, 'getLicenseTypes']);
 
 // Insurance
 Route::get('/company', [InsuranceInvoiceController::class, 'getCompanyId']);

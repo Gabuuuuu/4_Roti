@@ -7,6 +7,7 @@ import AddDrivingLicense from "../components/admin/EmployeePages/AddDrivingLicen
 import Fines from "../components/admin/EmployeePages/Fines";
 import RegisterFine from "../components/admin/EmployeePages/RegisterFine";
 import TotalExpenses from "../components/admin/EmployeePages/TotalExpenses";
+import addCarTaken from '../components/admin/CarPages/AddCarTaken';
 
 // Director aprovizionare
 import addFridge from "../components/admin/FridgePages/addFridge.vue";
@@ -70,6 +71,12 @@ export default [
         path: "/drivinglicenses",
         component: DrivingLicenses,
         name: "drivinglicenses",
+        meta: { requiresAuth: true, requiresAdmin: true },
+    },
+    {
+        path: "/addCarTaken",
+        component: addCarTaken,
+        name: "addCarTaken",
         meta: { requiresAuth: true, requiresAdmin: true },
     },
 ];

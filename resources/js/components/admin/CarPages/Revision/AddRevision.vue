@@ -194,7 +194,30 @@
                           </select>
                         </p>
                       </div>
+                      <div class="form-outline form-white mb-4">
+                        <p>
+                          Introduceti nr. de KM noi:
 
+                          <input
+                            placeholder="KM"
+                            type="text"
+                            class="form-control form-control-lg"
+                            v-model="form.km"
+                          />
+                        </p>
+                      </div>
+                      <div class="form-outline form-white mb-4">
+                        <p>
+                          Introduceti pretul curent:
+
+                          <input
+                            placeholder="Pret curent"
+                            type="text"
+                            class="form-control form-control-lg"
+                            v-model="form.pret_curent"
+                          />
+                        </p>
+                      </div>
                       <button
                         class="btn btn-outline-light btn-lg px-5 mb-1"
                         type="submit"
@@ -232,6 +255,8 @@ export default {
         sistem: "",
         dotari: "",
         cauciucuri: "",
+        km: "",
+        pret_curent: "",
       },
       success: "",
     };
@@ -243,11 +268,14 @@ export default {
     addrevision() {
       const data = new FormData();
 
+      const km = this.form.km;
+      const pret_curent = this.form.pret_curent;
+
       for (const item in this.form) {
-        if(item === 'car') {
-            this.form[item] = this.cars[0].car_id;
+        if (item === "car") {
+          this.form[item] = this.cars[0].car_id;
         } else {
-          if(this.form[item] === 'Buna') {
+          if (this.form[item] === "Buna") {
             this.form[item] = 0;
           } else {
             this.form[item] = 1;
@@ -264,9 +292,10 @@ export default {
       data.append("StareSistemElectric", this.form.sistem);
       data.append("StareDotari", this.form.dotari);
       data.append("StareCauciucuri", this.form.cauciucuri);
+      data.append("km", km.toString());
+      data.append("pret_curent", pret_curent.toString());
 
-      axios.post("/api/revisions", data).then((res) => {
-        console.log(res)
+      axios.post("/api/revisions", data).then(() => {
         this.$router.push({ path: "/revisions" });
         this.loadData();
       });
@@ -275,10 +304,13 @@ export default {
       const response = await axios.get("/api/cars");
       this.cars = response.data;
       for (const item in this.form) {
-        if(item === 'car') {
-            this.form[item] = this.form.car = `${this.cars[0].car_id} - ${this.cars[0].marca} ${this.cars[0].model}`;
+        if (item === "car") {
+          this.form[item] =
+            this.form.car = `${this.cars[0].car_id} - ${this.cars[0].marca} ${this.cars[0].model}`;
+        } else if(item === 'km' || item === 'pret_curent') {
+          this.form[item] = '';
         } else {
-            this.form[item] = 'Buna';
+          this.form[item] = "Buna";
         }
       }
     },

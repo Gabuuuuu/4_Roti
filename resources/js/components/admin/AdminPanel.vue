@@ -187,6 +187,10 @@ export default {
                         linkText: "Adauga o masina",
                         linkURL: "/addCar",
                     },
+                    {
+                        linkText: "Adauga o noua cursa",
+                        linkURL: "/addCarTaken",
+                    },
                 ],
             },
             matchingDynamicLinks: "",

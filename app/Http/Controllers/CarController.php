@@ -122,4 +122,17 @@ class CarController extends Controller
 
         return response()->json($carsDetails);
     }
+
+    public function addRide(Request $request) {
+
+        DB::insert('insert into car_employee values (?, ?)', [$request->car_id, $request->employee_id]);
+
+        // return response()->json('Ride added successfully');
+        return response()->json($request);
+    }
+
+    public function getLicenseTypes () {
+        $licenseTypes = DB::select('SELECT * FROM car_type');
+        return response()->json($request);
+    }
 }

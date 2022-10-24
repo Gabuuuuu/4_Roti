@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 24, 2022 at 04:17 PM
+-- Generation Time: Oct 24, 2022 at 08:52 PM
 -- Server version: 5.7.36
 -- PHP Version: 7.4.26
 
@@ -105,6 +105,7 @@ CREATE TABLE IF NOT EXISTS `cars` (
   `nr_portiere` int(11) NOT NULL,
   `culoare` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `daune` tinyint(1) NOT NULL,
+  `ocupata` tinyint(1) DEFAULT NULL,
   `data_emiterii` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`car_id`),
   KEY `cars_department_id_foreign` (`department_id`),
@@ -115,8 +116,33 @@ CREATE TABLE IF NOT EXISTS `cars` (
 -- Dumping data for table `cars`
 --
 
-INSERT INTO `cars` (`car_id`, `car_type_id`, `department_id`, `pret_curent`, `pret_achizitie`, `oferit_De`, `marca`, `model`, `km`, `an`, `combustibil`, `putere`, `transmisie`, `VIN`, `nr_portiere`, `culoare`, `daune`, `data_emiterii`) VALUES
-(9, 1, 1, NULL, '1234', '1234', 'BMW', '1234', '1234', '1234', 'Diesel', '1234', 'Automatic', '1234', 2, 'alb', 0, '2022-10-23 19:43:27');
+INSERT INTO `cars` (`car_id`, `car_type_id`, `department_id`, `pret_curent`, `pret_achizitie`, `oferit_De`, `marca`, `model`, `km`, `an`, `combustibil`, `putere`, `transmisie`, `VIN`, `nr_portiere`, `culoare`, `daune`, `ocupata`, `data_emiterii`) VALUES
+(1, 1, 1, '421412', '1234', '1234', 'BMW', '1234', '4124', '1234', 'Diesel', '1234', 'Automatic', '1234', 2, 'alb', 2, NULL, '2022-10-23 19:43:27');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `car_employee`
+--
+
+DROP TABLE IF EXISTS `car_employee`;
+CREATE TABLE IF NOT EXISTS `car_employee` (
+  `car_id` int(10) UNSIGNED NOT NULL,
+  `employee_id` int(10) UNSIGNED NOT NULL,
+  KEY `table_car_employee_car_id_foreign` (`car_id`),
+  KEY `table_car_employee_employee_id_foreign` (`employee_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `car_employee`
+--
+
+INSERT INTO `car_employee` (`car_id`, `employee_id`) VALUES
+(1, 1),
+(1, 1),
+(1, 1),
+(1, 1),
+(1, 1);
 
 -- --------------------------------------------------------
 
@@ -139,7 +165,7 @@ CREATE TABLE IF NOT EXISTS `car_revisions` (
   `data_emiterii` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`Id_revizie`),
   KEY `car_revisions_car_id_foreign` (`car_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `car_revisions`
@@ -148,7 +174,34 @@ CREATE TABLE IF NOT EXISTS `car_revisions` (
 INSERT INTO `car_revisions` (`Id_revizie`, `car_id`, `StareMotor`, `StareLumini`, `StareSuspensii`, `StareAmortizor`, `StareFrana`, `StareSistemElectric`, `StareDotari`, `StareCauciucuri`, `data_emiterii`) VALUES
 (1, 2, 0, 1, 1, 1, 0, 1, 0, 0, '2022-10-19 16:02:55'),
 (2, 2, 0, 0, 1, 1, 0, 1, 0, 1, '2022-10-19 16:07:31'),
-(3, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-22 19:35:24');
+(3, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-22 19:35:24'),
+(4, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 19:12:41'),
+(5, 1, 1, 1, 1, 0, 0, 1, 1, 0, '2022-10-24 19:13:41'),
+(6, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 19:15:00'),
+(7, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 19:15:37'),
+(8, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 19:16:05'),
+(9, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 19:16:52'),
+(10, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 19:17:37'),
+(11, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2022-10-24 19:19:41'),
+(12, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 19:20:28'),
+(13, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 19:21:14'),
+(14, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 19:24:16'),
+(15, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 19:24:43'),
+(16, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 19:24:55'),
+(17, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 20:01:43'),
+(18, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 20:02:00'),
+(19, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 20:03:29'),
+(20, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2022-10-24 20:03:33'),
+(21, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 20:04:41'),
+(22, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 20:04:58'),
+(23, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 20:05:30'),
+(24, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 20:06:04'),
+(25, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 20:06:16'),
+(26, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2022-10-24 20:09:43'),
+(27, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2022-10-24 20:10:22'),
+(28, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2022-10-24 20:11:30'),
+(29, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2022-10-24 20:12:23'),
+(30, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2022-10-24 20:12:59');
 
 -- --------------------------------------------------------
 
@@ -313,7 +366,7 @@ CREATE TABLE IF NOT EXISTS `employees` (
 
 INSERT INTO `employees` (`employee_id`, `role_id`, `nume_angajat`, `prenume_angajat`, `CNP`, `actDeIdentitate`, `nr`, `dataEliberarii`, `domiciliul`, `strada`, `nrStrada`, `apartament`, `sector`, `data_inceput_ang`, `data_semnare_contract`) VALUES
 (1, 3, 'Gabi', 'Gabitzu', '31231331212', 'buletin', '3212', '2022-10-12', '21312321312', 'GAGA', '3123', '1321', '1', '2022-10-04', '2022-10-19'),
-(2, 3, 'Leonte', 'Dalmatianul', '31231331212', 'buletin', '3212', '2022-10-12', '21312321312', 'ADASDADWA', '3123', '1321', '2', '2022-10-04', '2022-10-29');
+(2, 4, 'Leonte', 'Dalmatianul', '31231331212', 'buletin', '3212', '2022-10-12', '21312321312', 'ADASDADWA', '3123', '1321', '2', '2022-10-04', '2022-10-29');
 
 -- --------------------------------------------------------
 
@@ -460,14 +513,15 @@ CREATE TABLE IF NOT EXISTS `insurance_invoices` (
   KEY `insurance_invoices_car_id_foreign` (`car_id`),
   KEY `insurance_invoices_insurance_company_id_foreign` (`insurance_company_id`),
   KEY `insurance_invoices_insurance_type_id_foreign` (`insurance_type_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `insurance_invoices`
 --
 
 INSERT INTO `insurance_invoices` (`insurance_id`, `car_id`, `insurance_company_id`, `insurance_type_id`, `Data_emiterii`, `Pret_asigurare`) VALUES
-(1, 9, 3, 2, '2022-06-07', 1500);
+(1, 9, 3, 2, '2022-06-07', 1500),
+(2, 1, 1, 1, '2022-10-14', 123);
 
 -- --------------------------------------------------------
 
@@ -502,7 +556,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -577,7 +631,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (79, '2022_10_22_213527_create_insurances_table', 44),
 (80, '2022_10_23_163620_add_foreign_key_fridge_models', 44),
 (81, '2022_10_23_183014_add_image_fridges', 45),
-(83, '2022_10_24_125136_create_insurance_invoices_table', 46);
+(83, '2022_10_24_125136_create_insurance_invoices_table', 46),
+(84, '2022_10_24_192614_create_table_car_employee', 47),
+(85, '2022_10_24_205058_create_table_user_employee', 48);
 
 -- --------------------------------------------------------
 
@@ -599,7 +655,7 @@ CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=190 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=193 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `personal_access_tokens`
@@ -794,7 +850,10 @@ INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `n
 (186, 'App\\Models\\User', 3, 'auth_token', '9d8aee17c3067d5b55451eecb43892c0ca7ed133915d5cb0ac43c755d4699123', '[\"*\"]', NULL, '2022-10-23 15:42:01', '2022-10-23 15:42:01'),
 (187, 'App\\Models\\User', 2, 'auth_token', 'b3b3b60a6920988e1eb1be73e1f492d6e781c3736b17b857c9ae9c896ed19090', '[\"*\"]', NULL, '2022-10-24 07:44:09', '2022-10-24 07:44:09'),
 (188, 'App\\Models\\User', 2, 'auth_token', '2cfe40e97ba7a43c48896b5e9836ecc009462fffc04613834c36c871cadcfe14', '[\"*\"]', NULL, '2022-10-24 07:53:12', '2022-10-24 07:53:12'),
-(189, 'App\\Models\\User', 2, 'auth_token', '0e616c1c3cb9181ee8d0b127ced69ba3d70ae649b2a0f6d7f4c7421726f3c39b', '[\"*\"]', NULL, '2022-10-24 07:55:25', '2022-10-24 07:55:25');
+(189, 'App\\Models\\User', 2, 'auth_token', '0e616c1c3cb9181ee8d0b127ced69ba3d70ae649b2a0f6d7f4c7421726f3c39b', '[\"*\"]', NULL, '2022-10-24 07:55:25', '2022-10-24 07:55:25'),
+(190, 'App\\Models\\User', 3, 'auth_token', '74b5966f476c1807f1fbad549d6b72f055dfe9b715aef949ca4ecd2fb2cd4cc8', '[\"*\"]', NULL, '2022-10-24 14:29:48', '2022-10-24 14:29:48'),
+(191, 'App\\Models\\User', 3, 'auth_token', 'f127bdb6552061ba3a7c9c63a5aca677f6cdb333f3b178cb212dd4ad2f95289d', '[\"*\"]', NULL, '2022-10-24 16:03:15', '2022-10-24 16:03:15'),
+(192, 'App\\Models\\User', 3, 'auth_token', '6b5b41f1ecfd3215f7ea68c2db7d8aafb7bd1d24b5d881634424e8a0ca3eed34', '[\"*\"]', NULL, '2022-10-24 16:43:10', '2022-10-24 16:43:10');
 
 -- --------------------------------------------------------
 
@@ -955,6 +1014,20 @@ INSERT INTO `users` (`user_id`, `employee_id`, `name`, `email`, `email_verified_
 (1, 1, 'Gabi123', 'gamingro99@yahoo.com', NULL, '$2y$10$R6GkTI.6ow7Ae8h6lDs4KeIwWGMwS92s8WREiED2kA/RN8JQublCC', NULL, '2022-10-16 12:48:55', '2022-10-16 12:48:55'),
 (2, 1, 'Moraru Gabriel Danut', 'moraru.gabriel00@gmail.com', NULL, '$2y$10$TeMvc9wFwZdxsp2NUx/5o.iBClEIGJ4lXsiOA4vivXDCZCZQn0Fj6', NULL, '2022-10-16 13:56:29', '2022-10-16 13:56:29'),
 (3, 2, 'Goose99', 'marianpoto@yahoo.com', NULL, '$2y$10$U6U5RN6s308jNutaDuvoaOjZfZmZ7Hl5CMuOYkGnNhI6kJmWEUTza', NULL, '2022-10-20 17:45:21', '2022-10-20 17:45:21');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_employee`
+--
+
+DROP TABLE IF EXISTS `user_employee`;
+CREATE TABLE IF NOT EXISTS `user_employee` (
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `employee_id` int(10) UNSIGNED NOT NULL,
+  KEY `user_employee_user_id_foreign` (`user_id`),
+  KEY `user_employee_employee_id_foreign` (`employee_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

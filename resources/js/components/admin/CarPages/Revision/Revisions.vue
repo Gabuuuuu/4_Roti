@@ -73,8 +73,10 @@
 </template>
 
 <script>
-
+import TheFooter from "../../../layout/TheFooter.vue";
+import TheHeader from "../../../layout/TheHeader";
 export default {
+  components: { TheHeader, TheFooter },
   data() {
     return {
       revisions: [],
@@ -105,10 +107,13 @@ export default {
       return new Date(dateToday).toLocaleDateString();
     },
     idToCarName(id) {
-      const carDetails = this.cars.filter((item) => item.car_id === id)[0];
-      return `${carDetails.car_id} - ${carDetails.marca} ${carDetails.model}`;
+      if (this.cars?.length) {
+        const carDetails = this.cars.filter((item) => item.car_id === id)[0];
+        return carDetails
+          ? `${carDetails.car_id} - ${carDetails.marca} ${carDetails.model}`
+          : "Car not found ";
+      }
     },
   },
 };
 </script>
-<style scoped></style>
