@@ -147,10 +147,7 @@ export default {
                         linkText: "Facturi reparatii masini",
                         linkURL: "/repairinvoices",
                     },
-                    {
-                        linkText: "Lista constatari daune",
-                        linkURL: "/repairNotices",
-                    },
+
                     {
                         linkText: "Facturi achizitii frigidere",
                         linkURL: "/fridgeInvoices",
@@ -173,6 +170,10 @@ export default {
                         linkText: "Trimite o constatare de daune",
                         linkURL: "/addRepairNotice",
                     },
+                    {
+                        linkText: "Adauga o masina",
+                        linkURL: "/addCar",
+                    },
                 ],
                 4: [
                     {
@@ -183,12 +184,9 @@ export default {
                         linkText: "Angajati",
                         linkURL: "/employees",
                     },
+
                     {
-                        linkText: "Adauga o masina",
-                        linkURL: "/addCar",
-                    },
-                    {
-                        linkText: "Adauga o noua cursa",
+                        linkText: "Atribuie o masina unui angajat",
                         linkURL: "/addCarTaken",
                     },
                 ],

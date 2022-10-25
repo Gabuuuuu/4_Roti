@@ -11,10 +11,10 @@
               <div class="card bg-dark text-white" style="border-radius: 1rem">
                 <div class="card-body p-5 text-center">
                   <div class="mb-md-6 mt-md-4 pb-5">
-                    <h2 class="fw-bold mb-4">Achizitioneaza o masina</h2>
+                    <h2 class="fw-bold mb-4">Atribuie o masina unui angajat</h2>
 
                     <p class="text-white-50 mb-4">
-                      Completeaza toate datele pentru achizitionarea masini
+                      Completeaza datele de atribuire
                     </p>
                     <form
                       @submit.prevent="addRide"

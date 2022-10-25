@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 24, 2022 at 08:52 PM
+-- Generation Time: Oct 25, 2022 at 12:54 PM
 -- Server version: 5.7.36
 -- PHP Version: 7.4.26
 
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `brands` (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `brand` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `brands`
@@ -68,17 +68,7 @@ INSERT INTO `brands` (`id`, `brand`) VALUES
 (2, 'AUDI'),
 (3, 'MERCEDES'),
 (4, 'Volkswagen'),
-(5, 'Tesla'),
-(6, 'Porsche'),
-(7, 'Lexus'),
-(8, 'Volvo'),
-(9, 'Lamborghini'),
-(10, 'Ferrari'),
-(11, 'Jaguar'),
-(12, 'Cadillac'),
-(13, 'Rolls-Royce'),
-(14, 'Maserati'),
-(15, 'Opel');
+(5, 'Opel');
 
 -- --------------------------------------------------------
 
@@ -110,14 +100,21 @@ CREATE TABLE IF NOT EXISTS `cars` (
   PRIMARY KEY (`car_id`),
   KEY `cars_department_id_foreign` (`department_id`),
   KEY `cars_car_type_id_foreign` (`car_type_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `cars`
 --
 
 INSERT INTO `cars` (`car_id`, `car_type_id`, `department_id`, `pret_curent`, `pret_achizitie`, `oferit_De`, `marca`, `model`, `km`, `an`, `combustibil`, `putere`, `transmisie`, `VIN`, `nr_portiere`, `culoare`, `daune`, `ocupata`, `data_emiterii`) VALUES
-(1, 1, 1, '421412', '1234', '1234', 'BMW', '1234', '4124', '1234', 'Diesel', '1234', 'Automatic', '1234', 2, 'alb', 2, NULL, '2022-10-23 19:43:27');
+(1, 1, 2, '13600', '14000', 'Radacina Srl.', 'Opel', 'Astra', '12800', '2020', 'Gas', '135', 'Automatic', 'VF3BY1160E0014908', 5, 'alb', 0, NULL, '2022-10-25 10:10:53'),
+(2, 1, 2, '14000', '14000', 'Radacina Srl.', 'Opel', 'Astra', '12423', '2020', 'Gas', '135', 'Automatic', 'VF3DC1310L0012520', 5, 'negru', 0, NULL, '2022-10-25 10:16:16'),
+(3, 1, 2, '14000', '14000', 'Radacini Srl.', 'Opel', 'Astra', '12342', '2020', 'Gas', '135', 'Automatic', 'VF3BA11E6BS313668', 5, 'negru', 0, NULL, '2022-10-25 11:01:57'),
+(4, 1, 2, '14000', '14000', 'Radacina Srl.', 'Opel', 'Astra', '7050', '2020', 'Gas', '135', 'Automatic', 'VF3BD11E1ES356035', 5, 'negru', 0, NULL, '2022-10-25 12:16:47'),
+(5, 4, 1, '40000', '40000', 'Radacina Srl.', 'MERCEDES', 'ATEGO 1223', '134523', '2021', 'Diesel', '326', 'Automatic', 'WDDNG5HB5CA451000', 3, 'alb', 0, NULL, '2022-10-25 12:25:03'),
+(6, 4, 1, '29000', '29000', 'Radacina Srl.', 'MERCEDES', 'ATEGO 1223', '614523', '2021', 'Diesel', '326', 'Automatic', 'WDBRF40J85A688514', 3, 'alb', 0, NULL, '2022-10-25 12:26:32'),
+(7, 5, 1, '35000', '35000', 'Radacina Srl.', 'Volkswagen', 'ACTROS 2545', '732452', '2012', 'Diesel', '753', 'Automatic', 'WDCYR49E82X131941', 3, 'negru', 0, NULL, '2022-10-25 12:30:57'),
+(8, 5, 1, '57000', '57000', 'Iacob Ionel', 'MERCEDES', 'ACTROS 2545', '443252', '2017', 'Diesel', '726', 'Automatic', 'WDBFA66E9MF017880', 3, 'negru', 0, NULL, '2022-10-25 12:32:30');
 
 -- --------------------------------------------------------
 
@@ -165,43 +162,15 @@ CREATE TABLE IF NOT EXISTS `car_revisions` (
   `data_emiterii` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`Id_revizie`),
   KEY `car_revisions_car_id_foreign` (`car_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `car_revisions`
 --
 
 INSERT INTO `car_revisions` (`Id_revizie`, `car_id`, `StareMotor`, `StareLumini`, `StareSuspensii`, `StareAmortizor`, `StareFrana`, `StareSistemElectric`, `StareDotari`, `StareCauciucuri`, `data_emiterii`) VALUES
-(1, 2, 0, 1, 1, 1, 0, 1, 0, 0, '2022-10-19 16:02:55'),
-(2, 2, 0, 0, 1, 1, 0, 1, 0, 1, '2022-10-19 16:07:31'),
-(3, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-22 19:35:24'),
-(4, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 19:12:41'),
-(5, 1, 1, 1, 1, 0, 0, 1, 1, 0, '2022-10-24 19:13:41'),
-(6, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 19:15:00'),
-(7, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 19:15:37'),
-(8, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 19:16:05'),
-(9, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 19:16:52'),
-(10, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 19:17:37'),
-(11, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2022-10-24 19:19:41'),
-(12, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 19:20:28'),
-(13, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 19:21:14'),
-(14, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 19:24:16'),
-(15, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 19:24:43'),
-(16, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 19:24:55'),
-(17, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 20:01:43'),
-(18, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 20:02:00'),
-(19, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 20:03:29'),
-(20, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2022-10-24 20:03:33'),
-(21, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 20:04:41'),
-(22, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 20:04:58'),
-(23, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 20:05:30'),
-(24, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 20:06:04'),
-(25, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-24 20:06:16'),
-(26, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2022-10-24 20:09:43'),
-(27, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2022-10-24 20:10:22'),
-(28, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2022-10-24 20:11:30'),
-(29, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2022-10-24 20:12:23'),
-(30, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2022-10-24 20:12:59');
+(1, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-25 12:34:48'),
+(2, 1, 0, 0, 0, 0, 0, 0, 0, 0, '2022-10-25 12:35:58');
 
 -- --------------------------------------------------------
 
@@ -251,8 +220,7 @@ INSERT INTO `colors` (`Culoare_id`, `Culoare_denumire`) VALUES
 (4, 'albastru'),
 (5, 'roz'),
 (6, 'galben'),
-(7, 'cacaniu'),
-(8, 'mov');
+(7, 'mov');
 
 -- --------------------------------------------------------
 
@@ -324,14 +292,15 @@ CREATE TABLE IF NOT EXISTS `driving_licenses` (
   `permis_suspendat` tinyint(1) NOT NULL,
   PRIMARY KEY (`driving_license_id`),
   KEY `driving_licenses_employee_id_foreign` (`employee_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `driving_licenses`
 --
 
 INSERT INTO `driving_licenses` (`driving_license_id`, `employee_id`, `license_type_id`, `nume_angajat`, `prenume_angajat`, `data_nasterii`, `locul_nasterii`, `data_emiterii`, `data_expirarii`, `autoritatea_emiterii`, `CNP`, `Nr_permis`, `permis_suspendat`) VALUES
-(1, 1, 'C+E', 'Moraru', 'Gabriel', '2022-10-05', 'assfaaf', '2022-10-04', '2022-10-05', 'SDCRAPSSAF SDAA', '1231231231231', '1234567890', 0);
+(1, 1, 'B', 'Gabi', 'Gabitzu', '2022-10-06', 'Alexandria', '2022-10-05', '2022-10-05', 'Screprecs Alexandrai', '31231331212', '123131', 0),
+(2, 3, 'C+E', 'Moraru', 'Gabriel', '2000-01-06', 'Alexandria', '2022-10-01', '2028-01-01', 'Scrlep Alexandria', '5000106450232', '0752425242', 0);
 
 -- --------------------------------------------------------
 
@@ -358,15 +327,19 @@ CREATE TABLE IF NOT EXISTS `employees` (
   `data_semnare_contract` date DEFAULT NULL,
   PRIMARY KEY (`employee_id`),
   KEY `employees_role_id_foreign` (`role_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `employees`
 --
 
 INSERT INTO `employees` (`employee_id`, `role_id`, `nume_angajat`, `prenume_angajat`, `CNP`, `actDeIdentitate`, `nr`, `dataEliberarii`, `domiciliul`, `strada`, `nrStrada`, `apartament`, `sector`, `data_inceput_ang`, `data_semnare_contract`) VALUES
-(1, 3, 'Gabi', 'Gabitzu', '31231331212', 'buletin', '3212', '2022-10-12', '21312321312', 'GAGA', '3123', '1321', '1', '2022-10-04', '2022-10-19'),
-(2, 4, 'Leonte', 'Dalmatianul', '31231331212', 'buletin', '3212', '2022-10-12', '21312321312', 'ADASDADWA', '3123', '1321', '2', '2022-10-04', '2022-10-29');
+(3, 4, 'Moraru', 'Gabriel', '5000106450232', 'TR', '1', '2018-10-10', 'Bucuresti', '1', '2', '4', '8', '2022-10-15', '2022-10-04'),
+(2, 3, 'Potoroaca', 'Marian', '5000100350231', 'B', '1', '2018-10-10', 'Bucuresti', '1', '1', '3', '7', '2022-10-03', '2022-10-13'),
+(1, 2, 'Vasilescu', 'Andrei', '5000100300432', 'B', '123432', '2018-06-06', 'Bucuresti', 'Strada din Bucuresti', '1', '1', '1', '2022-10-01', '2022-10-01'),
+(4, 5, 'Maria', 'Popescu', '5000123424232', 'B', '1', '2015-10-01', '2', '3', '5', '9', '2', '2022-10-10', '2022-10-06'),
+(5, 6, 'Andrei', 'Ionel', '5000120342323', 'B', '1', '2015-10-01', '2', '4', '2', '2', '4', '2022-10-05', '2022-10-15'),
+(6, 7, 'George', 'Hasbula', '5000123423212', 'B', '2', '2012-10-10', '4', '5', '2', '4', '4', '2022-10-08', '2022-10-17');
 
 -- --------------------------------------------------------
 
@@ -382,14 +355,15 @@ CREATE TABLE IF NOT EXISTS `fines` (
   `pret_daune` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`fine_id`),
   KEY `fines_employee_id_foreign` (`employee_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `fines`
 --
 
 INSERT INTO `fines` (`fine_id`, `employee_id`, `data_emiterii`, `pret_daune`) VALUES
-(1, 1, '2022-10-06', '3000');
+(4, 2, '2022-10-24', '800'),
+(3, 3, '2022-10-25', '700');
 
 -- --------------------------------------------------------
 
@@ -513,15 +487,14 @@ CREATE TABLE IF NOT EXISTS `insurance_invoices` (
   KEY `insurance_invoices_car_id_foreign` (`car_id`),
   KEY `insurance_invoices_insurance_company_id_foreign` (`insurance_company_id`),
   KEY `insurance_invoices_insurance_type_id_foreign` (`insurance_type_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `insurance_invoices`
 --
 
 INSERT INTO `insurance_invoices` (`insurance_id`, `car_id`, `insurance_company_id`, `insurance_type_id`, `Data_emiterii`, `Pret_asigurare`) VALUES
-(1, 9, 3, 2, '2022-06-07', 1500),
-(2, 1, 1, 1, '2022-10-14', 123);
+(1, 1, 1, 2, '2022-10-25', 1100);
 
 -- --------------------------------------------------------
 
@@ -655,7 +628,7 @@ CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=193 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=206 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `personal_access_tokens`
@@ -853,7 +826,20 @@ INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `n
 (189, 'App\\Models\\User', 2, 'auth_token', '0e616c1c3cb9181ee8d0b127ced69ba3d70ae649b2a0f6d7f4c7421726f3c39b', '[\"*\"]', NULL, '2022-10-24 07:55:25', '2022-10-24 07:55:25'),
 (190, 'App\\Models\\User', 3, 'auth_token', '74b5966f476c1807f1fbad549d6b72f055dfe9b715aef949ca4ecd2fb2cd4cc8', '[\"*\"]', NULL, '2022-10-24 14:29:48', '2022-10-24 14:29:48'),
 (191, 'App\\Models\\User', 3, 'auth_token', 'f127bdb6552061ba3a7c9c63a5aca677f6cdb333f3b178cb212dd4ad2f95289d', '[\"*\"]', NULL, '2022-10-24 16:03:15', '2022-10-24 16:03:15'),
-(192, 'App\\Models\\User', 3, 'auth_token', '6b5b41f1ecfd3215f7ea68c2db7d8aafb7bd1d24b5d881634424e8a0ca3eed34', '[\"*\"]', NULL, '2022-10-24 16:43:10', '2022-10-24 16:43:10');
+(192, 'App\\Models\\User', 3, 'auth_token', '6b5b41f1ecfd3215f7ea68c2db7d8aafb7bd1d24b5d881634424e8a0ca3eed34', '[\"*\"]', NULL, '2022-10-24 16:43:10', '2022-10-24 16:43:10'),
+(193, 'App\\Models\\User', 2, 'auth_token', 'c9f1c18c732679fcf917ac32107127e8a29ab9a12c0ea35fa1ecbb523a6f3c64', '[\"*\"]', NULL, '2022-10-25 05:41:33', '2022-10-25 05:41:33'),
+(194, 'App\\Models\\User', 2, 'auth_token', '96e18cd8c96334636f0f2f2cc96b9307206fe03f717ba0f75f6eeb53541b2521', '[\"*\"]', NULL, '2022-10-25 05:47:51', '2022-10-25 05:47:51'),
+(195, 'App\\Models\\User', 4, 'auth_token', 'a85105a4cfb353ca6fbbb7703e412b98d8219b8e2a5c9333ccce2f8336197f5b', '[\"*\"]', NULL, '2022-10-25 05:59:40', '2022-10-25 05:59:40'),
+(196, 'App\\Models\\User', 5, 'auth_token', 'cd197f36eee1778be68f4a271a22a49ddce27e09506564ce18bdfc82e93b436b', '[\"*\"]', NULL, '2022-10-25 06:00:59', '2022-10-25 06:00:59'),
+(197, 'App\\Models\\User', 6, 'auth_token', 'b4840a041abca0cf105ed5fa89c2d5c2dbb37b3271f858102b45d3c44f0cad55', '[\"*\"]', NULL, '2022-10-25 06:01:33', '2022-10-25 06:01:33'),
+(198, 'App\\Models\\User', 7, 'auth_token', '1011af2c2a3e8b1fc2892844b8feb62862bbab7404ea19afee27bd24fe48fa78', '[\"*\"]', NULL, '2022-10-25 06:02:55', '2022-10-25 06:02:55'),
+(199, 'App\\Models\\User', 8, 'auth_token', 'e87d26fe7d8d34e4681efe05e8fda96622bfae4e004c1aa42cb5410a441daa32', '[\"*\"]', NULL, '2022-10-25 06:03:30', '2022-10-25 06:03:30'),
+(200, 'App\\Models\\User', 9, 'auth_token', '1cc5caf96a7465dc887dc7146a5ab2410bac986a2d438bb59ccc7b2fcdf9d3b5', '[\"*\"]', NULL, '2022-10-25 06:04:15', '2022-10-25 06:04:15'),
+(201, 'App\\Models\\User', 4, 'auth_token', 'e204cb9f6103bbc479d98f064507f0763b773cd4909cf67c28e5abed1d79bafb', '[\"*\"]', NULL, '2022-10-25 06:05:38', '2022-10-25 06:05:38'),
+(202, 'App\\Models\\User', 3, 'auth_token', 'f27761c8a9565e6d0f4a61159a1400cb33d8b2301032358999bd361d80d28bad', '[\"*\"]', NULL, '2022-10-25 06:18:11', '2022-10-25 06:18:11'),
+(203, 'App\\Models\\User', 3, 'auth_token', 'a5223b90cb07e24194bd7fea56b8d6aecebe957bf40fff679451eed2cec1eb01', '[\"*\"]', NULL, '2022-10-25 09:41:19', '2022-10-25 09:41:19'),
+(204, 'App\\Models\\User', 3, 'auth_token', 'e1277dfd78081a022781dcfd690f0579b44fc8b35ba5893f727511f4fd9750f0', '[\"*\"]', NULL, '2022-10-25 09:49:13', '2022-10-25 09:49:13'),
+(205, 'App\\Models\\User', 3, 'auth_token', '3fe87a63a18a5dbd2ae7002d2fc221ec362f82ff404619b2227a6500cde66c2a', '[\"*\"]', NULL, '2022-10-25 09:54:17', '2022-10-25 09:54:17');
 
 -- --------------------------------------------------------
 
@@ -872,16 +858,14 @@ CREATE TABLE IF NOT EXISTS `repair_notices` (
   PRIMARY KEY (`Id_repair_notice`),
   KEY `repair_notices_car_id_foreign` (`car_id`),
   KEY `repair_notices_employee_id_foreign` (`employee_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `repair_notices`
 --
 
 INSERT INTO `repair_notices` (`Id_repair_notice`, `car_id`, `employee_id`, `damage_info`, `damage_cost`, `data_emiterii`) VALUES
-(1, 1, 1, 'Masina a fost busita pe stanga da un cocalar cu bemveu d ala vechi d acu 100 da ani', '3000', '2022-10-19 19:38:05'),
-(2, 2, 1, 'Masina a fost rupta in cur', '3000', '2022-10-20 14:31:01'),
-(3, 1, 1, 'FASFA', '22', '2022-10-20 19:53:04');
+(1, 3, 3, 'Masina prezinta o zgarietura pe partea dreapta a caroseriei, a necesitat un polish si revopsire partiala', '750', '2022-10-25 12:37:09');
 
 -- --------------------------------------------------------
 
@@ -922,7 +906,7 @@ CREATE TABLE IF NOT EXISTS `seats` (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `seats` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `seats`
@@ -930,9 +914,10 @@ CREATE TABLE IF NOT EXISTS `seats` (
 
 INSERT INTO `seats` (`id`, `seats`) VALUES
 (1, '2'),
-(2, '5'),
-(3, '6'),
-(4, '7');
+(2, '3'),
+(3, '5'),
+(4, '6'),
+(5, '7');
 
 -- --------------------------------------------------------
 
@@ -1004,16 +989,19 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `users_email_unique` (`email`),
   KEY `users_employee_id_foreign` (`employee_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`user_id`, `employee_id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Gabi123', 'gamingro99@yahoo.com', NULL, '$2y$10$R6GkTI.6ow7Ae8h6lDs4KeIwWGMwS92s8WREiED2kA/RN8JQublCC', NULL, '2022-10-16 12:48:55', '2022-10-16 12:48:55'),
-(2, 1, 'Moraru Gabriel Danut', 'moraru.gabriel00@gmail.com', NULL, '$2y$10$TeMvc9wFwZdxsp2NUx/5o.iBClEIGJ4lXsiOA4vivXDCZCZQn0Fj6', NULL, '2022-10-16 13:56:29', '2022-10-16 13:56:29'),
-(3, 2, 'Goose99', 'marianpoto@yahoo.com', NULL, '$2y$10$U6U5RN6s308jNutaDuvoaOjZfZmZ7Hl5CMuOYkGnNhI6kJmWEUTza', NULL, '2022-10-20 17:45:21', '2022-10-20 17:45:21');
+(1, 1, 'Vasilescu Andrei', 'vasilescuandrei945@yahoo.com', NULL, '$2y$10$EjWbgux6JcdcHh9e4V2dj.5lrfAIA5caXCN38MoLPZ5KeRTsvNDXu', NULL, '2022-10-25 06:00:59', '2022-10-25 06:00:59'),
+(2, 2, 'Potoroaca Marian', 'marianpoto69@gmail.com', NULL, '$2y$10$91CcgZeuzYRRD3stbBJQyusuul5Fztylk8acwhVBoWMS8KUZWXttK', NULL, '2022-10-25 06:01:33', '2022-10-25 06:01:33'),
+(3, 3, 'Moraru Gabriel', 'moraru.gabriel00@gmail.com', NULL, '$2y$10$9k14FoohbOxsmyenc9fvrOLzoOup1wIItQrivqj748/LFCeYMmBtW', NULL, '2022-10-25 05:59:40', '2022-10-25 05:59:40'),
+(4, 4, 'Maria Popescu', 'MariaPopescu@gmail.com', NULL, '$2y$10$rPHpK7DrLMdYAKHbnylL3uWlzGiqxKp./FyCNtyRzTqPAaeS1X8Jm', NULL, '2022-10-25 06:02:55', '2022-10-25 06:02:55'),
+(5, 5, 'Andrei Ionescu', 'AndreiIonescu@gmail.com', NULL, '$2y$10$xfj1rKIFlIbDOEXyRU0dqO1Gg4c68BHlETOahbKkSb9c8G2eQG1sq', NULL, '2022-10-25 06:03:30', '2022-10-25 06:03:30'),
+(6, 6, 'George Hasbula', 'GeorgeHasbula@gmail.com', NULL, '$2y$10$JQIGiLsvIHNuYQp0cukpvOnTxOCR.Y0bPXpuF2NOTdgkqScVsvsA2', NULL, '2022-10-25 06:04:15', '2022-10-25 06:04:15');
 
 -- --------------------------------------------------------
 

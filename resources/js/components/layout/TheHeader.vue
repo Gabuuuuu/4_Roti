@@ -18,7 +18,7 @@
                         </li>
                         <li>
                             <router-link class="nav-link" to="/prices"
-                                >Preturi
+                                >Preturi Frigidere
                             </router-link>
                         </li>
                         <li>
@@ -74,7 +74,7 @@ export default {
     data() {
         return {
             departmentIDs: [1, 3],
-        }
+        };
     },
     methods: {
         logout() {
@@ -93,13 +93,13 @@ export default {
             });
         },
         returnDepRoleProperty(property) {
-            if(this.retrieveRoleData?.length) {
+            if (this.retrieveRoleData?.length) {
                 const roleProperties = JSON.parse(this.retrieveRoleData);
 
                 switch (property) {
-                    case 'dep':
+                    case "dep":
                         return roleProperties.department_id;
-                    case 'role':
+                    case "role":
                         return roleProperties.role_id;
                 }
             }

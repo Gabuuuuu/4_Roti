@@ -86,6 +86,7 @@
                                                     <select
                                                         class="selectpicker btn btn-secondary btn-lg dropdown-toggle form-control form-control-lg"
                                                         data-style="btn-success"
+                                                        v-model="form.brand"
                                                     >
                                                         <option
                                                             v-for="brand in brands"
